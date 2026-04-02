@@ -4,6 +4,21 @@ import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
 import { MetricsBadge } from "../components/MetricsBadge";
 import { ExperimentTable } from "../components/ExperimentTable";
 
+const PRIVACY_MECHANISM_LABELS: Record<string, string> = {
+  none: "なし（プライバシー保護機構なし）",
+  identifiability_penalty: "識別可能性ペナルティ（生成データが元データに近づきすぎないよう制約）",
+  differential_privacy: "差分プライバシー（数学的なプライバシー保証）",
+};
+
+const CATEGORY_COLORS: Record<string, string> = {
+  gan: "bg-purple-100 text-purple-800",
+  vae: "bg-indigo-100 text-indigo-800",
+  copula: "bg-blue-100 text-blue-800",
+  bayesian: "bg-teal-100 text-teal-800",
+  flow: "bg-cyan-100 text-cyan-800",
+  sequential: "bg-orange-100 text-orange-800",
+};
+
 export function DetailPage() {
   const { id } = useParams<{ id: string }>();
   const { algorithms, loading, error } = useAlgorithms();
@@ -37,86 +52,146 @@ export function DetailPage() {
     );
   }
 
+  const categoryColor = CATEGORY_COLORS[algorithm.category] ?? "bg-gray-100 text-gray-800";
+
   return (
     <div className="max-w-4xl mx-auto">
-      <Link to="/" className="text-blue-600 hover:underline text-sm mb-4 inline-block">
-        &larr; 一覧に戻る
-      </Link>
+      {/* ===== A. ヘッダーセクション ===== */}
+      <div className="mb-6">
+        <Link
+          to="/"
+          className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-flex items-center gap-1 transition-colors"
+        >
+          <span>&larr;</span>
+          <span>一覧に戻る</span>
+        </Link>
 
-      {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
-          <h2 className="text-2xl font-bold text-gray-800">{algorithm.name}</h2>
-          <div className="flex gap-2 items-center">
-            <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">{algorithm.name}</h1>
+
+          <div className="flex flex-wrap gap-2 items-center">
+            {/* カテゴリバッジ */}
+            <span className={`text-sm font-semibold px-3 py-1 rounded-full ${categoryColor}`}>
               {CATEGORY_LABELS[algorithm.category]}
             </span>
+
+            {/* ライブラリバッジ */}
+            {algorithm.libraries.map((lib) => (
+              <span
+                key={lib}
+                className="bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full"
+              >
+                {lib}
+              </span>
+            ))}
+
+            {/* プライバシーリスクバッジ */}
             {algorithm.privacy_risk_level && (
               <MetricsBadge level={algorithm.privacy_risk_level} />
             )}
           </div>
-        </div>
 
-        <p className="text-gray-600 mb-4">{algorithm.description}</p>
-
-        {/* Metadata */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-          <div>
-            <h4 className="font-semibold text-gray-700 mb-1">対応データタイプ</h4>
-            <div className="flex flex-wrap gap-1">
-              {algorithm.supported_data.map((dt) => (
-                <span key={dt} className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-xs">
-                  {DATA_TYPE_LABELS[dt]}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-700 mb-1">ライブラリ</h4>
-            <div className="flex flex-wrap gap-1">
-              {algorithm.libraries.map((lib) => (
-                <span key={lib} className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-xs">
-                  {lib}
-                </span>
-              ))}
-            </div>
+          {/* 対応データタイプ */}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {algorithm.supported_data.map((dt) => (
+              <span
+                key={dt}
+                className="bg-blue-50 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full border border-blue-200"
+              >
+                {DATA_TYPE_LABELS[dt]}
+              </span>
+            ))}
           </div>
         </div>
-
-        {algorithm.reference && (
-          <div className="mt-4 text-sm">
-            <span className="font-semibold text-gray-700">参考: </span>
-            <a
-              href={algorithm.reference}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline break-all"
-            >
-              {algorithm.reference}
-            </a>
-          </div>
-        )}
       </div>
 
-      {/* Tags / Use Cases */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* ===== B. 概要セクション ===== */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        {/* Description */}
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+          <p className="text-gray-700 leading-relaxed">{algorithm.description}</p>
+        </div>
+
+        {/* Strengths / Weaknesses */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h3 className="font-semibold text-green-800 mb-3 flex items-center gap-1.5">
+              <span className="text-green-600">&#9650;</span> 強み
+            </h3>
+            <ul className="space-y-2">
+              {algorithm.strengths.map((s, i) => (
+                <li key={i} className="text-sm text-green-900 flex items-start gap-2">
+                  <span className="text-green-500 mt-0.5 shrink-0">&#10003;</span>
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <h3 className="font-semibold text-red-800 mb-3 flex items-center gap-1.5">
+              <span className="text-red-600">&#9660;</span> 弱み
+            </h3>
+            <ul className="space-y-2">
+              {algorithm.weaknesses.map((w, i) => (
+                <li key={i} className="text-sm text-red-900 flex items-start gap-2">
+                  <span className="text-red-400 mt-0.5 shrink-0">&#10007;</span>
+                  <span>{w}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== C. タグセクション ===== */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {/* Tags */}
           <div>
-            <h3 className="font-semibold text-gray-700 mb-2">タグ</h3>
-            <div className="flex flex-wrap gap-1">
+            <h3 className="font-semibold text-gray-700 mb-2 text-sm uppercase tracking-wide">
+              タグ
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
               {algorithm.tags.map((tag) => (
-                <span key={tag} className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs">
+                <span
+                  key={tag}
+                  className="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium border border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors"
+                >
                   {tag}
                 </span>
               ))}
             </div>
           </div>
+
+          {/* Use Cases */}
           <div>
-            <h3 className="font-semibold text-gray-700 mb-2">ユースケース</h3>
-            <div className="flex flex-wrap gap-1">
+            <h3 className="font-semibold text-gray-700 mb-2 text-sm uppercase tracking-wide">
+              ユースケース
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
               {algorithm.use_cases.map((uc) => (
-                <span key={uc} className="bg-green-50 text-green-700 px-2 py-0.5 rounded text-xs">
+                <span
+                  key={uc}
+                  className="bg-green-50 text-green-700 px-2.5 py-1 rounded-full text-xs font-medium border border-green-200 hover:bg-green-100 cursor-pointer transition-colors"
+                >
                   {uc}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Input Requirements */}
+          <div>
+            <h3 className="font-semibold text-gray-700 mb-2 text-sm uppercase tracking-wide">
+              入力要件
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {algorithm.input_requirements.map((req) => (
+                <span
+                  key={req}
+                  className="bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full text-xs font-medium border border-amber-200 hover:bg-amber-100 cursor-pointer transition-colors"
+                >
+                  {req}
                 </span>
               ))}
             </div>
@@ -124,66 +199,96 @@ export function DetailPage() {
         </div>
       </div>
 
-      {/* Strengths / Weaknesses */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-green-700 mb-2">強み</h3>
-            <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-              {algorithm.strengths.map((s, i) => (
-                <li key={i}>{s}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-red-700 mb-2">弱み</h3>
-            <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-              {algorithm.weaknesses.map((w, i) => (
-                <li key={i}>{w}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
+      {/* ===== D. 実験結果セクション ===== */}
       {/* Summary Metrics */}
       {algorithm.summary_metrics && (
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
-          <h3 className="font-semibold text-gray-700 mb-3">サマリメトリクス</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            <div>
-              <div className="text-2xl font-bold text-blue-600">
-                {algorithm.summary_metrics.best_quality_score.toFixed(2)}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="font-semibold text-gray-800 text-lg mb-4">サマリメトリクス</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {algorithm.summary_metrics.best_quality_score != null && (
+              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">
+                  {algorithm.summary_metrics.best_quality_score.toFixed(2)}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Best Quality</div>
               </div>
-              <div className="text-xs text-gray-500">Quality Score</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-blue-600">
-                {algorithm.summary_metrics.best_tstr_f1.toFixed(2)}
+            )}
+            {algorithm.summary_metrics.best_tstr_f1 != null && (
+              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">
+                  {algorithm.summary_metrics.best_tstr_f1.toFixed(2)}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Best TSTR F1</div>
               </div>
-              <div className="text-xs text-gray-500">TSTR F1</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-blue-600">
-                {algorithm.summary_metrics.best_dcr_mean.toFixed(2)}
+            )}
+            {algorithm.summary_metrics.best_dcr_mean != null && (
+              <div className="bg-slate-50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">
+                  {algorithm.summary_metrics.best_dcr_mean.toFixed(2)}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Best DCR Mean</div>
               </div>
-              <div className="text-xs text-gray-500">DCR Mean</div>
-            </div>
-            <div>
+            )}
+            <div className="bg-slate-50 rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-blue-600">
-                {algorithm.summary_metrics.fastest_time_sec.toFixed(1)}s
+                {algorithm.summary_metrics.fastest_time_sec.toFixed(1)}
+                <span className="text-sm font-normal text-gray-500">s</span>
               </div>
-              <div className="text-xs text-gray-500">Fastest Time</div>
+              <div className="text-xs text-gray-500 mt-1">Fastest Time</div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Experiments */}
-      <div className="bg-white rounded-lg shadow p-6 mb-6">
-        <h3 className="font-semibold text-gray-700 mb-3">実験結果</h3>
+      {/* Experiments Table */}
+      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 className="font-semibold text-gray-800 text-lg mb-4">実験結果</h2>
         <ExperimentTable experiments={algorithm.experiments} />
       </div>
+
+      {/* ===== E. 参考文献セクション ===== */}
+      {(algorithm.reference || algorithm.privacy_mechanism) && (
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="font-semibold text-gray-800 text-lg mb-4">参考情報</h2>
+
+          {algorithm.reference && (
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold text-gray-600 mb-1">参考文献</h3>
+              <a
+                href={algorithm.reference}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 hover:underline text-sm break-all inline-flex items-center gap-1"
+              >
+                <span>{algorithm.reference}</span>
+                <svg
+                  className="w-3.5 h-3.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            </div>
+          )}
+
+          {algorithm.privacy_mechanism && (
+            <div>
+              <h3 className="text-sm font-semibold text-gray-600 mb-1">プライバシー機構</h3>
+              <p className="text-sm text-gray-700">
+                {PRIVACY_MECHANISM_LABELS[algorithm.privacy_mechanism] ??
+                  algorithm.privacy_mechanism}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
