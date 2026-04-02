@@ -57,6 +57,67 @@ docs/
 - `data/` と `results/` 配下のCSVは `.gitignore` 済み
 - JSON（run_log, eval結果, progress）は git 管理する
 
+### 実験結果の命名規則と不変性
+
+**原則: 実験結果は上書きしない（append-only）。**
+
+データ・アルゴリズム・パラメータの組み合わせごとに一意なファイル名を付与する。
+条件を変えた追加実験は新しいファイルとして保存し、既存結果を破壊しない。
+
+#### 合成データ CSV の命名規則
+
+```
+results/<phase>/<library>_<model>_<条件サフィックス>.csv
+```
+
+- `<library>`: `sdv`, `synthcity`, `ydata`, `mostlyai`
+- `<model>`: `gaussiancopula`, `ctgan`, `bayesian_network`, `tvae`, `hma`, `par` 等
+- `<条件サフィックス>`: パラメータや条件を識別する文字列。省略可（デフォルト条件の場合）
+
+**条件サフィックスの例:**
+- epochs 変更: `sdv_ctgan_100ep.csv`, `sdv_ctgan_10ep.csv`
+- データセット変更: `sdv_ctgan_100ep_census.csv`
+- サンプルサイズ変更: `sdv_ctgan_100ep_10k.csv`
+- 複数条件: アンダースコアで連結 `sdv_ctgan_100ep_10k_seed123.csv`
+
+#### run_log の命名規則
+
+```
+results/<phase>/<library>_run_log_<条件サフィックス>.json
+```
+
+条件サフィックスが空の場合は `<library>_run_log.json`。
+run_log には必ず以下を含める:
+- `epochs` や `batch_size` 等の主要ハイパーパラメータ
+- `dataset`: 使用したデータセット名
+- `_env`: ライブラリバージョン・Python バージョン・タイムスタンプ
+
+#### 評価結果 JSON の命名規則
+
+```
+results/<phase>/sdmetrics_eval.json      # 全モデル横断（再生成OK）
+results/<phase>/tstr_results.json        # 全モデル横断（再生成OK）
+results/<phase>/privacy_eval.json        # 全モデル横断（再生成OK）
+```
+
+評価JSONは全モデルの結果をまとめたもので、合成データCSVが増えたら再生成する。
+キーはCSVファイル名（拡張子なし）と一致させる。
+
+#### 統合結果
+
+```
+results/evaluation/all_results.json      # 全Phase統合（再生成OK）
+results/evaluation/summary.json          # サマリ（再生成OK）
+```
+
+#### ルールまとめ
+
+1. **合成データ CSV は上書き禁止** — 条件が異なるなら別ファイル名にする
+2. **同一条件の再実行は上書きOK** — 同じパラメータでの再実行は同名ファイルに出力してよい
+3. **評価 JSON は再生成OK** — results 配下の CSV を走査して毎回再生成する設計
+4. **run_log にパラメータを記録** — どの条件で生成したか後から追跡可能にする
+5. **ファイル名から条件が読み取れること** — ファイル名だけで実験条件が分かるようにする
+
 ## Issue 管理
 
 - Phase 1（検証実行）: #1 (親) → #2〜#7 (サブ)
