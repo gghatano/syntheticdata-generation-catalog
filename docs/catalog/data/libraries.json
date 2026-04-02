@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sdv",
+    "name": "SDV",
+    "url": "https://github.com/sdv-dev/SDV",
+    "algorithms": ["gaussiancopula", "ctgan", "hma", "par"],
+    "supported_data": ["single_table", "multi_table", "timeseries"],
+    "description": "Synthetic Data Vault。単一表・複数表・時系列データに対応する包括的な合成データ生成ライブラリ。メタデータ駆動のAPIにより、テーブル構造やリレーションを自動的に検出し、適切なモデルで合成データを生成する。SDMetricsによる品質評価機能も内蔵。"
+  },
+  {
+    "id": "synthcity",
+    "name": "SynthCity",
+    "url": "https://github.com/vanderschaarlab/synthcity",
+    "algorithms": ["ctgan", "tvae", "bayesian_network", "adsgan", "nflow"],
+    "supported_data": ["single_table", "timeseries"],
+    "description": "ケンブリッジ大学van der Schaar研究室が開発した合成データ生成ライブラリ。GAN、VAE、ベイジアンネットワーク、正規化フローなど多数のアルゴリズムを統一的なAPIで提供する。プライバシー考慮型のモデル（AdsGAN等）も含まれる。"
+  },
+  {
+    "id": "ydata-synthetic",
+    "name": "ydata-synthetic",
+    "url": "https://github.com/ydataai/ydata-synthetic",
+    "algorithms": ["ctgan"],
+    "supported_data": ["single_table", "timeseries"],
+    "description": "YData社が開発した合成データ生成ライブラリ。CTGANやWGAN-GPなどのGANベースモデルを提供し、テーブルデータおよび時系列データの合成に対応する。TensorFlow/PyTorchバックエンドを選択可能。"
+  }
+]

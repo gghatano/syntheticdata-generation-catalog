@@ -1,0 +1,479 @@
+[
+  {
+    "id": "gaussiancopula",
+    "name": "GaussianCopula",
+    "libraries": ["SDV"],
+    "category": "copula",
+    "supported_data": ["single_table"],
+    "tags": ["高速", "安定", "解釈可能"],
+    "use_cases": ["テストデータ生成", "データ拡張", "統計分析用ダミーデータ"],
+    "input_requirements": ["カテゴリ対応", "欠損値対応"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "low",
+    "description": "各変数の周辺分布をパラメトリックに推定し、コピュラ関数で変数間の相関構造を再現する統計的手法。非線形な関係の再現は限定的だが、高速かつ安定した合成データを生成できる。",
+    "strengths": [
+      "学習が非常に高速（数秒）",
+      "分布再現が安定",
+      "ハイパーパラメータ調整不要",
+      "解釈可能な統計モデル"
+    ],
+    "weaknesses": [
+      "非線形な変数間関係の再現が弱い",
+      "複雑なカテゴリ分布の再現が苦手"
+    ],
+    "reference": "https://docs.sdv.dev/sdv/single-table-data/modeling/synthesizers/gaussiancopulasynthesizer",
+    "experiments": [
+      {
+        "id": "sdv_gaussiancopula",
+        "library": "SDV",
+        "library_version": "1.35.1",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.8168,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.7563,
+          "tstr_f1": 0.6555,
+          "dcr_mean": 0.5330,
+          "dcr_5th_percentile": 0.2239,
+          "exact_match_rate": 0.0,
+          "time_sec": 5.94
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.8168,
+      "best_tstr_f1": 0.6555,
+      "best_dcr_mean": 0.5330,
+      "fastest_time_sec": 5.94
+    }
+  },
+  {
+    "id": "ctgan",
+    "name": "CTGAN",
+    "libraries": ["SDV", "SynthCity", "ydata-synthetic"],
+    "category": "gan",
+    "supported_data": ["single_table"],
+    "tags": ["高品質", "GPU対応", "柔軟"],
+    "use_cases": ["高精度な合成データ生成", "データ拡張", "不均衡データの補完"],
+    "input_requirements": ["カテゴリ対応", "数値対応", "欠損値対応（ライブラリ依存）"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "medium",
+    "description": "条件付きGAN（Conditional GAN）をテーブルデータ向けに改良したモデル。mode-specific normalizationとconditional generatorにより、カテゴリ変数や多峰性の数値分布を効果的に再現する。学習にはepochs数の調整が重要。",
+    "strengths": [
+      "複雑なデータ分布を高精度に再現",
+      "カテゴリ変数と数値変数の混在に対応",
+      "複数ライブラリで利用可能",
+      "GPU利用で学習高速化が可能"
+    ],
+    "weaknesses": [
+      "学習に時間がかかる（数分〜数十分）",
+      "ハイパーパラメータ（epochs等）の調整が必要",
+      "学習が不安定になることがある（mode collapse）",
+      "ライブラリによって品質が異なる"
+    ],
+    "reference": "https://arxiv.org/abs/1907.00503",
+    "experiments": [
+      {
+        "id": "sdv_ctgan",
+        "library": "SDV",
+        "library_version": "1.35.1",
+        "params": {"epochs": 100},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.8600,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.8190,
+          "tstr_f1": 0.8203,
+          "dcr_mean": 0.3438,
+          "dcr_5th_percentile": 0.0809,
+          "exact_match_rate": 0.0,
+          "time_sec": 325.24
+        }
+      },
+      {
+        "id": "sdv_ctgan_10ep",
+        "library": "SDV",
+        "library_version": "1.35.1",
+        "params": {"epochs": 10},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.7493,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.6601,
+          "tstr_f1": 0.6555,
+          "dcr_mean": 0.4265,
+          "dcr_5th_percentile": 0.1758,
+          "exact_match_rate": 0.0,
+          "time_sec": null
+        }
+      },
+      {
+        "id": "synthcity_ctgan",
+        "library": "SynthCity",
+        "library_version": "unknown",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.7365,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.8093,
+          "tstr_f1": 0.8076,
+          "dcr_mean": 0.2753,
+          "dcr_5th_percentile": 0.1125,
+          "exact_match_rate": 0.0,
+          "time_sec": 604.74
+        }
+      },
+      {
+        "id": "ydata_ctgan",
+        "library": "ydata-synthetic",
+        "library_version": "unknown",
+        "params": {"epochs": 100},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.8312,
+          "diagnostic_score": 0.9793,
+          "tstr_accuracy": 0.8303,
+          "tstr_f1": 0.8241,
+          "dcr_mean": 0.2589,
+          "dcr_5th_percentile": 0.0657,
+          "exact_match_rate": 0.0,
+          "time_sec": 1464.28
+        }
+      },
+      {
+        "id": "ydata_ctgan_20ep",
+        "library": "ydata-synthetic",
+        "library_version": "unknown",
+        "params": {"epochs": 20},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.7930,
+          "diagnostic_score": 0.9708,
+          "tstr_accuracy": 0.7623,
+          "tstr_f1": 0.7156,
+          "dcr_mean": 0.4264,
+          "dcr_5th_percentile": 0.1715,
+          "exact_match_rate": 0.0,
+          "time_sec": null
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.8600,
+      "best_tstr_f1": 0.8241,
+      "best_dcr_mean": 0.4265,
+      "fastest_time_sec": 325.24
+    }
+  },
+  {
+    "id": "tvae",
+    "name": "TVAE",
+    "libraries": ["SynthCity"],
+    "category": "vae",
+    "supported_data": ["single_table"],
+    "tags": ["安定", "高速", "VAE"],
+    "use_cases": ["データ拡張", "合成データによるプライバシー保護", "特徴量生成"],
+    "input_requirements": ["カテゴリ対応", "数値対応"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "medium",
+    "description": "Variational Autoencoder（VAE）をテーブルデータ向けに改良したモデル。エンコーダ・デコーダ構造により、データの潜在表現を学習し、その潜在空間からサンプリングすることで合成データを生成する。GANより学習が安定しやすい。",
+    "strengths": [
+      "GANと比べて学習が安定",
+      "CTGANと同等の前処理パイプラインを利用",
+      "mode collapseが起きにくい",
+      "生成品質と学習速度のバランスが良い"
+    ],
+    "weaknesses": [
+      "生成データがぼやける傾向がある（posterior collapse）",
+      "GANほどの鮮明な分布再現は難しい場合がある",
+      "ハイパーパラメータの調整が必要"
+    ],
+    "reference": "https://arxiv.org/abs/1907.00503",
+    "experiments": [
+      {
+        "id": "synthcity_tvae",
+        "library": "SynthCity",
+        "library_version": "unknown",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.7709,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.8259,
+          "tstr_f1": 0.8172,
+          "dcr_mean": 0.3020,
+          "dcr_5th_percentile": 0.1311,
+          "exact_match_rate": 0.0,
+          "time_sec": 208.50
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.7709,
+      "best_tstr_f1": 0.8172,
+      "best_dcr_mean": 0.3020,
+      "fastest_time_sec": 208.50
+    }
+  },
+  {
+    "id": "bayesian_network",
+    "name": "BayesianNetwork",
+    "libraries": ["SynthCity"],
+    "category": "bayesian",
+    "supported_data": ["single_table"],
+    "tags": ["解釈可能", "高TSTR", "構造学習"],
+    "use_cases": ["因果関係を考慮した合成データ生成", "ドメイン知識の組込み", "説明可能なデータ生成"],
+    "input_requirements": ["カテゴリ対応", "数値対応（離散化）"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "high",
+    "description": "変数間の条件付き依存関係を有向非巡回グラフ（DAG）として学習し、そのグラフ構造に基づいて合成データを生成するモデル。変数間の因果的構造を明示的に捉えるため、解釈可能性が高く、TSTR精度も高い傾向がある。",
+    "strengths": [
+      "変数間の依存構造が解釈可能",
+      "TSTR精度が非常に高い（実験で最高スコア）",
+      "因果構造を反映したデータ生成が可能",
+      "ドメイン知識によるグラフ制約を導入可能"
+    ],
+    "weaknesses": [
+      "連続値の離散化が必要な場合がある",
+      "高次元データでは構造学習に時間がかかる",
+      "プライバシーリスクが比較的高い（DCR 5th percentile が低い）",
+      "変数数が多いとDAG探索が計算困難になる"
+    ],
+    "reference": "https://synthcity.readthedocs.io/en/latest/",
+    "experiments": [
+      {
+        "id": "synthcity_bayesian_network",
+        "library": "SynthCity",
+        "library_version": "unknown",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.8263,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.8643,
+          "tstr_f1": 0.8591,
+          "dcr_mean": 0.2193,
+          "dcr_5th_percentile": 0.0308,
+          "exact_match_rate": 0.0,
+          "time_sec": 220.37
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.8263,
+      "best_tstr_f1": 0.8591,
+      "best_dcr_mean": 0.2193,
+      "fastest_time_sec": 220.37
+    }
+  },
+  {
+    "id": "adsgan",
+    "name": "AdsGAN",
+    "libraries": ["SynthCity"],
+    "category": "gan",
+    "supported_data": ["single_table"],
+    "tags": ["プライバシー考慮", "GAN", "匿名化"],
+    "use_cases": ["プライバシー保護が必要な合成データ生成", "匿名化データの作成", "医療・金融データの安全な共有"],
+    "input_requirements": ["カテゴリ対応", "数値対応"],
+    "privacy_mechanism": "identifiability_penalty",
+    "privacy_risk_level": "medium",
+    "description": "Anonymous Data Synthesis using GANの略称。GAN の学習目的関数に識別可能性ペナルティを追加し、生成データが元データの個々のレコードに近づきすぎないよう制約をかける。プライバシーと有用性のバランスを自動的に調整する。",
+    "strengths": [
+      "プライバシー保護機構を内蔵",
+      "GANベースで柔軟なデータ生成が可能",
+      "学習時に自動的にプライバシーと有用性をバランス",
+      "CTGANより学習が速い傾向"
+    ],
+    "weaknesses": [
+      "プライバシーペナルティにより品質が低下する可能性",
+      "差分プライバシーのような理論的保証はない",
+      "ハイパーパラメータの調整が必要",
+      "GAN特有の学習不安定性が残る"
+    ],
+    "reference": "https://arxiv.org/abs/2012.11453",
+    "experiments": [
+      {
+        "id": "synthcity_adsgan",
+        "library": "SynthCity",
+        "library_version": "unknown",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.7492,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.8190,
+          "tstr_f1": 0.7993,
+          "dcr_mean": 0.2905,
+          "dcr_5th_percentile": 0.1025,
+          "exact_match_rate": 0.0,
+          "time_sec": 121.82
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.7492,
+      "best_tstr_f1": 0.7993,
+      "best_dcr_mean": 0.2905,
+      "fastest_time_sec": 121.82
+    }
+  },
+  {
+    "id": "nflow",
+    "name": "NFlow",
+    "libraries": ["SynthCity"],
+    "category": "flow",
+    "supported_data": ["single_table"],
+    "tags": ["正規化フロー", "密度推定", "可逆変換"],
+    "use_cases": ["密度推定ベースの合成データ生成", "異常検知用データ生成", "確率的モデリング"],
+    "input_requirements": ["数値対応", "カテゴリ対応（エンコーディング必要）"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "medium",
+    "description": "正規化フロー（Normalizing Flow）を用いてデータの確率密度を直接モデリングし、可逆変換を通じて合成データを生成する手法。正確な尤度計算が可能で、密度推定の精度が高い。テーブルデータへの適用は比較的新しいアプローチ。",
+    "strengths": [
+      "正確な尤度計算が可能",
+      "可逆変換により潜在空間とデータ空間の対応が明確",
+      "mode collapseが起きない",
+      "サンプリングが高速"
+    ],
+    "weaknesses": [
+      "テーブルデータでの品質はGANに劣る場合がある",
+      "カテゴリ変数の扱いに工夫が必要",
+      "モデルの表現力が可逆変換の設計に依存",
+      "高次元データでの計算コストが増大"
+    ],
+    "reference": "https://arxiv.org/abs/1906.04032",
+    "experiments": [
+      {
+        "id": "synthcity_nflow",
+        "library": "SynthCity",
+        "library_version": "unknown",
+        "params": {},
+        "dataset": "adult",
+        "data_type": "single_table",
+        "phase": "phase1",
+        "metrics": {
+          "quality_score": 0.6840,
+          "diagnostic_score": 1.0,
+          "tstr_accuracy": 0.7533,
+          "tstr_f1": 0.6514,
+          "dcr_mean": 0.3881,
+          "dcr_5th_percentile": 0.1385,
+          "exact_match_rate": 0.0,
+          "time_sec": 165.52
+        }
+      }
+    ],
+    "summary_metrics": {
+      "best_quality_score": 0.6840,
+      "best_tstr_f1": 0.6514,
+      "best_dcr_mean": 0.3881,
+      "fastest_time_sec": 165.52
+    }
+  },
+  {
+    "id": "hma",
+    "name": "HMA",
+    "libraries": ["SDV"],
+    "category": "copula",
+    "supported_data": ["multi_table"],
+    "tags": ["複数表", "リレーショナル", "階層モデリング"],
+    "use_cases": ["リレーショナルデータベースの合成", "複数表の整合性を保った合成データ生成", "テスト環境のデータ準備"],
+    "input_requirements": ["リレーショナルメタデータ", "外部キー定義", "複数表対応"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": null,
+    "description": "Hierarchical Modeling Approachの略称。複数のテーブル間のリレーション（親子関係）を階層的にモデリングし、子テーブルの統計量を親テーブルの特徴量として集約することで、テーブル間の整合性を保った合成データを生成する。",
+    "strengths": [
+      "複数表間のリレーションを自動的に学習",
+      "外部キー制約を保持した合成データを生成",
+      "親子関係の統計的特性を再現",
+      "SDVのメタデータフレームワークと統合"
+    ],
+    "weaknesses": [
+      "テーブル数やリレーションが多いと計算コストが増大",
+      "深い階層構造では品質が低下する可能性",
+      "単一表モデルの品質に依存",
+      "大規模データベースでのスケーラビリティに課題"
+    ],
+    "reference": "https://docs.sdv.dev/sdv/multi-table-data/modeling/synthesizers/hmasynthesizer",
+    "experiments": [
+      {
+        "id": "sdv_hma",
+        "library": "SDV",
+        "library_version": "1.35.1",
+        "params": {},
+        "dataset": "hotel_reservations",
+        "data_type": "multi_table",
+        "phase": "phase2",
+        "metrics": {
+          "time_sec": 5.22
+        }
+      }
+    ],
+    "summary_metrics": {
+      "fastest_time_sec": 5.22
+    }
+  },
+  {
+    "id": "par",
+    "name": "PAR",
+    "libraries": ["SDV"],
+    "category": "sequential",
+    "supported_data": ["timeseries"],
+    "tags": ["時系列", "自己回帰", "シーケンシャル"],
+    "use_cases": ["時系列データの合成", "シーケンシャルデータの拡張", "IoTセンサーデータの生成"],
+    "input_requirements": ["時系列カラム定義", "エンティティカラム定義", "シーケンスキー"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": null,
+    "description": "Probabilistic Auto-Regressive モデルの略称。時系列データの各タイムステップを自己回帰的に生成し、時間的依存関係を再現する。コンテキスト列（エンティティの静的属性）を条件として、エンティティごとに異なる時系列パターンを生成できる。",
+    "strengths": [
+      "時系列の時間的依存関係を学習",
+      "エンティティごとの条件付き生成が可能",
+      "可変長シーケンスの生成に対応",
+      "SDVのメタデータフレームワークと統合"
+    ],
+    "weaknesses": [
+      "長い時系列の生成精度が低下しやすい",
+      "学習に時間がかかる",
+      "複雑な周期パターンの再現が難しい",
+      "大規模データでのスケーラビリティに課題"
+    ],
+    "reference": "https://docs.sdv.dev/sdv/sequential-data/modeling/parsynthesizer",
+    "experiments": [
+      {
+        "id": "sdv_par",
+        "library": "SDV",
+        "library_version": "1.35.1",
+        "params": {},
+        "dataset": "nasdaq100_2019",
+        "data_type": "timeseries",
+        "phase": "phase3",
+        "metrics": {
+          "time_sec": 114.70
+        }
+      }
+    ],
+    "summary_metrics": {
+      "fastest_time_sec": 114.70
+    }
+  }
+]
