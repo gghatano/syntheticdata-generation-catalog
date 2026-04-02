@@ -7,6 +7,8 @@ export type FilterState = {
   category: AlgorithmCategory[];
   supported_data: DataType[];
   libraries: string[];
+  use_cases: string[];
+  input_requirements: string[];
   searchQuery: string;
   sortBy: SortBy;
 };
@@ -16,6 +18,8 @@ export function useFilter(algorithms: Algorithm[]) {
     category: [],
     supported_data: [],
     libraries: [],
+    use_cases: [],
+    input_requirements: [],
     searchQuery: "",
     sortBy: "quality",
   });
@@ -24,6 +28,18 @@ export function useFilter(algorithms: Algorithm[]) {
     const libs = new Set<string>();
     algorithms.forEach((a) => a.libraries.forEach((l) => libs.add(l)));
     return Array.from(libs).sort();
+  }, [algorithms]);
+
+  const availableUseCases = useMemo(() => {
+    const cases = new Set<string>();
+    algorithms.forEach((a) => a.use_cases.forEach((uc) => cases.add(uc)));
+    return Array.from(cases).sort();
+  }, [algorithms]);
+
+  const availableInputRequirements = useMemo(() => {
+    const reqs = new Set<string>();
+    algorithms.forEach((a) => a.input_requirements.forEach((r) => reqs.add(r)));
+    return Array.from(reqs).sort();
   }, [algorithms]);
 
   const filtered = useMemo(() => {
@@ -40,6 +56,16 @@ export function useFilter(algorithms: Algorithm[]) {
     if (filters.libraries.length > 0) {
       result = result.filter((a) =>
         a.libraries.some((l) => filters.libraries.includes(l))
+      );
+    }
+    if (filters.use_cases.length > 0) {
+      result = result.filter((a) =>
+        a.use_cases.some((uc) => filters.use_cases.includes(uc))
+      );
+    }
+    if (filters.input_requirements.length > 0) {
+      result = result.filter((a) =>
+        a.input_requirements.some((r) => filters.input_requirements.includes(r))
       );
     }
     if (filters.searchQuery) {
@@ -103,6 +129,24 @@ export function useFilter(algorithms: Algorithm[]) {
     }));
   };
 
+  const toggleUseCase = (uc: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      use_cases: prev.use_cases.includes(uc)
+        ? prev.use_cases.filter((u) => u !== uc)
+        : [...prev.use_cases, uc],
+    }));
+  };
+
+  const toggleInputRequirement = (req: string) => {
+    setFilters((prev) => ({
+      ...prev,
+      input_requirements: prev.input_requirements.includes(req)
+        ? prev.input_requirements.filter((r) => r !== req)
+        : [...prev.input_requirements, req],
+    }));
+  };
+
   const setSearchQuery = (searchQuery: string) => {
     setFilters((prev) => ({ ...prev, searchQuery }));
   };
@@ -111,14 +155,40 @@ export function useFilter(algorithms: Algorithm[]) {
     setFilters((prev) => ({ ...prev, sortBy }));
   };
 
+  const clearFilters = () => {
+    setFilters({
+      category: [],
+      supported_data: [],
+      libraries: [],
+      use_cases: [],
+      input_requirements: [],
+      searchQuery: "",
+      sortBy: "quality",
+    });
+  };
+
+  const hasActiveFilters =
+    filters.category.length > 0 ||
+    filters.supported_data.length > 0 ||
+    filters.libraries.length > 0 ||
+    filters.use_cases.length > 0 ||
+    filters.input_requirements.length > 0 ||
+    filters.searchQuery !== "";
+
   return {
     filters,
     filtered,
     availableLibraries,
+    availableUseCases,
+    availableInputRequirements,
     toggleCategory,
     toggleDataType,
     toggleLibrary,
+    toggleUseCase,
+    toggleInputRequirement,
     setSearchQuery,
     setSortBy,
+    clearFilters,
+    hasActiveFilters,
   };
 }
