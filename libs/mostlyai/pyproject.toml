@@ -1,0 +1,16 @@
+[project]
+name = "synth-mostlyai"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+    "mostlyai",
+    "pandas",
+    "numpy",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = []

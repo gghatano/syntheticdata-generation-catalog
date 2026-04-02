@@ -1,0 +1,357 @@
+[
+  {
+    "experiment_id": "phase1_sdv_gaussiancopula",
+    "library_id": "L-01",
+    "library_name": "SDV",
+    "model_name": "gaussiancopula",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 6.11,
+      "rows_generated": 32561,
+      "library_version": "1.35.1",
+      "python_version": "3.11.14",
+      "timestamp": "2026-04-02T23:41:49.434144",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.8168159328565949,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.7563,
+        "tstr_f1": 0.6555
+      },
+      "privacy": {
+        "dcr_mean": 0.532976,
+        "dcr_median": 0.491316,
+        "dcr_5th_percentile": 0.223858,
+        "dcr_min": 0.054153,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/sdv_gaussiancopula.csv"
+  },
+  {
+    "experiment_id": "phase1_sdv_ctgan",
+    "library_id": "L-01",
+    "library_name": "SDV",
+    "model_name": "ctgan",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 241.67,
+      "rows_generated": 32561,
+      "library_version": "1.35.1",
+      "python_version": "3.11.14",
+      "timestamp": "2026-04-02T23:41:49.434144",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.7492624887883017,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.6601,
+        "tstr_f1": 0.6555
+      },
+      "privacy": {
+        "dcr_mean": 0.426451,
+        "dcr_median": 0.408468,
+        "dcr_5th_percentile": 0.175773,
+        "dcr_min": 0.021198,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/sdv_ctgan.csv"
+  },
+  {
+    "experiment_id": "phase1_synthcity_bayesian_network",
+    "library_id": "L-02",
+    "library_name": "SynthCity",
+    "model_name": "bayesian_network",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 220.37,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.10.19",
+      "timestamp": "2026-04-02T23:35:15.363659",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.8262573048298304,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.8643,
+        "tstr_f1": 0.8591
+      },
+      "privacy": {
+        "dcr_mean": 0.219268,
+        "dcr_median": 0.188966,
+        "dcr_5th_percentile": 0.030763,
+        "dcr_min": 1e-06,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/synthcity_bayesian_network.csv"
+  },
+  {
+    "experiment_id": "phase1_synthcity_ctgan",
+    "library_id": "L-02",
+    "library_name": "SynthCity",
+    "model_name": "ctgan",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 604.74,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.10.19",
+      "timestamp": "2026-04-02T23:35:15.363659",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.7364710338544066,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.8093,
+        "tstr_f1": 0.8076
+      },
+      "privacy": {
+        "dcr_mean": 0.275316,
+        "dcr_median": 0.236245,
+        "dcr_5th_percentile": 0.11253,
+        "dcr_min": 0.045609,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/synthcity_ctgan.csv"
+  },
+  {
+    "experiment_id": "phase1_synthcity_tvae",
+    "library_id": "L-02",
+    "library_name": "SynthCity",
+    "model_name": "tvae",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 208.5,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.10.19",
+      "timestamp": "2026-04-02T23:35:15.363659",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.7708745478899958,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.8259,
+        "tstr_f1": 0.8172
+      },
+      "privacy": {
+        "dcr_mean": 0.302022,
+        "dcr_median": 0.277516,
+        "dcr_5th_percentile": 0.13106,
+        "dcr_min": 0.074792,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/synthcity_tvae.csv"
+  },
+  {
+    "experiment_id": "phase1_synthcity_adsgan",
+    "library_id": "L-02",
+    "library_name": "SynthCity",
+    "model_name": "adsgan",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 121.82,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.10.19",
+      "timestamp": "2026-04-02T23:35:15.363659",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.7491505096154831,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.819,
+        "tstr_f1": 0.7993
+      },
+      "privacy": {
+        "dcr_mean": 0.290474,
+        "dcr_median": 0.26568,
+        "dcr_5th_percentile": 0.102507,
+        "dcr_min": 0.020494,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/synthcity_adsgan.csv"
+  },
+  {
+    "experiment_id": "phase1_synthcity_nflow",
+    "library_id": "L-02",
+    "library_name": "SynthCity",
+    "model_name": "nflow",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 165.52,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.10.19",
+      "timestamp": "2026-04-02T23:35:15.363659",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.683955242979843,
+        "sdmetrics_diagnostic_score": 1.0,
+        "tstr_accuracy": 0.7533,
+        "tstr_f1": 0.6514
+      },
+      "privacy": {
+        "dcr_mean": 0.388109,
+        "dcr_median": 0.391195,
+        "dcr_5th_percentile": 0.138465,
+        "dcr_min": 0.011008,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/synthcity_nflow.csv"
+  },
+  {
+    "experiment_id": "phase1_ydata_ctgan",
+    "library_id": "L-04",
+    "library_name": "ydata-synthetic",
+    "model_name": "ctgan",
+    "phase": "phase1",
+    "data_type": "single_table",
+    "dataset_id": "D1",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 611.35,
+      "rows_generated": 32561,
+      "library_version": "unknown",
+      "python_version": "3.11.14",
+      "timestamp": "2026-04-02T23:43:16.559256",
+      "error": null
+    },
+    "metrics": {
+      "utility": {
+        "sdmetrics_quality_score": 0.792982481008033,
+        "sdmetrics_diagnostic_score": 0.9708065886592345,
+        "tstr_accuracy": 0.7623,
+        "tstr_f1": 0.7156
+      },
+      "privacy": {
+        "dcr_mean": 0.426385,
+        "dcr_median": 0.406,
+        "dcr_5th_percentile": 0.171459,
+        "dcr_min": 0.048072,
+        "exact_match_rate": 0.0,
+        "exact_match_count": 0,
+        "sample_size_real": 5000,
+        "sample_size_synth": 5000
+      },
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase1/ydata_ctgan.csv"
+  },
+  {
+    "experiment_id": "phase2_sdv_hma",
+    "library_id": "L-01",
+    "library_name": "SDV",
+    "model_name": "hma",
+    "phase": "phase2",
+    "data_type": "multi_table",
+    "dataset_id": "D2",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 5.22,
+      "rows_generated": {
+        "hotels": 10,
+        "guests": 658
+      },
+      "library_version": "1.35.1",
+      "python_version": "3.11.14",
+      "timestamp": "2026-04-02T23:46:10.585949",
+      "error": null
+    },
+    "metrics": {
+      "utility": {},
+      "privacy": {},
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase2/sdv_hma.csv"
+  },
+  {
+    "experiment_id": "phase3_sdv_par",
+    "library_id": "L-01",
+    "library_name": "SDV",
+    "model_name": "par",
+    "phase": "phase3",
+    "data_type": "timeseries",
+    "dataset_id": "D3",
+    "run_info": {
+      "status": "ok",
+      "time_sec": 114.7,
+      "rows_generated": 2327,
+      "library_version": "1.35.1",
+      "python_version": "3.11.14",
+      "timestamp": "2026-04-02T23:46:22.039391",
+      "error": null
+    },
+    "metrics": {
+      "utility": {},
+      "privacy": {},
+      "constraints": {}
+    },
+    "raw_output_path": "results/phase3/sdv_par.csv"
+  }
+]

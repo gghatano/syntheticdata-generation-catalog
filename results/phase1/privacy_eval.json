@@ -1,0 +1,82 @@
+{
+  "sdv_ctgan": {
+    "dcr_mean": 0.426451,
+    "dcr_median": 0.408468,
+    "dcr_5th_percentile": 0.175773,
+    "dcr_min": 0.021198,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "sdv_gaussiancopula": {
+    "dcr_mean": 0.532976,
+    "dcr_median": 0.491316,
+    "dcr_5th_percentile": 0.223858,
+    "dcr_min": 0.054153,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "synthcity_adsgan": {
+    "dcr_mean": 0.290474,
+    "dcr_median": 0.26568,
+    "dcr_5th_percentile": 0.102507,
+    "dcr_min": 0.020494,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "synthcity_bayesian_network": {
+    "dcr_mean": 0.219268,
+    "dcr_median": 0.188966,
+    "dcr_5th_percentile": 0.030763,
+    "dcr_min": 1e-06,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "synthcity_ctgan": {
+    "dcr_mean": 0.275316,
+    "dcr_median": 0.236245,
+    "dcr_5th_percentile": 0.11253,
+    "dcr_min": 0.045609,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "synthcity_nflow": {
+    "dcr_mean": 0.388109,
+    "dcr_median": 0.391195,
+    "dcr_5th_percentile": 0.138465,
+    "dcr_min": 0.011008,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "synthcity_tvae": {
+    "dcr_mean": 0.302022,
+    "dcr_median": 0.277516,
+    "dcr_5th_percentile": 0.13106,
+    "dcr_min": 0.074792,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "ydata_ctgan": {
+    "dcr_mean": 0.426385,
+    "dcr_median": 0.406,
+    "dcr_5th_percentile": 0.171459,
+    "dcr_min": 0.048072,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  }
+}
