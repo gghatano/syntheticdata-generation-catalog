@@ -118,10 +118,24 @@ results/evaluation/summary.json          # サマリ（再生成OK）
 4. **run_log にパラメータを記録** — どの条件で生成したか後から追跡可能にする
 5. **ファイル名から条件が読み取れること** — ファイル名だけで実験条件が分かるようにする
 
+## ブランチ戦略
+
+```
+main          ← 安定版。develop からのマージのみ
+  └→ develop  ← 統合・動作確認用。feature ブランチをここにマージ
+       └→ feature/*  ← 個別タスクの作業ブランチ
+```
+
+- **feature ブランチは develop から作成**する
+- **feature → develop** に PR を作成してマージ
+- **develop で動作確認**後、**develop → main** にマージ
+- main への直接 push は禁止
+- feature ブランチ名: `feature/issue-<番号>-<概要>` (例: `feature/issue-8-catalog`)
+
 ## Issue 管理
 
 - Phase 1（検証実行）: #1 (親) → #2〜#7 (サブ)
-- Phase 2（GitHub Pages）: #8
+- Phase 2（GitHub Pages）: #8 → #10〜#13
 - タスク詳細は `docs/tasks/` 配下の md ファイルを参照
 
 ## 自律実行時のルール
