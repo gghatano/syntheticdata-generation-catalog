@@ -8,6 +8,14 @@
   },
   "models": {
     "sdv_ctgan": {
+      "accuracy": 0.819,
+      "f1": 0.8203
+    },
+    "sdv_ctgan_100ep": {
+      "accuracy": 0.819,
+      "f1": 0.8203
+    },
+    "sdv_ctgan_10ep": {
       "accuracy": 0.6601,
       "f1": 0.6555
     },
@@ -36,6 +44,14 @@
       "f1": 0.8172
     },
     "ydata_ctgan": {
+      "accuracy": 0.8303,
+      "f1": 0.8241
+    },
+    "ydata_ctgan_100ep": {
+      "accuracy": 0.8303,
+      "f1": 0.8241
+    },
+    "ydata_ctgan_20ep": {
       "accuracy": 0.7623,
       "f1": 0.7156
     }

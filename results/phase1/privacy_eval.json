@@ -1,5 +1,25 @@
 {
   "sdv_ctgan": {
+    "dcr_mean": 0.343754,
+    "dcr_median": 0.324318,
+    "dcr_5th_percentile": 0.080852,
+    "dcr_min": 0.005262,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "sdv_ctgan_100ep": {
+    "dcr_mean": 0.343754,
+    "dcr_median": 0.324318,
+    "dcr_5th_percentile": 0.080852,
+    "dcr_min": 0.005262,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "sdv_ctgan_10ep": {
     "dcr_mean": 0.426451,
     "dcr_median": 0.408468,
     "dcr_5th_percentile": 0.175773,
@@ -70,6 +90,26 @@
     "sample_size_synth": 5000
   },
   "ydata_ctgan": {
+    "dcr_mean": 0.258896,
+    "dcr_median": 0.231288,
+    "dcr_5th_percentile": 0.065664,
+    "dcr_min": 0.010584,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "ydata_ctgan_100ep": {
+    "dcr_mean": 0.258896,
+    "dcr_median": 0.231288,
+    "dcr_5th_percentile": 0.065664,
+    "dcr_min": 0.010584,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "sample_size_real": 5000,
+    "sample_size_synth": 5000
+  },
+  "ydata_ctgan_20ep": {
     "dcr_mean": 0.426385,
     "dcr_median": 0.406,
     "dcr_5th_percentile": 0.171459,

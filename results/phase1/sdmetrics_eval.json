@@ -1,5 +1,13 @@
 {
   "sdv_ctgan": {
+    "quality_score": 0.8600463508727997,
+    "diagnostic_score": 1.0
+  },
+  "sdv_ctgan_100ep": {
+    "quality_score": 0.8600463508727997,
+    "diagnostic_score": 1.0
+  },
+  "sdv_ctgan_10ep": {
     "quality_score": 0.7492624887883017,
     "diagnostic_score": 1.0
   },
@@ -28,6 +36,14 @@
     "diagnostic_score": 1.0
   },
   "ydata_ctgan": {
+    "quality_score": 0.8312076977412808,
+    "diagnostic_score": 0.9793136983917365
+  },
+  "ydata_ctgan_100ep": {
+    "quality_score": 0.8312076977412808,
+    "diagnostic_score": 0.9793136983917365
+  },
+  "ydata_ctgan_20ep": {
     "quality_score": 0.792982481008033,
     "diagnostic_score": 0.9708065886592345
   }
