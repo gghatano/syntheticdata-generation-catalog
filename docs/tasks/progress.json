@@ -1,0 +1,31 @@
+{
+  "tasks": {
+    "00-setup": {
+      "status": "completed",
+      "updated_at": "2026-04-02T23:09:00"
+    },
+    "01-data-preparation": {
+      "status": "completed",
+      "updated_at": "2026-04-02T23:09:05.715530"
+    },
+    "02-phase1": {
+      "status": "in_progress",
+      "updated_at": "2026-04-03T05:44:45.160281",
+      "current_step": "sdv"
+    },
+    "03-phase2": {
+      "status": "completed",
+      "updated_at": "2026-04-02T23:46:15.809032",
+      "notes": "SDV HMA only. MOSTLY AI skipped (no API key)"
+    },
+    "04-phase3": {
+      "status": "completed",
+      "updated_at": "2026-04-02T23:48:00",
+      "notes": "SDV PAR only. SynthCity/ydata timeseries not yet run"
+    },
+    "05-evaluation": {
+      "status": "completed",
+      "updated_at": "2026-04-02T23:58:06.132228"
+    }
+  }
+}

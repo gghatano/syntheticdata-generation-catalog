@@ -1,0 +1,17 @@
+{
+  "sdv_gaussiancopula": {
+    "status": "ok",
+    "time_sec": 5.94,
+    "rows": 32561
+  },
+  "sdv_ctgan": {
+    "status": "ok",
+    "time_sec": 325.24,
+    "rows": 32561
+  },
+  "_env": {
+    "python_version": "3.11.14",
+    "sdv_version": "1.35.1",
+    "timestamp": "2026-04-03T05:44:45.160216"
+  }
+}

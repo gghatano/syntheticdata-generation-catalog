@@ -1,0 +1,50 @@
+{
+  "sdv_ctgan": {
+    "quality_score": 0.8600463508727997,
+    "diagnostic_score": 1.0
+  },
+  "sdv_ctgan_100ep": {
+    "quality_score": 0.8600463508727997,
+    "diagnostic_score": 1.0
+  },
+  "sdv_ctgan_10ep": {
+    "quality_score": 0.7492624887883017,
+    "diagnostic_score": 1.0
+  },
+  "sdv_gaussiancopula": {
+    "quality_score": 0.8168159328565949,
+    "diagnostic_score": 1.0
+  },
+  "synthcity_adsgan": {
+    "quality_score": 0.7491505096154831,
+    "diagnostic_score": 1.0
+  },
+  "synthcity_bayesian_network": {
+    "quality_score": 0.8262573048298304,
+    "diagnostic_score": 1.0
+  },
+  "synthcity_ctgan": {
+    "quality_score": 0.7364710338544066,
+    "diagnostic_score": 1.0
+  },
+  "synthcity_nflow": {
+    "quality_score": 0.683955242979843,
+    "diagnostic_score": 1.0
+  },
+  "synthcity_tvae": {
+    "quality_score": 0.7708745478899958,
+    "diagnostic_score": 1.0
+  },
+  "ydata_ctgan": {
+    "quality_score": 0.8312076977412808,
+    "diagnostic_score": 0.9793136983917365
+  },
+  "ydata_ctgan_100ep": {
+    "quality_score": 0.8312076977412808,
+    "diagnostic_score": 0.9793136983917365
+  },
+  "ydata_ctgan_20ep": {
+    "quality_score": 0.792982481008033,
+    "diagnostic_score": 0.9708065886592345
+  }
+}

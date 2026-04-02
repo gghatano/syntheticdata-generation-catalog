@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# uv
+uv.lock
+
+# データ（大きいため git 管理しない）
+data/raw/
+data/processed/
+data/synthetic/
+
+# 実験結果（大きいため git 管理しない。必要に応じて個別に add）
+results/phase1/*.csv
+results/phase2/*.csv
+results/phase3/*.csv
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

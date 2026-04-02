@@ -1,0 +1,59 @@
+{
+  "target_column": "label",
+  "test_size": 6513,
+  "random_seed": 42,
+  "baseline_trtr": {
+    "accuracy": 0.8558,
+    "f1": 0.8513
+  },
+  "models": {
+    "sdv_ctgan": {
+      "accuracy": 0.819,
+      "f1": 0.8203
+    },
+    "sdv_ctgan_100ep": {
+      "accuracy": 0.819,
+      "f1": 0.8203
+    },
+    "sdv_ctgan_10ep": {
+      "accuracy": 0.6601,
+      "f1": 0.6555
+    },
+    "sdv_gaussiancopula": {
+      "accuracy": 0.7563,
+      "f1": 0.6555
+    },
+    "synthcity_adsgan": {
+      "accuracy": 0.819,
+      "f1": 0.7993
+    },
+    "synthcity_bayesian_network": {
+      "accuracy": 0.8643,
+      "f1": 0.8591
+    },
+    "synthcity_ctgan": {
+      "accuracy": 0.8093,
+      "f1": 0.8076
+    },
+    "synthcity_nflow": {
+      "accuracy": 0.7533,
+      "f1": 0.6514
+    },
+    "synthcity_tvae": {
+      "accuracy": 0.8259,
+      "f1": 0.8172
+    },
+    "ydata_ctgan": {
+      "accuracy": 0.8303,
+      "f1": 0.8241
+    },
+    "ydata_ctgan_100ep": {
+      "accuracy": 0.8303,
+      "f1": 0.8241
+    },
+    "ydata_ctgan_20ep": {
+      "accuracy": 0.7623,
+      "f1": 0.7156
+    }
+  }
+}

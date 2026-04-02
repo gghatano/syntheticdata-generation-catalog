@@ -1,0 +1,12 @@
+{
+  "ydata_ctgan": {
+    "status": "ok",
+    "time_sec": 1464.28,
+    "rows": 32561
+  },
+  "_env": {
+    "python_version": "3.11.14",
+    "timestamp": "2026-04-03T05:44:35.362097",
+    "ydata_version": "unknown"
+  }
+}
