@@ -1,14 +1,63 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAlgorithms } from "../hooks/useAlgorithms";
 import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
 import { MetricsBadge } from "../components/MetricsBadge";
 import { ExperimentTable } from "../components/ExperimentTable";
+import { QuickStartSection } from "../components/QuickStartSection";
+import type { PrivacyRiskLevel } from "../types/algorithm";
 
 const PRIVACY_MECHANISM_LABELS: Record<string, string> = {
   none: "なし（プライバシー保護機構なし）",
   identifiability_penalty: "識別可能性ペナルティ（生成データが元データに近づきすぎないよう制約）",
   differential_privacy: "差分プライバシー（数学的なプライバシー保証）",
 };
+
+const PRIVACY_BANNER_KEY = "syntheticdata-catalog-privacy-banner-dismissed";
+
+const PRIVACY_RISK_RATIONALE: Record<PrivacyRiskLevel, string> = {
+  low: "DCR 5th percentile > 0.2: 最も近い合成レコードでも元データから十分な距離があります",
+  medium:
+    "DCR 5th percentile 0.05〜0.2: 一部の合成レコードが元データに近い可能性があります",
+  high: "DCR 5th percentile < 0.05: 元データに非常に近い合成レコードが存在する可能性があり、再識別リスクがあります",
+};
+
+function PrivacyWarningBanner() {
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem(PRIVACY_BANNER_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
+
+  if (dismissed) return null;
+
+  const handleDismiss = () => {
+    setDismissed(true);
+    try {
+      localStorage.setItem(PRIVACY_BANNER_KEY, "1");
+    } catch {
+      // ignore
+    }
+  };
+
+  return (
+    <div className="bg-amber-50 border border-amber-300 rounded-lg px-4 py-3 mb-6 flex items-start gap-3">
+      <span className="text-lg shrink-0 mt-0.5" aria-hidden="true">&#9888;&#65039;</span>
+      <p className="text-sm text-amber-900 flex-1">
+        合成データは匿名データではありません。本番データに適用する前に、データの性質・用途に応じたプライバシー評価を実施してください。
+      </p>
+      <button
+        onClick={handleDismiss}
+        className="text-amber-600 hover:text-amber-800 text-lg font-bold leading-none shrink-0 cursor-pointer"
+        aria-label="閉じる"
+      >
+        &times;
+      </button>
+    </div>
+  );
+}
 
 const CATEGORY_COLORS: Record<string, string> = {
   gan: "bg-purple-100 text-purple-800",
@@ -56,6 +105,9 @@ export function DetailPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* ===== 注意バナー ===== */}
+      <PrivacyWarningBanner />
+
       {/* ===== A. ヘッダーセクション ===== */}
       <div className="mb-6">
         <Link
@@ -85,11 +137,31 @@ export function DetailPage() {
               </span>
             ))}
 
-            {/* プライバシーリスクバッジ */}
+            {/* プライバシーリスクバッジ + 判定根拠 */}
             {algorithm.privacy_risk_level && (
               <MetricsBadge level={algorithm.privacy_risk_level} />
             )}
           </div>
+
+          {/* プライバシーリスク判定根拠 */}
+          {algorithm.privacy_risk_level && (
+            <div className="mt-3 text-sm text-gray-600 bg-gray-50 rounded-lg px-4 py-2.5 border border-gray-200">
+              <span className="font-semibold text-gray-700">判定根拠: </span>
+              {PRIVACY_RISK_RATIONALE[algorithm.privacy_risk_level]}
+              {(() => {
+                const dcr5th = algorithm.experiments
+                  .map((e) => e.metrics.dcr_5th_percentile)
+                  .filter((v): v is number => v != null);
+                if (dcr5th.length === 0) return null;
+                const minVal = Math.min(...dcr5th);
+                return (
+                  <span className="ml-1 font-mono text-gray-500">
+                    (実測値: DCR 5th percentile = {minVal.toFixed(4)})
+                  </span>
+                );
+              })()}
+            </div>
+          )}
 
           {/* 対応データタイプ */}
           <div className="mt-3 flex flex-wrap gap-1.5">
@@ -246,7 +318,10 @@ export function DetailPage() {
         <ExperimentTable experiments={algorithm.experiments} />
       </div>
 
-      {/* ===== E. 参考文献セクション ===== */}
+      {/* ===== E. クイックスタートセクション ===== */}
+      <QuickStartSection libraries={algorithm.libraries} algorithmId={algorithm.id} />
+
+      {/* ===== F. 参考文献セクション ===== */}
       {(algorithm.reference || algorithm.privacy_mechanism) && (
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="font-semibold text-gray-800 text-lg mb-4">参考情報</h2>
