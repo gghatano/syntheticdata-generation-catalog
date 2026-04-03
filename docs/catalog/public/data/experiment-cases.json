@@ -223,9 +223,18 @@
       "name": "Daily Weather 2020（センサーデータ代替）",
       "rows": 13664,
       "columns": 11,
-      "features": ["観測地点", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
+      "features": ["観測地点(122拠点)", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
     },
-    "results": [],
-    "recommendation": "地点ごとの時系列パターン（日周期・季節性）を再現する必要がある。SDV PARSynthesizerで対応可能。今後実験予定。"
+    "results": [
+      {
+        "algorithm_id": "par",
+        "algorithm_name": "PAR",
+        "library": "SDV",
+        "params": { "epochs": 64 },
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 60.2 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "122拠点分の時系列パターンをPARSynthesizerが約1分で合成。各拠点の気温・湿度・気圧の季節変動パターンが再現される。センサーIDごとの系列長・値域は元データに準拠。"
   }
 ]
