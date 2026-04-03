@@ -78,34 +78,60 @@
     "title": "保険契約データの合成（リスクモデル開発用データ拡張）",
     "data_category": "single_table_master",
     "scenario": {
-      "description": "保険契約者の属性（年齢・性別・BMI・喫煙有無・地域・扶養家族数）と保険料のデータがある。データ件数が限られているため、合成データで拡張して保険料予測モデルの精度向上を図りたい。また、外部委託先にデータを渡す際の匿名化にも利用したい。",
-      "use_case": "データ拡張・モデル開発"
+      "description": "保険契約者の属性（年齢・性別・BMI・喫煙有無・地域・扶養家族数）と保険料のデータがある。外部委託先にデータを渡す際の匿名化や、保険料予測モデルの開発用データ拡張に合成データを活用したい。",
+      "use_case": "データ拡張・匿名化"
     },
     "dataset": {
       "name": "Insurance",
-      "rows": 1338,
-      "columns": 7,
-      "features": ["年齢", "性別", "BMI", "扶養家族数", "喫煙有無", "地域", "保険料"]
+      "rows": 20000,
+      "columns": 27,
+      "features": ["年齢", "性別", "BMI", "扶養家族数", "喫煙有無", "地域", "保険料", "職業", "運動頻度"]
     },
-    "results": [],
-    "recommendation": "小規模データ（1,338行）のため、統計的手法（GaussianCopula）が安定して動作しやすい。GANベースの手法はデータ量が少ないとモード崩壊のリスクがある。今後実験予定。"
+    "results": [
+      {
+        "algorithm_id": "gaussiancopula",
+        "algorithm_name": "GaussianCopula",
+        "library": "SDV",
+        "params": {},
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
+        "privacy_risk": null
+      },
+      {
+        "algorithm_id": "ctgan",
+        "algorithm_name": "CTGAN",
+        "library": "SDV",
+        "params": { "epochs": 50 },
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 63.2 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "GaussianCopula は5秒で完了し安定。CTGAN 50ep は約1分。20,000行×27列のデータでも高速に合成可能。品質評価（SDMetrics/TSTR）は今後追加予定。"
   },
   {
     "id": "company-directory",
     "title": "企業マスタの合成（デモ・テスト環境用ダミーデータ）",
     "data_category": "single_table_master",
     "scenario": {
-      "description": "企業情報（会社名・業種・従業員数・売上等）を含むマスタデータをデモ環境やUIテストに使いたい。本番の企業データは機密情報を含むため、統計的に妥当なダミー企業データを自動生成したい。",
+      "description": "企業情報（会社名・部署・社員ID・年齢・給与・勤続年数等）を含む人事マスタデータがある。デモ環境やUIテストに使いたいが、本番データは機密情報を含むため直接利用できない。統計的に妥当なダミーデータを自動生成したい。",
       "use_case": "デモデータ・UIテスト"
     },
     "dataset": {
       "name": "Fake Companies",
-      "rows": 100,
-      "columns": 5,
-      "features": ["会社名", "業種", "従業員数", "売上", "所在地"]
+      "rows": 12,
+      "columns": 12,
+      "features": ["会社名", "部署", "社員ID", "年齢", "入社時年齢", "勤続年数", "給与", "年間ボーナス", "経験年数", "正社員", "パート", "契約社員"]
     },
-    "results": [],
-    "recommendation": "極小規模データ（100行）ではGaussianCopulaが最も安定。Faker等のルールベース生成と組み合わせると効果的。今後実験予定。"
+    "results": [
+      {
+        "algorithm_id": "gaussiancopula",
+        "algorithm_name": "GaussianCopula",
+        "library": "SDV",
+        "params": {},
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 0.28 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "極小規模データ（12行）でもGaussianCopulaは0.3秒で安定動作。ただし元データが少なすぎると統計的特性の再現精度は限定的。Faker等のルールベース生成との併用も検討。"
   },
   {
     "id": "hotel-reservation-multitable",
@@ -135,20 +161,29 @@
   },
   {
     "id": "imdb-movie-database",
-    "title": "映画データベースの合成（複雑なリレーション構造の再現）",
+    "title": "映画データベースの合成（7テーブル・多対多リレーションの再現）",
     "data_category": "multi_table",
     "scenario": {
-      "description": "映画・俳優・監督・ジャンル等が複数のテーブルで関連する複雑なデータベース構造がある。多対多のリレーション（俳優↔映画）を含むスキーマを維持したまま合成データを生成し、アプリケーション開発のテストデータとして使いたい。",
+      "description": "映画・俳優・監督・ジャンル等が7つのテーブルで関連する複雑なデータベース構造がある。多対多のリレーション（俳優↔映画、映画↔ジャンル）を含むスキーマを維持したまま合成データを生成し、映画レコメンドエンジンや検索機能の開発テストデータとして使いたい。",
       "use_case": "テストデータ生成（複雑スキーマ）"
     },
     "dataset": {
       "name": "IMDB Small",
-      "rows": 4000,
-      "columns": 30,
-      "features": ["映画タイトル", "公開年", "俳優名", "監督名", "ジャンル", "役名", "性別"]
+      "rows": 4395,
+      "columns": 26,
+      "features": ["movies(36)", "actors(1907)", "directors(34)", "roles(1989)", "movies_genres(103)", "movies_directors(41)", "directors_genres(285)"]
     },
-    "results": [],
-    "recommendation": "7テーブル・多対多リレーションを含む複雑スキーマ。SDV HMAで対応可能だが、テーブル数が多いと学習時間が増加する。今後実験予定。"
+    "results": [
+      {
+        "algorithm_id": "hma",
+        "algorithm_name": "HMA",
+        "library": "SDV",
+        "params": {},
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 16.13 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "7テーブル・6つのリレーション（1:N + 多対多）を含む複雑スキーマでもSDV HMAは16秒で合成完了。全テーブルの行数・外部キー整合性が自動維持される。テーブル間の統計的関係性の再現度は今後評価予定。"
   },
   {
     "id": "stock-price-timeseries",
@@ -177,20 +212,20 @@
     "recommendation": "時系列データの合成にはSDVのPARSynthesizerが対応。銘柄ごとの自己回帰パターンを学習して再現する。約2分で完了。"
   },
   {
-    "id": "weather-observation-timeseries",
-    "title": "気象観測データの合成（地点別日次データの生成）",
+    "id": "iot-sensor-monitoring",
+    "title": "IoTセンサー監視データの合成（異常検知システムのテスト用）",
     "data_category": "single_table_timeseries",
     "scenario": {
-      "description": "世界各地の日次気象観測データ（気温・湿度・気圧・降水確率）がある。観測地点ごとの気候パターンを維持した合成データを生成し、気象予測モデルの学習データ拡張やセンサー異常検知の検証データとして使いたい。",
-      "use_case": "学習データ拡張・異常検知テスト"
+      "description": "工場やビルに設置したIoTセンサー（温度・湿度・気圧等）から日次で収集されるデータがある。監視システムやダッシュボードの開発にあたり、センサー故障や異常値を含むリアルなテストデータが大量に必要だが、実データはまだ蓄積が少ない。既存の正常データの統計パターンを維持した合成データを生成し、システム稼働前のテストに使いたい。",
+      "use_case": "システムテスト・異常検知閾値設定"
     },
     "dataset": {
-      "name": "Daily Weather 2020",
+      "name": "Daily Weather 2020（センサーデータ代替）",
       "rows": 13664,
       "columns": 11,
       "features": ["観測地点", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
     },
     "results": [],
-    "recommendation": "地点ごとの時系列パターン（季節性・地域差）を再現する必要がある。SDV PARSynthesizerで対応可能。今後実験予定。"
+    "recommendation": "地点ごとの時系列パターン（日周期・季節性）を再現する必要がある。SDV PARSynthesizerで対応可能。今後実験予定。"
   }
 ]

@@ -1,0 +1,35 @@
+{
+  "insurance_gaussiancopula": {
+    "status": "ok",
+    "time_sec": 5.2,
+    "rows": 20000
+  },
+  "insurance_ctgan_50ep": {
+    "status": "ok",
+    "time_sec": 63.2,
+    "rows": 20000
+  },
+  "imdb_hma": {
+    "status": "ok",
+    "time_sec": 16.13,
+    "tables": {
+      "movies": 36,
+      "movies_genres": 103,
+      "movies_directors": 41,
+      "roles": 1989,
+      "actors": 1907,
+      "directors": 34,
+      "directors_genres": 285
+    }
+  },
+  "fake_companies_gaussiancopula": {
+    "status": "ok",
+    "time_sec": 0.28,
+    "rows": 12
+  },
+  "_env": {
+    "python_version": "3.11.14",
+    "sdv_version": "1.35.1",
+    "timestamp": "2026-04-03T13:07:00.631855"
+  }
+}
