@@ -1,0 +1,144 @@
+[
+  {
+    "id": "adult-census-anonymization",
+    "title": "顧客属性データの合成（匿名化・テストデータ生成）",
+    "data_category": "single_table_master",
+    "scenario": {
+      "description": "個人属性（年齢・職業・学歴・収入等）を含む顧客マスタデータがある。本番データは個人情報を含むため開発・テスト環境で直接利用できない。統計的特性を維持した合成データを生成し、分析モデルの開発やシステムテストに活用したい。",
+      "use_case": "テストデータ生成・匿名化"
+    },
+    "dataset": {
+      "name": "Adult Census",
+      "rows": 32561,
+      "columns": 15,
+      "features": ["年齢", "職業", "学歴", "婚姻状況", "人種", "性別", "労働時間", "収入区分"]
+    },
+    "results": [
+      {
+        "algorithm_id": "ctgan",
+        "algorithm_name": "CTGAN",
+        "library": "SDV",
+        "params": { "epochs": 100 },
+        "metrics": { "quality_score": 0.86, "tstr_accuracy": 0.819, "tstr_f1": 0.8203, "dcr_mean": 0.3438, "time_sec": 325.24 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "bayesian_network",
+        "algorithm_name": "BayesianNetwork",
+        "library": "SynthCity",
+        "params": {},
+        "metrics": { "quality_score": 0.8263, "tstr_accuracy": 0.8643, "tstr_f1": 0.8591, "dcr_mean": 0.2193, "time_sec": 220.37 },
+        "privacy_risk": "high"
+      },
+      {
+        "algorithm_id": "ctgan",
+        "algorithm_name": "CTGAN",
+        "library": "ydata",
+        "params": { "epochs": 100 },
+        "metrics": { "quality_score": 0.8312, "tstr_accuracy": 0.8303, "tstr_f1": 0.8241, "dcr_mean": 0.2589, "time_sec": 1464.28 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "gaussiancopula",
+        "algorithm_name": "GaussianCopula",
+        "library": "SDV",
+        "params": {},
+        "metrics": { "quality_score": 0.8168, "tstr_accuracy": 0.7563, "tstr_f1": 0.6555, "dcr_mean": 0.533, "time_sec": 5.94 },
+        "privacy_risk": "low"
+      },
+      {
+        "algorithm_id": "tvae",
+        "algorithm_name": "TVAE",
+        "library": "SynthCity",
+        "params": {},
+        "metrics": { "quality_score": 0.7709, "tstr_accuracy": 0.8259, "tstr_f1": 0.8172, "dcr_mean": 0.302, "time_sec": 208.5 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "adsgan",
+        "algorithm_name": "AdsGAN",
+        "library": "SynthCity",
+        "params": {},
+        "metrics": { "quality_score": 0.7492, "tstr_accuracy": 0.819, "tstr_f1": 0.7993, "dcr_mean": 0.2905, "time_sec": 121.82 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "ctgan",
+        "algorithm_name": "CTGAN",
+        "library": "SDV",
+        "params": { "epochs": 10 },
+        "metrics": { "quality_score": 0.7493, "tstr_accuracy": 0.6601, "tstr_f1": 0.6555, "dcr_mean": 0.4265, "time_sec": 241.7 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "ctgan",
+        "algorithm_name": "CTGAN",
+        "library": "SynthCity",
+        "params": {},
+        "metrics": { "quality_score": 0.7365, "tstr_accuracy": 0.8093, "tstr_f1": 0.8076, "dcr_mean": 0.2753, "time_sec": 604.74 },
+        "privacy_risk": "medium"
+      },
+      {
+        "algorithm_id": "nflow",
+        "algorithm_name": "NFlow",
+        "library": "SynthCity",
+        "params": {},
+        "metrics": { "quality_score": 0.684, "tstr_accuracy": 0.7533, "tstr_f1": 0.6514, "dcr_mean": 0.3881, "time_sec": 165.52 },
+        "privacy_risk": "medium"
+      }
+    ],
+    "recommendation": "高速に試すならGaussianCopula（6秒）。品質重視ならSDV CTGAN 100ep（Quality 86%）。下流タスク性能重視ならBayesianNetwork（TSTR F1 86%、ただしプライバシーリスク高）。"
+  },
+  {
+    "id": "hotel-reservation-multitable",
+    "title": "ホテル予約データの合成（複数表・外部キー整合性維持）",
+    "data_category": "multi_table",
+    "scenario": {
+      "description": "ホテル情報テーブル（hotels）と宿泊客テーブル（guests）が外部キーで関連している。テスト環境用に、テーブル間のリレーション（1:N）を維持したまま合成データを生成したい。",
+      "use_case": "テストデータ生成（複数表）"
+    },
+    "dataset": {
+      "name": "Fake Hotels",
+      "rows": 668,
+      "columns": 15,
+      "features": ["hotel_id", "hotel_name", "city", "guest_id", "checkin_date", "checkout_date", "room_rate"]
+    },
+    "results": [
+      {
+        "algorithm_id": "hma",
+        "algorithm_name": "HMA",
+        "library": "SDV",
+        "params": {},
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "複数表データの合成にはSDVのHMASynthesizerが現状唯一の選択肢。外部キー整合性を自動的に維持してくれる。"
+  },
+  {
+    "id": "stock-price-timeseries",
+    "title": "株価時系列データの合成（銘柄別時系列パターンの再現）",
+    "data_category": "single_table_timeseries",
+    "scenario": {
+      "description": "NASDAQ 100 構成銘柄の日次株価データ（始値・高値・安値・終値・出来高）がある。銘柄ごとの時系列パターン（トレンド・季節性）を維持した合成データを生成し、トレーディング戦略のバックテストや異常検知モデルの検証に使いたい。",
+      "use_case": "シミュレーション・バックテスト"
+    },
+    "dataset": {
+      "name": "NASDAQ 100 (2019)",
+      "rows": 25784,
+      "columns": 8,
+      "features": ["Symbol", "Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"]
+    },
+    "results": [
+      {
+        "algorithm_id": "par",
+        "algorithm_name": "PAR",
+        "library": "SDV",
+        "params": { "epochs": 128 },
+        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 114.7 },
+        "privacy_risk": null
+      }
+    ],
+    "recommendation": "時系列データの合成にはSDVのPARSynthesizerが対応。自己回帰モデルで銘柄ごとの時系列パターンを再現する。"
+  }
+]
