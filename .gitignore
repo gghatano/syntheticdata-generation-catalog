@@ -24,3 +24,11 @@ results/phase3/*.csv
 # OS
 .DS_Store
 Thumbs.db
+
+# Worktrees
+gitworktree/
+
+# Root-level npm artifacts (npm project is in docs/catalog/)
+/package-lock.json
+/node_modules/
+docs/github-pages-template/
