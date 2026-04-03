@@ -8,6 +8,39 @@ type ExperimentTableProps = {
 const BASELINE_ACC = 0.8558;
 const BASELINE_F1 = 0.8513;
 
+const METRIC_TOOLTIPS: Record<string, string> = {
+  quality:
+    "元データの統計的特性（分布・相関）をどの程度再現できたかのスコア（0〜1、高いほど良い）",
+  tstr_acc:
+    "合成データで学習→実データでテスト時の正解率。ベースライン(0.856)に近いほど良い",
+  tstr_f1:
+    "合成データで学習→実データでテスト時のF1スコア。ベースライン(0.851)に近いほど良い",
+  dcr_mean:
+    "合成データの各レコードと元データの最近傍距離の平均。高いほどプライバシー保護が強い",
+  time:
+    "CPU環境での学習+生成の合計時間。環境依存のため相対比較のみ推奨",
+};
+
+function TooltipHeader({ label, tooltipKey }: { label: string; tooltipKey: string }) {
+  const tip = METRIC_TOOLTIPS[tooltipKey];
+  if (!tip) return <>{label}</>;
+  return (
+    <span className="inline-flex items-center gap-1">
+      {label}
+      <span className="relative group cursor-help">
+        <span className="text-gray-400 text-xs">(&#63;)</span>
+        <span
+          className="invisible group-hover:visible absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 max-w-xs bg-white text-gray-700 text-sm font-normal rounded-lg shadow-lg border border-gray-200 px-3 py-2 whitespace-normal"
+          role="tooltip"
+        >
+          {tip}
+          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white" />
+        </span>
+      </span>
+    </span>
+  );
+}
+
 function qualityColor(value: number | undefined): string {
   if (value == null) return "";
   if (value >= 0.8) return "bg-green-100 text-green-800";
@@ -80,6 +113,20 @@ export function ExperimentTable({ experiments }: ExperimentTableProps) {
 
   return (
     <div>
+      {/* 色分け凡例 */}
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-gray-600 mb-3 bg-gray-50 rounded-lg px-4 py-2.5 border border-gray-200">
+        <span className="font-semibold text-gray-700 mr-1">色分け凡例:</span>
+        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-green-500" /> 良好</span>
+        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-500" /> 注意</span>
+        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500" /> 要検討</span>
+        <span className="text-gray-400">|</span>
+        <span>Quality: &ge;0.8 緑, &ge;0.7 黄, &lt;0.7 赤</span>
+        <span className="text-gray-400">|</span>
+        <span>TSTR: ベースライン比 &ge;95% 緑, &ge;85% 黄, &lt;85% 赤</span>
+        <span className="text-gray-400">|</span>
+        <span>DCR: &ge;0.4 緑(安全), &ge;0.2 黄, &lt;0.2 赤(リスク)</span>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-collapse">
           <thead>
@@ -87,19 +134,29 @@ export function ExperimentTable({ experiments }: ExperimentTableProps) {
               <th className="px-3 py-2.5 font-semibold text-gray-700">Library</th>
               <th className="px-3 py-2.5 font-semibold text-gray-700">Params</th>
               {hasQuality && (
-                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">Quality</th>
+                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">
+                  <TooltipHeader label="Quality" tooltipKey="quality" />
+                </th>
               )}
               {hasTstrAcc && (
-                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">TSTR Acc</th>
+                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">
+                  <TooltipHeader label="TSTR Acc" tooltipKey="tstr_acc" />
+                </th>
               )}
               {hasTstrF1 && (
-                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">TSTR F1</th>
+                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">
+                  <TooltipHeader label="TSTR F1" tooltipKey="tstr_f1" />
+                </th>
               )}
               {hasDcr && (
-                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">DCR Mean</th>
+                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">
+                  <TooltipHeader label="DCR Mean" tooltipKey="dcr_mean" />
+                </th>
               )}
               {hasTime && (
-                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">実行時間</th>
+                <th className="px-3 py-2.5 font-semibold text-gray-700 text-right">
+                  <TooltipHeader label="実行時間" tooltipKey="time" />
+                </th>
               )}
             </tr>
           </thead>

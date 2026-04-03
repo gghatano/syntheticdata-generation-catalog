@@ -28,6 +28,7 @@ describe("ExperimentTable", () => {
   it("shows baseline reference note", () => {
     const algo = mockAlgorithms[0];
     render(<ExperimentTable experiments={algo.experiments} />);
-    expect(screen.getByText(/ベースライン/)).toBeInTheDocument();
+    const matches = screen.getAllByText(/ベースライン/);
+    expect(matches.length).toBeGreaterThanOrEqual(1);
   });
 });

@@ -3,6 +3,7 @@ import { useAlgorithms } from "../hooks/useAlgorithms";
 import { useFilter } from "../hooks/useFilter";
 import { FilterPanel } from "../components/FilterPanel";
 import { AlgorithmCard } from "../components/AlgorithmCard";
+import { BeginnerGuide } from "../components/BeginnerGuide";
 
 export function ListPage() {
   const { algorithms, loading, error } = useAlgorithms();
@@ -131,6 +132,9 @@ export function ListPage() {
           </div>
         </div>
       )}
+
+      {/* Beginner guide */}
+      <BeginnerGuide />
 
       <div className="flex gap-6">
         {/* Desktop filter panel */}
