@@ -9,6 +9,7 @@
     },
     "dataset": {
       "name": "Adult Census",
+      "source_url": "https://archive.ics.uci.edu/dataset/2/adult",
       "rows": 32561,
       "columns": 15,
       "features": ["年齢", "職業", "学歴", "婚姻状況", "人種", "性別", "労働時間", "収入区分"]
@@ -83,6 +84,7 @@
     },
     "dataset": {
       "name": "Insurance",
+      "source_url": "https://www.kaggle.com/datasets/mirichoi0218/insurance",
       "rows": 20000,
       "columns": 27,
       "features": ["年齢", "性別", "BMI", "扶養家族数", "喫煙有無", "地域", "保険料", "職業", "運動頻度"]
@@ -117,6 +119,7 @@
     },
     "dataset": {
       "name": "Fake Companies",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 12,
       "columns": 12,
       "features": ["会社名", "部署", "社員ID", "年齢", "入社時年齢", "勤続年数", "給与", "年間ボーナス", "経験年数", "正社員", "パート", "契約社員"]
@@ -143,6 +146,7 @@
     },
     "dataset": {
       "name": "Fake Hotels",
+      "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 668,
       "columns": 15,
       "features": ["hotel_id", "hotel_name", "city", "guest_email", "checkin_date", "checkout_date", "room_rate", "room_type"]
@@ -169,6 +173,7 @@
     },
     "dataset": {
       "name": "IMDB Small",
+      "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 4395,
       "columns": 26,
       "features": ["movies(36)", "actors(1907)", "directors(34)", "roles(1989)", "movies_genres(103)", "movies_directors(41)", "directors_genres(285)"]
@@ -195,6 +200,7 @@
     },
     "dataset": {
       "name": "NASDAQ 100 (2019)",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 25784,
       "columns": 8,
       "features": ["Symbol", "Date", "Open", "High", "Low", "Close", "Volume", "Sector"]
@@ -221,6 +227,7 @@
     },
     "dataset": {
       "name": "Daily Weather 2020（センサーデータ代替）",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 13664,
       "columns": 11,
       "features": ["観測地点(122拠点)", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
