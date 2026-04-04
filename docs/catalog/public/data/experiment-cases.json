@@ -396,15 +396,15 @@
           "epochs": 64
         },
         "metrics": {
-          "quality_score": null,
+          "quality_score": 0.6444,
           "tstr_accuracy": null,
           "tstr_f1": null,
-          "dcr_mean": null,
+          "dcr_mean": 0.559937,
           "time_sec": 60.2
         },
-        "privacy_risk": null
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "122拠点分の時系列パターンをPARSynthesizerが約1分で合成。各拠点の気温・湿度・気圧の季節変動パターンが再現される。センサーIDごとの系列長・値域は元データに準拠。"
+    "recommendation": "PAR 64ep の品質スコアは0.64。 自己相関の平均乖離は0.756。 プライバシーリスクはlow。 122拠点の気温・湿度・気圧の季節変動パターンの再現を評価。PAR は拠点ごとのパターンを学習するが、季節変動の精度に改善余地がある。"
   }
 ]
