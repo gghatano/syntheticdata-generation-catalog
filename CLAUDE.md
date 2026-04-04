@@ -132,10 +132,23 @@ main          ← 安定版。develop からのマージのみ
 - main への直接 push は禁止
 - feature ブランチ名: `feature/issue-<番号>-<概要>` (例: `feature/issue-8-catalog`)
 
+## カタログサイト（GitHub Pages）
+
+- 技術スタック: React + Vite + TypeScript + Tailwind CSS
+- ソース: `docs/catalog/`
+- 事例データ: `docs/catalog/public/data/experiment-cases.json`
+- アルゴリズムデータ: `docs/catalog/public/data/algorithms.json`
+- デプロイ: GitHub Actions (`.github/workflows/deploy-pages.yml`)
+- 開発: `cd docs/catalog && npm run dev`
+
 ## Issue 管理
 
-- Phase 1（検証実行）: #1 (親) → #2〜#7 (サブ)
-- Phase 2（GitHub Pages）: #8 → #10〜#13
+- Phase 1（検証実行）: #1 (親) → #2〜#7 — **完了・クローズ済み**
+- Phase 2（GitHub Pages）: #8 → #10〜#13 — **完了・クローズ済み**
+- 現在のオープン Issue:
+  - UI強化: #18(横並び比較), #19(CSV/MDエクスポート), #22(棒グラフ), #26(グラフ可視化)
+  - 品質評価: #27(保険), #28(IMDB), #29(企業), #30(ホテル), #31(株価), #32(IoT)
+  - データ管理: #33(データ元URL), #34(実験管理基盤)
 - タスク詳細は `docs/tasks/` 配下の md ファイルを参照
 
 ## 自律実行時のルール
@@ -157,6 +170,11 @@ main          ← 安定版。develop からのマージのみ
 
 ### スラッシュコマンド
 
+#### Issue 対応ワークフロー
+- `/1_issue_plan <issue番号>` — Issue を読み、コード調査→実装計画を策定→Issue にコメント
+- `/2_issue_impl <issue番号>` — 確定した計画に基づき worktree で実装→コミット→PR 作成
+
+#### 検証タスク実行
 - `/run-task <番号>` — 指定タスクを実行
 - `/run-all` — 全タスクを依存順に自動実行
 - `/check-progress` — 進捗確認
