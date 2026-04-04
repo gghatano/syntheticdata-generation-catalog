@@ -12,15 +12,32 @@
       "source_url": "https://archive.ics.uci.edu/dataset/2/adult",
       "rows": 32561,
       "columns": 15,
-      "features": ["年齢", "職業", "学歴", "婚姻状況", "人種", "性別", "労働時間", "収入区分"]
+      "features": [
+        "年齢",
+        "職業",
+        "学歴",
+        "婚姻状況",
+        "人種",
+        "性別",
+        "労働時間",
+        "収入区分"
+      ]
     },
     "results": [
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "SDV",
-        "params": { "epochs": 100 },
-        "metrics": { "quality_score": 0.86, "tstr_accuracy": 0.819, "tstr_f1": 0.8203, "dcr_mean": 0.3438, "time_sec": 325.24 },
+        "params": {
+          "epochs": 100
+        },
+        "metrics": {
+          "quality_score": 0.86,
+          "tstr_accuracy": 0.819,
+          "tstr_f1": 0.8203,
+          "dcr_mean": 0.3438,
+          "time_sec": 325.24
+        },
         "privacy_risk": "medium"
       },
       {
@@ -28,15 +45,29 @@
         "algorithm_name": "BayesianNetwork",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.8263, "tstr_accuracy": 0.8643, "tstr_f1": 0.8591, "dcr_mean": 0.2193, "time_sec": 220.37 },
+        "metrics": {
+          "quality_score": 0.8263,
+          "tstr_accuracy": 0.8643,
+          "tstr_f1": 0.8591,
+          "dcr_mean": 0.2193,
+          "time_sec": 220.37
+        },
         "privacy_risk": "high"
       },
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "ydata",
-        "params": { "epochs": 100 },
-        "metrics": { "quality_score": 0.8312, "tstr_accuracy": 0.8303, "tstr_f1": 0.8241, "dcr_mean": 0.2589, "time_sec": 1464.28 },
+        "params": {
+          "epochs": 100
+        },
+        "metrics": {
+          "quality_score": 0.8312,
+          "tstr_accuracy": 0.8303,
+          "tstr_f1": 0.8241,
+          "dcr_mean": 0.2589,
+          "time_sec": 1464.28
+        },
         "privacy_risk": "medium"
       },
       {
@@ -44,7 +75,13 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": 0.8168, "tstr_accuracy": 0.7563, "tstr_f1": 0.6555, "dcr_mean": 0.533, "time_sec": 5.94 },
+        "metrics": {
+          "quality_score": 0.8168,
+          "tstr_accuracy": 0.7563,
+          "tstr_f1": 0.6555,
+          "dcr_mean": 0.533,
+          "time_sec": 5.94
+        },
         "privacy_risk": "low"
       },
       {
@@ -52,7 +89,13 @@
         "algorithm_name": "TVAE",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.7709, "tstr_accuracy": 0.8259, "tstr_f1": 0.8172, "dcr_mean": 0.302, "time_sec": 208.5 },
+        "metrics": {
+          "quality_score": 0.7709,
+          "tstr_accuracy": 0.8259,
+          "tstr_f1": 0.8172,
+          "dcr_mean": 0.302,
+          "time_sec": 208.5
+        },
         "privacy_risk": "medium"
       },
       {
@@ -60,7 +103,13 @@
         "algorithm_name": "AdsGAN",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.7492, "tstr_accuracy": 0.819, "tstr_f1": 0.7993, "dcr_mean": 0.2905, "time_sec": 121.82 },
+        "metrics": {
+          "quality_score": 0.7492,
+          "tstr_accuracy": 0.819,
+          "tstr_f1": 0.7993,
+          "dcr_mean": 0.2905,
+          "time_sec": 121.82
+        },
         "privacy_risk": "medium"
       },
       {
@@ -68,7 +117,13 @@
         "algorithm_name": "NFlow",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.684, "tstr_accuracy": 0.7533, "tstr_f1": 0.6514, "dcr_mean": 0.3881, "time_sec": 165.52 },
+        "metrics": {
+          "quality_score": 0.684,
+          "tstr_accuracy": 0.7533,
+          "tstr_f1": 0.6514,
+          "dcr_mean": 0.3881,
+          "time_sec": 165.52
+        },
         "privacy_risk": "medium"
       }
     ],
@@ -87,7 +142,17 @@
       "source_url": "https://www.kaggle.com/datasets/mirichoi0218/insurance",
       "rows": 20000,
       "columns": 27,
-      "features": ["年齢", "性別", "BMI", "扶養家族数", "喫煙有無", "地域", "保険料", "職業", "運動頻度"]
+      "features": [
+        "年齢",
+        "性別",
+        "BMI",
+        "扶養家族数",
+        "喫煙有無",
+        "地域",
+        "保険料",
+        "職業",
+        "運動頻度"
+      ]
     },
     "results": [
       {
@@ -95,19 +160,33 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
-        "privacy_risk": null
+        "metrics": {
+          "quality_score": 0.9049,
+          "tstr_accuracy": 0.6737,
+          "tstr_f1": 0.6285,
+          "dcr_mean": 1.154593,
+          "time_sec": 5.2
+        },
+        "privacy_risk": "low"
       },
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "SDV",
-        "params": { "epochs": 50 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 63.2 },
-        "privacy_risk": null
+        "params": {
+          "epochs": 50
+        },
+        "metrics": {
+          "quality_score": 0.8794,
+          "tstr_accuracy": 0.7145,
+          "tstr_f1": 0.6956,
+          "dcr_mean": 0.914359,
+          "time_sec": 63.2
+        },
+        "privacy_risk": "high"
       }
     ],
-    "recommendation": "GaussianCopula は5秒で完了し安定。CTGAN 50ep は約1分。20,000行×27列のデータでも高速に合成可能。品質評価（SDMetrics/TSTR）は今後追加予定。"
+    "recommendation": "GaussianCopulaが品質スコア0.90でCTGAN(0.88)を上回る。 TSTR F1はGC=0.6285, CTGAN=0.6956。 プライバシーリスクはGC=low, CTGAN=high。 保険料（charges）が連続値のため、回帰タスクでの評価も検討の余地あり。"
   },
   {
     "id": "company-directory",
@@ -122,7 +201,20 @@
       "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 12,
       "columns": 12,
-      "features": ["会社名", "部署", "社員ID", "年齢", "入社時年齢", "勤続年数", "給与", "年間ボーナス", "経験年数", "正社員", "パート", "契約社員"]
+      "features": [
+        "会社名",
+        "部署",
+        "社員ID",
+        "年齢",
+        "入社時年齢",
+        "勤続年数",
+        "給与",
+        "年間ボーナス",
+        "経験年数",
+        "正社員",
+        "パート",
+        "契約社員"
+      ]
     },
     "results": [
       {
@@ -130,7 +222,13 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 0.28 },
+        "metrics": {
+          "quality_score": null,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": null,
+          "time_sec": 0.28
+        },
         "privacy_risk": null
       }
     ],
@@ -149,7 +247,16 @@
       "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 668,
       "columns": 15,
-      "features": ["hotel_id", "hotel_name", "city", "guest_email", "checkin_date", "checkout_date", "room_rate", "room_type"]
+      "features": [
+        "hotel_id",
+        "hotel_name",
+        "city",
+        "guest_email",
+        "checkin_date",
+        "checkout_date",
+        "room_rate",
+        "room_type"
+      ]
     },
     "results": [
       {
@@ -157,7 +264,13 @@
         "algorithm_name": "HMA",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
+        "metrics": {
+          "quality_score": null,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": null,
+          "time_sec": 5.2
+        },
         "privacy_risk": null
       }
     ],
@@ -176,7 +289,15 @@
       "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 4395,
       "columns": 26,
-      "features": ["movies(36)", "actors(1907)", "directors(34)", "roles(1989)", "movies_genres(103)", "movies_directors(41)", "directors_genres(285)"]
+      "features": [
+        "movies(36)",
+        "actors(1907)",
+        "directors(34)",
+        "roles(1989)",
+        "movies_genres(103)",
+        "movies_directors(41)",
+        "directors_genres(285)"
+      ]
     },
     "results": [
       {
@@ -184,7 +305,13 @@
         "algorithm_name": "HMA",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 16.13 },
+        "metrics": {
+          "quality_score": null,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": null,
+          "time_sec": 16.13
+        },
         "privacy_risk": null
       }
     ],
@@ -203,15 +330,32 @@
       "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 25784,
       "columns": 8,
-      "features": ["Symbol", "Date", "Open", "High", "Low", "Close", "Volume", "Sector"]
+      "features": [
+        "Symbol",
+        "Date",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+        "Sector"
+      ]
     },
     "results": [
       {
         "algorithm_id": "par",
         "algorithm_name": "PAR",
         "library": "SDV",
-        "params": { "epochs": 128 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 114.7 },
+        "params": {
+          "epochs": 128
+        },
+        "metrics": {
+          "quality_score": null,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": null,
+          "time_sec": 114.7
+        },
         "privacy_risk": null
       }
     ],
@@ -230,15 +374,34 @@
       "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 13664,
       "columns": 11,
-      "features": ["観測地点(122拠点)", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
+      "features": [
+        "観測地点(122拠点)",
+        "国",
+        "緯度",
+        "経度",
+        "日付",
+        "最高気温",
+        "最低気温",
+        "湿度",
+        "気圧",
+        "降水確率"
+      ]
     },
     "results": [
       {
         "algorithm_id": "par",
         "algorithm_name": "PAR",
         "library": "SDV",
-        "params": { "epochs": 64 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 60.2 },
+        "params": {
+          "epochs": 64
+        },
+        "metrics": {
+          "quality_score": null,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": null,
+          "time_sec": 60.2
+        },
         "privacy_risk": null
       }
     ],
