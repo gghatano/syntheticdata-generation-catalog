@@ -32,6 +32,8 @@ jobs:
       - name: Build
         working-directory: docs/catalog
         run: npm run build
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp docs/catalog/dist/index.html docs/catalog/dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

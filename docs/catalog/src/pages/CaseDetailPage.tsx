@@ -5,6 +5,7 @@ import { DATA_CATEGORY_LABELS, DATA_CATEGORY_ICONS } from "../types/experiment-c
 import type { CaseResult } from "../types/experiment-case";
 import type { TableData } from "../utils/export";
 import { ExportButtons } from "../components/ExportButtons";
+import { MetricsBarChart } from "../components/MetricsBarChart";
 
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
@@ -180,6 +181,9 @@ export function CaseDetailPage() {
           ))}
         </div>
       </div>
+
+      {/* Metrics Chart */}
+      <MetricsBarChart results={sortedResults} />
 
       {/* Results */}
       <div className="mb-6">
