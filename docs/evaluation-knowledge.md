@@ -55,3 +55,39 @@
 ### 注意点の更新
 - **12行以下の極小データでは TSTR をスキップまたは注記付きで実施する**
 - 品質スコアの解釈には行数を考慮する（少量データでの低スコアは必ずしも手法の問題ではない）
+
+---
+
+## Issue #30: ホテル予約データ（Hotel Reservations, 複数表）
+
+**データ概要**: 2テーブル（hotels: 10行, guests: 658行）、1:N リレーション
+
+### 評価結果
+
+| 指標 | 値 |
+|------|-----|
+| Quality Score（Multi-Table） | 0.6477 |
+| Diagnostic Score | 1.0000 |
+| FK 整合性 | 完全維持（orphan=0） |
+| DCR Mean (guests) | 0.3190 |
+| DCR Mean (hotels) | 0.5810 |
+| DCR Mean (overall) | 0.4500 |
+| Privacy Risk | low |
+
+### 知見
+
+1. **Multi-Table QualityReport の活用**: `sdmetrics.reports.multi_table.QualityReport` を使用。Column Shapes (86.6%), Column Pair Trends (53.1%), Cardinality (60.0%), Intertable Trends (59.4%) の4軸評価。全体スコアは 64.8%。単一表より低くなる傾向がある。
+
+2. **FK 整合性は SDV HMA で完全維持**: `relationships` をメタデータから読み取り、合成データの orphan record を検証。SDV の HMA は親テーブルから子テーブルを階層的に生成するため、FK 違反は発生しない。
+
+3. **DCR の overflow 問題**: guests テーブルに大きな整数値（ID等）が含まれる場合、int の範囲を超えて overflow する。`astype(float)` で float64 に変換してから正規化することで解決。**全評価スクリプトで数値列を float64 に統一すべき。**
+
+4. **テーブル間の品質差**: hotels（10行）は行数が極小のため DCR=0.58 と距離が大きい。guests（658行）は DCR=0.32 とやや近い。
+
+5. **Cardinality Score が 60%**: 各 hotel に紐づく guest の数（カーディナリティ）の分布再現度。10ホテル中6件が実データの分布範囲内。小規模データでは改善余地あり。
+
+### 複数表評価のパターン（#28 IMDB にも適用）
+- `sdmetrics.reports.multi_table` を使用
+- FK 整合性は `metadata['relationships']` から自動検証
+- DCR はテーブル単位で計算し、平均を全体指標とする
+- TSTR は複数表には直接適用困難（テーブル結合が必要）→ スキップ

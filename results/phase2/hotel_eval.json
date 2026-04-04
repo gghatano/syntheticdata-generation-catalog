@@ -1,0 +1,33 @@
+{
+  "sdv_hma": {
+    "quality_score": 0.6477110729063795,
+    "diagnostic_score": 1.0,
+    "fk_integrity": [
+      {
+        "parent": "hotels",
+        "child": "guests",
+        "parent_pk": "hotel_id",
+        "child_fk": "hotel_id",
+        "orphan_count": 0,
+        "total_child_rows": 658,
+        "orphan_rate": 0.0,
+        "valid": true
+      }
+    ],
+    "fk_all_valid": true,
+    "dcr_per_table": {
+      "guests": {
+        "dcr_mean": 0.318987,
+        "dcr_median": 0.282066,
+        "dcr_5th_percentile": 0.168566
+      },
+      "hotels": {
+        "dcr_mean": 0.580976,
+        "dcr_median": 0.562737,
+        "dcr_5th_percentile": 0.388794
+      }
+    },
+    "dcr_mean": 0.449982,
+    "privacy_risk": "low"
+  }
+}
