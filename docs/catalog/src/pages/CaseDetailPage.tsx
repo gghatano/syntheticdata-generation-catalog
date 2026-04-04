@@ -1,7 +1,10 @@
+import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useExperimentCases } from "../hooks/useExperimentCases";
 import { DATA_CATEGORY_LABELS, DATA_CATEGORY_ICONS } from "../types/experiment-case";
 import type { CaseResult } from "../types/experiment-case";
+import type { TableData } from "../utils/export";
+import { ExportButtons } from "../components/ExportButtons";
 
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
@@ -104,6 +107,21 @@ export function CaseDetailPage() {
     return bq - aq;
   });
 
+  const exportData: TableData = useMemo(() => {
+    const headers = ["手法", "ライブラリ", "パラメータ", "Quality", "TSTR F1", "DCR", "時間(秒)", "Privacy"];
+    const rows = sortedResults.map((r) => [
+      r.algorithm_name,
+      r.library,
+      formatParams(r.params),
+      r.metrics.quality_score != null ? (r.metrics.quality_score * 100).toFixed(1) + "%" : "",
+      r.metrics.tstr_f1?.toFixed(3) ?? "",
+      r.metrics.dcr_mean?.toFixed(3) ?? "",
+      r.metrics.time_sec?.toFixed(1) ?? "",
+      r.privacy_risk ? PRIVACY_BADGE[r.privacy_risk]?.label ?? "" : "",
+    ]);
+    return { headers, rows };
+  }, [sortedResults]);
+
   return (
     <div className="max-w-4xl mx-auto">
       {/* Back link */}
@@ -151,9 +169,12 @@ export function CaseDetailPage() {
 
       {/* Results */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
-          手法別の実験結果 ({sortedResults.length}手法)
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+            手法別の実験結果 ({sortedResults.length}手法)
+          </h2>
+          <ExportButtons data={exportData} filenameBase={c.id} />
+        </div>
         <div className="overflow-x-auto border border-gray-200 rounded-xl">
           <table className="w-full text-sm">
             <thead>

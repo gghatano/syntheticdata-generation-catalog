@@ -1,7 +1,11 @@
+import { useMemo } from "react";
 import type { Experiment } from "../types/algorithm";
+import type { TableData } from "../utils/export";
+import { ExportButtons } from "./ExportButtons";
 
 type ExperimentTableProps = {
   experiments: Experiment[];
+  filenameBase?: string;
 };
 
 // Baseline: TRTR accuracy=0.8558, f1=0.8513
@@ -100,7 +104,7 @@ function MetricCell({ value, colorFn, digits = 3 }: MetricCellProps) {
   );
 }
 
-export function ExperimentTable({ experiments }: ExperimentTableProps) {
+export function ExperimentTable({ experiments, filenameBase = "experiment" }: ExperimentTableProps) {
   if (experiments.length === 0) {
     return <p className="text-gray-500 text-sm">実験データがありません。</p>;
   }
@@ -111,20 +115,41 @@ export function ExperimentTable({ experiments }: ExperimentTableProps) {
   const hasDcr = experiments.some((e) => e.metrics.dcr_mean != null);
   const hasTime = experiments.some((e) => e.metrics.time_sec != null);
 
+  const exportData: TableData = useMemo(() => {
+    const headers: string[] = ["Library", "Params"];
+    if (hasQuality) headers.push("Quality");
+    if (hasTstrAcc) headers.push("TSTR Acc");
+    if (hasTstrF1) headers.push("TSTR F1");
+    if (hasDcr) headers.push("DCR Mean");
+    if (hasTime) headers.push("Time (sec)");
+
+    const rows = experiments.map((exp) => {
+      const row: string[] = [
+        exp.library + (exp.library_version ? ` v${exp.library_version}` : ""),
+        formatParams(exp.params),
+      ];
+      if (hasQuality) row.push(exp.metrics.quality_score?.toFixed(4) ?? "");
+      if (hasTstrAcc) row.push(exp.metrics.tstr_accuracy?.toFixed(4) ?? "");
+      if (hasTstrF1) row.push(exp.metrics.tstr_f1?.toFixed(4) ?? "");
+      if (hasDcr) row.push(exp.metrics.dcr_mean?.toFixed(4) ?? "");
+      if (hasTime) row.push(exp.metrics.time_sec?.toFixed(1) ?? "");
+      return row;
+    });
+
+    return { headers, rows };
+  }, [experiments, hasQuality, hasTstrAcc, hasTstrF1, hasDcr, hasTime]);
+
   return (
     <div>
-      {/* 色分け凡例 */}
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-gray-600 mb-3 bg-gray-50 rounded-lg px-4 py-2.5 border border-gray-200">
-        <span className="font-semibold text-gray-700 mr-1">色分け凡例:</span>
-        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-green-500" /> 良好</span>
-        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-500" /> 注意</span>
-        <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500" /> 要検討</span>
-        <span className="text-gray-400">|</span>
-        <span>Quality: &ge;0.8 緑, &ge;0.7 黄, &lt;0.7 赤</span>
-        <span className="text-gray-400">|</span>
-        <span>TSTR: ベースライン比 &ge;95% 緑, &ge;85% 黄, &lt;85% 赤</span>
-        <span className="text-gray-400">|</span>
-        <span>DCR: &ge;0.4 緑(安全), &ge;0.2 黄, &lt;0.2 赤(リスク)</span>
+      {/* エクスポートボタン + 色分け凡例 */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-gray-600 bg-gray-50 rounded-lg px-4 py-2.5 border border-gray-200 flex-1 mr-3">
+          <span className="font-semibold text-gray-700 mr-1">色分け凡例:</span>
+          <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-green-500" /> 良好</span>
+          <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-yellow-500" /> 注意</span>
+          <span className="inline-flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-full bg-red-500" /> 要検討</span>
+        </div>
+        <ExportButtons data={exportData} filenameBase={filenameBase} />
       </div>
 
       <div className="overflow-x-auto">
