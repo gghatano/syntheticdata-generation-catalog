@@ -173,6 +173,7 @@ main          ← 安定版。develop からのマージのみ
 #### Issue 対応ワークフロー
 - `/1_issue_plan <issue番号>` — Issue を読み、コード調査→実装計画を策定→Issue にコメント
 - `/2_issue_impl <issue番号>` — 確定した計画に基づき worktree で実装→コミット→PR 作成
+- `/3_issue_review <issue番号>` — PR をレビューエージェントで検査→P0/P1 指摘を修正→結果を PR にコメント
 
 #### 検証タスク実行
 - `/run-task <番号>` — 指定タスクを実行
