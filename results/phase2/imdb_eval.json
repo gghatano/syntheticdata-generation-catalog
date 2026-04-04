@@ -1,0 +1,145 @@
+{
+  "sdv_hma_imdb": {
+    "quality_score": 0.5187380876904555,
+    "diagnostic_score": 1.0,
+    "fk_integrity": [
+      {
+        "parent": "directors",
+        "child": "directors_genres",
+        "parent_pk": "id",
+        "child_fk": "director_id",
+        "orphan_count": 0,
+        "total_child_rows": 285,
+        "orphan_rate": 0.0,
+        "valid": true
+      },
+      {
+        "parent": "movies",
+        "child": "movies_directors",
+        "parent_pk": "id",
+        "child_fk": "movie_id",
+        "orphan_count": 0,
+        "total_child_rows": 41,
+        "orphan_rate": 0.0,
+        "valid": true
+      },
+      {
+        "parent": "directors",
+        "child": "movies_directors",
+        "parent_pk": "id",
+        "child_fk": "director_id",
+        "orphan_count": 0,
+        "total_child_rows": 41,
+        "orphan_rate": 0.0,
+        "valid": true
+      },
+      {
+        "parent": "movies",
+        "child": "movies_genres",
+        "parent_pk": "id",
+        "child_fk": "movie_id",
+        "orphan_count": 0,
+        "total_child_rows": 103,
+        "orphan_rate": 0.0,
+        "valid": true
+      },
+      {
+        "parent": "actors",
+        "child": "roles",
+        "parent_pk": "id",
+        "child_fk": "actor_id",
+        "orphan_count": 0,
+        "total_child_rows": 1989,
+        "orphan_rate": 0.0,
+        "valid": true
+      },
+      {
+        "parent": "movies",
+        "child": "roles",
+        "parent_pk": "id",
+        "child_fk": "movie_id",
+        "orphan_count": 0,
+        "total_child_rows": 1989,
+        "orphan_rate": 0.0,
+        "valid": true
+      }
+    ],
+    "fk_all_valid": true,
+    "row_comparison": {
+      "actors": {
+        "real_rows": 1907,
+        "synth_rows": 1907,
+        "ratio": 1.0
+      },
+      "directors": {
+        "real_rows": 34,
+        "synth_rows": 34,
+        "ratio": 1.0
+      },
+      "directors_genres": {
+        "real_rows": 285,
+        "synth_rows": 285,
+        "ratio": 1.0
+      },
+      "movies": {
+        "real_rows": 36,
+        "synth_rows": 36,
+        "ratio": 1.0
+      },
+      "movies_directors": {
+        "real_rows": 41,
+        "synth_rows": 41,
+        "ratio": 1.0
+      },
+      "movies_genres": {
+        "real_rows": 103,
+        "synth_rows": 103,
+        "ratio": 1.0
+      },
+      "roles": {
+        "real_rows": 1989,
+        "synth_rows": 1989,
+        "ratio": 1.0
+      }
+    },
+    "dcr_per_table": {
+      "actors": {
+        "dcr_mean": 1.369931,
+        "dcr_median": 1.345702,
+        "dcr_5th_percentile": 1.063109
+      },
+      "directors": {
+        "dcr_mean": 0.245279,
+        "dcr_median": 0.191474,
+        "dcr_5th_percentile": 0.046281
+      },
+      "directors_genres": {
+        "dcr_mean": 0.094,
+        "dcr_median": 0.085527,
+        "dcr_5th_percentile": 0.029161
+      },
+      "movies": {
+        "dcr_mean": 0.311846,
+        "dcr_median": 0.296671,
+        "dcr_5th_percentile": 0.096659
+      },
+      "movies_directors": {
+        "dcr_mean": 0.249095,
+        "dcr_median": 0.22801,
+        "dcr_5th_percentile": 0.091901
+      },
+      "movies_genres": {
+        "dcr_mean": 0.226545,
+        "dcr_median": 0.235105,
+        "dcr_5th_percentile": 0.055528
+      },
+      "roles": {
+        "dcr_mean": 0.195442,
+        "dcr_median": 0.15685,
+        "dcr_5th_percentile": 0.053158
+      }
+    },
+    "dcr_mean": 0.384591,
+    "privacy_risk": "low"
+  }
+}

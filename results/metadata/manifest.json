@@ -1,0 +1,152 @@
+{
+  "phase1_sdv_ctgan": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "sdv",
+    "model": "ctgan",
+    "dataset": "d1_adult",
+    "elapsed_sec": 325.24,
+    "output_rows": 32561,
+    "timestamp": "2026-04-03T05:44:45.160216"
+  },
+  "phase1_sdv_ctgan_50ep_insurance": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "sdv",
+    "model": "ctgan",
+    "dataset": "d_insurance",
+    "elapsed_sec": 63.2,
+    "output_rows": 20000,
+    "timestamp": "2026-04-03T13:07:00.631855"
+  },
+  "phase1_sdv_gaussiancopula": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "sdv",
+    "model": "gaussiancopula",
+    "dataset": "d1_adult",
+    "elapsed_sec": 5.94,
+    "output_rows": 32561,
+    "timestamp": "2026-04-03T05:44:45.160216"
+  },
+  "phase1_sdv_gaussiancopula_fake_companies": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "sdv",
+    "model": "gaussiancopula",
+    "dataset": "d_fake_companies",
+    "elapsed_sec": 0.28,
+    "output_rows": 12,
+    "timestamp": "2026-04-03T13:07:00.631855"
+  },
+  "phase1_sdv_gaussiancopula_insurance": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "sdv",
+    "model": "gaussiancopula",
+    "dataset": "d_insurance",
+    "elapsed_sec": 5.2,
+    "output_rows": 20000,
+    "timestamp": "2026-04-03T13:07:00.631855"
+  },
+  "phase1_synthcity_adsgan": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "synthcity",
+    "model": "adsgan",
+    "dataset": "d1_adult",
+    "elapsed_sec": 121.82,
+    "output_rows": 32561,
+    "timestamp": "2026-04-02T23:35:15.363659"
+  },
+  "phase1_synthcity_bayesian_network": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "synthcity",
+    "model": "bayesian_network",
+    "dataset": "d1_adult",
+    "elapsed_sec": 220.37,
+    "output_rows": 32561,
+    "timestamp": "2026-04-02T23:35:15.363659"
+  },
+  "phase1_synthcity_ctgan": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "synthcity",
+    "model": "ctgan",
+    "dataset": "d1_adult",
+    "elapsed_sec": 604.74,
+    "output_rows": 32561,
+    "timestamp": "2026-04-02T23:35:15.363659"
+  },
+  "phase1_synthcity_nflow": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "synthcity",
+    "model": "nflow",
+    "dataset": "d1_adult",
+    "elapsed_sec": 165.52,
+    "output_rows": 32561,
+    "timestamp": "2026-04-02T23:35:15.363659"
+  },
+  "phase1_synthcity_tvae": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "synthcity",
+    "model": "tvae",
+    "dataset": "d1_adult",
+    "elapsed_sec": 208.5,
+    "output_rows": 32561,
+    "timestamp": "2026-04-02T23:35:15.363659"
+  },
+  "phase1_ydata_ctgan": {
+    "status": "ok",
+    "phase": "phase1",
+    "library": "ydata",
+    "model": "ctgan",
+    "dataset": "d1_adult",
+    "elapsed_sec": 1464.28,
+    "output_rows": 32561,
+    "timestamp": "2026-04-03T05:44:35.362097"
+  },
+  "phase2_sdv_hma": {
+    "status": "ok",
+    "phase": "phase2",
+    "library": "sdv",
+    "model": "hma",
+    "dataset": "d2_hotel_reservations",
+    "elapsed_sec": 5.22,
+    "output_rows": null,
+    "timestamp": "2026-04-02T23:46:10.585949"
+  },
+  "phase2_sdv_hma_imdb": {
+    "status": "ok",
+    "phase": "phase2",
+    "library": "sdv",
+    "model": "hma",
+    "dataset": "d_imdb_small",
+    "elapsed_sec": 16.13,
+    "output_rows": null,
+    "timestamp": "2026-04-03T13:07:00.631855"
+  },
+  "phase3_sdv_par": {
+    "status": "ok",
+    "phase": "phase3",
+    "library": "sdv",
+    "model": "par",
+    "dataset": "d3_nasdaq",
+    "elapsed_sec": 114.7,
+    "output_rows": 2327,
+    "timestamp": "2026-04-02T23:46:22.039391"
+  },
+  "phase3_sdv_par_weather": {
+    "status": "ok",
+    "phase": "phase3",
+    "library": "sdv",
+    "model": "par",
+    "dataset": "d_weather",
+    "elapsed_sec": 60.15,
+    "output_rows": 13664,
+    "timestamp": "2026-04-03T13:38:12.661001"
+  }
+}

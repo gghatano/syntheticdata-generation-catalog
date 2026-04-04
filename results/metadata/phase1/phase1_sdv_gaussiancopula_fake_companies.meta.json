@@ -1,0 +1,37 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase1_sdv_gaussiancopula_fake_companies",
+  "phase": "phase1",
+  "library": "sdv",
+  "model": "gaussiancopula",
+  "dataset": {
+    "name": "d_fake_companies",
+    "path": "data/raw/d_fake_companies.csv",
+    "sha256": null
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "csv_path": "results/phase1/sdv_gaussiancopula_fake_companies.csv",
+    "sha256": null,
+    "rows": 12
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-03T13:07:00.631855",
+    "finished_at": null,
+    "elapsed_sec": 0.28
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase1/additional_run_log.json"
+}

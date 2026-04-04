@@ -315,7 +315,7 @@ export function DetailPage() {
       {/* Experiments Table */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="font-semibold text-gray-800 text-lg mb-4">実験結果</h2>
-        <ExperimentTable experiments={algorithm.experiments} />
+        <ExperimentTable experiments={algorithm.experiments} filenameBase={algorithm.id} />
       </div>
 
       {/* ===== E. クイックスタートセクション ===== */}
