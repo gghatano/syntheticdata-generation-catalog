@@ -16,6 +16,10 @@ results/phase1/*.csv
 results/phase2/*.csv
 results/phase3/*.csv
 
+# 実験メタデータは git 管理（再現性トレーサビリティ）
+!results/metadata/
+!results/metadata/**
+
 # IDE
 .idea/
 .vscode/

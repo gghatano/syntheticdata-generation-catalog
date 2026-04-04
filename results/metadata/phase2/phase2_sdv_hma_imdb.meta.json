@@ -1,0 +1,56 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase2_sdv_hma_imdb",
+  "phase": "phase2",
+  "library": "sdv",
+  "model": "hma",
+  "dataset": {
+    "name": "d_imdb_small",
+    "path": "data/raw/d_imdb_*.csv"
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "tables": {
+      "movies": {
+        "rows": 36
+      },
+      "movies_genres": {
+        "rows": 103
+      },
+      "movies_directors": {
+        "rows": 41
+      },
+      "roles": {
+        "rows": 1989
+      },
+      "actors": {
+        "rows": 1907
+      },
+      "directors": {
+        "rows": 34
+      },
+      "directors_genres": {
+        "rows": 285
+      }
+    }
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-03T13:07:00.631855",
+    "finished_at": null,
+    "elapsed_sec": 16.13
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase1/additional_run_log.json"
+}

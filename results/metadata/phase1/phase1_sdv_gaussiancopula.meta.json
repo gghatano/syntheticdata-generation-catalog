@@ -1,0 +1,37 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase1_sdv_gaussiancopula",
+  "phase": "phase1",
+  "library": "sdv",
+  "model": "gaussiancopula",
+  "dataset": {
+    "name": "d1_adult",
+    "path": "data/processed/d1_adult.csv",
+    "sha256": null
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "csv_path": "results/phase1/sdv_gaussiancopula.csv",
+    "sha256": null,
+    "rows": 32561
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-03T05:44:45.160216",
+    "finished_at": null,
+    "elapsed_sec": 5.94
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase1/sdv_run_log.json"
+}
