@@ -265,16 +265,16 @@
         "library": "SDV",
         "params": {},
         "metrics": {
-          "quality_score": null,
+          "quality_score": 0.6477,
           "tstr_accuracy": null,
           "tstr_f1": null,
-          "dcr_mean": null,
+          "dcr_mean": 0.449982,
           "time_sec": 5.2
         },
-        "privacy_risk": null
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "複数表データの合成にはSDVのHMASynthesizerが現状唯一の選択肢。外部キー整合性を自動維持。2テーブル・668行なら5秒で完了。"
+    "recommendation": "HMA の品質スコアは0.65。 FK整合性は完全維持。 プライバシーリスクはlow。 SDV の HMA は複数表の外部キー関係を自動学習し、整合性を維持した合成データを生成可能。"
   },
   {
     "id": "imdb-movie-database",
