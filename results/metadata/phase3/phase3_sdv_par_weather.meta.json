@@ -1,0 +1,38 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase3_sdv_par_weather",
+  "phase": "phase3",
+  "library": "sdv",
+  "model": "par",
+  "dataset": {
+    "name": "d_weather",
+    "path": "data/processed/d_weather.csv",
+    "sha256": null
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "csv_path": "results/phase3/weather_par.csv",
+    "sha256": null,
+    "rows": 13664,
+    "sequences": 122
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-03T13:38:12.661001",
+    "finished_at": null,
+    "elapsed_sec": 60.15
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase3/weather_run_log.json"
+}

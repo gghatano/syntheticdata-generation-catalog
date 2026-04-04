@@ -1,0 +1,37 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase1_synthcity_nflow",
+  "phase": "phase1",
+  "library": "synthcity",
+  "model": "nflow",
+  "dataset": {
+    "name": "d1_adult",
+    "path": "data/processed/d1_adult.csv",
+    "sha256": null
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "csv_path": "results/phase1/synthcity_nflow.csv",
+    "sha256": null,
+    "rows": 32561
+  },
+  "env": {
+    "python_version": "3.10.19",
+    "library_version": "unknown",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-02T23:35:15.363659",
+    "finished_at": null,
+    "elapsed_sec": 165.52
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase1/synthcity_run_log.json"
+}

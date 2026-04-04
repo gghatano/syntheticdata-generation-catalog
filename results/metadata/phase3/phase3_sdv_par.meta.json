@@ -1,0 +1,38 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase3_sdv_par",
+  "phase": "phase3",
+  "library": "sdv",
+  "model": "par",
+  "dataset": {
+    "name": "d3_nasdaq",
+    "path": "data/processed/d3_nasdaq.csv",
+    "sha256": null
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "csv_path": "results/phase3/sdv_par.csv",
+    "sha256": null,
+    "rows": 2327,
+    "sequences": 10
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-02T23:46:22.039391",
+    "finished_at": null,
+    "elapsed_sec": 114.7
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase3/sdv_run_log.json"
+}
