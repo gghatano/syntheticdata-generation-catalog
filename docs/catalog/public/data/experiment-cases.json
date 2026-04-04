@@ -350,16 +350,16 @@
           "epochs": 128
         },
         "metrics": {
-          "quality_score": null,
+          "quality_score": 0.4985,
           "tstr_accuracy": null,
           "tstr_f1": null,
-          "dcr_mean": null,
+          "dcr_mean": 0.570906,
           "time_sec": 114.7
         },
-        "privacy_risk": null
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "時系列データの合成にはSDVのPARSynthesizerが対応。銘柄ごとの自己回帰パターンを学習して再現する。約2分で完了。"
+    "recommendation": "PAR 128ep の品質スコアは0.50。 自己相関の平均乖離は0.384。 プライバシーリスクはlow。 PAR は銘柄ごとの時系列パターンを学習し、トレンド・ボラティリティを概ね再現するが、列間相関の精度に改善余地がある。"
   },
   {
     "id": "iot-sensor-monitoring",

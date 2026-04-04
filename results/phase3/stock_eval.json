@@ -1,0 +1,56 @@
+{
+  "sdv_par": {
+    "quality_score": 0.4984817112962371,
+    "diagnostic_score": 1.0,
+    "timeseries_stats": {
+      "Open": {
+        "real_mean": 183.4372,
+        "synth_mean": 318.9508,
+        "real_std": 294.4197,
+        "synth_std": 92.2853,
+        "mean_abs_error": 135.5136,
+        "std_ratio": 0.3134,
+        "real_autocorr_lag1": 0.9962,
+        "synth_autocorr_lag1": 0.6155
+      },
+      "Close": {
+        "real_mean": 183.532,
+        "synth_mean": 324.3605,
+        "real_std": 294.5511,
+        "synth_std": 93.2078,
+        "mean_abs_error": 140.8286,
+        "std_ratio": 0.3164,
+        "real_autocorr_lag1": 0.9963,
+        "synth_autocorr_lag1": 0.6659
+      },
+      "Volume": {
+        "real_mean": 6569659.2577,
+        "synth_mean": 3675710.8982,
+        "real_std": 15481632.2584,
+        "synth_std": 2714323.0079,
+        "mean_abs_error": 2893948.3595,
+        "std_ratio": 0.1753,
+        "real_autocorr_lag1": 0.9036,
+        "synth_autocorr_lag1": 0.3167
+      },
+      "MarketCap": {
+        "real_mean": 70622643794.7008,
+        "synth_mean": 82165213821.9385,
+        "real_std": 129591584736.6214,
+        "synth_std": 24888703261.2925,
+        "mean_abs_error": 11542570027.2377,
+        "std_ratio": 0.1921,
+        "real_autocorr_lag1": 0.9989,
+        "synth_autocorr_lag1": 0.7623
+      }
+    },
+    "sequence_count": {
+      "real": 103,
+      "synth": 10
+    },
+    "dcr_mean": 0.570906,
+    "dcr_median": 0.571001,
+    "dcr_5th_percentile": 0.375476,
+    "privacy_risk": "low"
+  }
+}
