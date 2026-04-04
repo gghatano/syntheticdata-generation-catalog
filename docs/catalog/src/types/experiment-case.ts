@@ -28,6 +28,7 @@ export type ExperimentCase = {
   };
   dataset: {
     name: string;
+    source_url?: string;
     rows: number;
     columns: number;
     features: string[];

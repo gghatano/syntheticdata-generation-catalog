@@ -135,7 +135,21 @@ export function CaseDetailPage() {
       <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6">
         <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">使用データ</h2>
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-3">
-          <span className="text-lg font-bold text-gray-900">{c.dataset.name}</span>
+          {c.dataset.source_url ? (
+            <a
+              href={c.dataset.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold text-blue-700 hover:text-blue-900 hover:underline inline-flex items-center gap-1"
+            >
+              {c.dataset.name}
+              <svg className="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          ) : (
+            <span className="text-lg font-bold text-gray-900">{c.dataset.name}</span>
+          )}
           <span className="text-sm text-gray-500">
             {c.dataset.rows.toLocaleString()}行 × {c.dataset.columns}列
           </span>
