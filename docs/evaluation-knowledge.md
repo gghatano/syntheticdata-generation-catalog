@@ -91,3 +91,32 @@
 - FK 整合性は `metadata['relationships']` から自動検証
 - DCR はテーブル単位で計算し、平均を全体指標とする
 - TSTR は複数表には直接適用困難（テーブル結合が必要）→ スキップ
+
+---
+
+## Issue #28: IMDB映画データベース（複数表, 7テーブル）
+
+**データ概要**: 7テーブル（actors: 1907, roles: 1989, movies: 36, directors: 34 等）、6リレーション（多対多含む）
+
+### 評価結果
+
+| 指標 | 値 |
+|------|-----|
+| Quality Score（Multi-Table） | 0.5187 |
+| Diagnostic Score | 1.0000 |
+| FK 整合性 | 全6関係で維持 |
+| Cardinality Score | 91.88% |
+| DCR Mean (overall) | 0.3846 |
+| Privacy Risk | low |
+
+### 知見
+
+1. **複雑スキーマでの品質低下**: 7テーブル・6リレーションの複雑スキーマでは Quality Score が 0.52 に低下。特に Column Pair Trends (22.6%) と Intertable Trends (23.8%) が低い。テーブル数が増えるほどテーブル間の統計的関係性の再現が困難になる。
+
+2. **Cardinality Score は高い (91.9%)**: ホテル（60%）に比べて大幅に高い。テーブルあたりの行数が多い（actors: 1907行）方がカーディナリティ分布の学習が容易。
+
+3. **行数の完全再現**: HMA は全テーブルで元データと同じ行数を生成（ratio=1.00）。これは HMA の設計上の特性。
+
+4. **テーブル間 DCR の差異**: actors (1.37) は距離が大きく安全、directors_genres (0.09) は近い。中間テーブル（多対多リレーションの結合テーブル）は組み合わせパターンが限られるため DCR が低くなりやすい。
+
+5. **FK 整合性は複雑スキーマでも完全維持**: 6つの FK 関係（actors→roles, movies→roles, movies→movies_genres, movies→movies_directors, directors→directors_genres, directors→movies_directors）すべてで orphan=0。HMA の階層的生成が複雑な依存関係でも機能する。

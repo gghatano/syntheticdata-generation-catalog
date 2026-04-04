@@ -306,16 +306,16 @@
         "library": "SDV",
         "params": {},
         "metrics": {
-          "quality_score": null,
+          "quality_score": 0.5187,
           "tstr_accuracy": null,
           "tstr_f1": null,
-          "dcr_mean": null,
+          "dcr_mean": 0.384591,
           "time_sec": 16.13
         },
-        "privacy_risk": null
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "7テーブル・6つのリレーション（1:N + 多対多）を含む複雑スキーマでもSDV HMAは16秒で合成完了。全テーブルの行数・外部キー整合性が自動維持される。テーブル間の統計的関係性の再現度は今後評価予定。"
+    "recommendation": "HMA の品質スコアは0.52（7テーブル・6リレーション）。 FK整合性は全6関係で維持。 プライバシーリスクはlow。 多対多リレーション（俳優↔映画、映画↔ジャンル）を含む複雑スキーマでも HMA は整合性を維持可能。"
   },
   {
     "id": "stock-price-timeseries",
