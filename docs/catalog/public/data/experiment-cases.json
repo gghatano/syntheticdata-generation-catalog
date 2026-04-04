@@ -223,16 +223,16 @@
         "library": "SDV",
         "params": {},
         "metrics": {
-          "quality_score": null,
-          "tstr_accuracy": null,
-          "tstr_f1": null,
-          "dcr_mean": null,
+          "quality_score": 0.5871,
+          "tstr_accuracy": 0.3333,
+          "tstr_f1": 0.3333,
+          "dcr_mean": 1.246045,
           "time_sec": 0.28
         },
-        "privacy_risk": null
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "極小規模データ（12行）でもGaussianCopulaは0.3秒で安定動作。ただし元データが少なすぎると統計的特性の再現精度は限定的。Faker等のルールベース生成との併用も検討。"
+    "recommendation": "GaussianCopulaの品質スコアは0.59。 12行の極小データのため、評価指標の統計的信頼性は限定的。 プライバシーリスクはlow。 テスト環境用のダミーデータとしては十分な品質。少量データへの合成データ適用の参考事例。"
   },
   {
     "id": "hotel-reservation-multitable",
