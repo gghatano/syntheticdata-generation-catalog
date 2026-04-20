@@ -1,4 +1,38 @@
-# React + TypeScript + Vite
+# 合成データ生成カタログ (syntheticdata-generation-catalog)
+
+React + TypeScript + Vite で構築されたカタログサイトです。
+
+## テスト実行方法
+
+### Unit テスト
+
+```bash
+npm test -- --run
+```
+
+### E2E テスト（Playwright）
+
+初回のみ Playwright ブラウザをインストールしてください:
+
+```bash
+npx playwright install --with-deps chromium
+```
+
+E2E テストの実行:
+
+```bash
+npm run test:e2e
+```
+
+UI モードで実行（インタラクティブなデバッグ用）:
+
+```bash
+npm run test:e2e:ui
+```
+
+---
+
+# React + TypeScript + Vite (Original Template)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
