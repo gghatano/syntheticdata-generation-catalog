@@ -48,6 +48,9 @@ jobs:
           name: playwright-report
           path: docs/catalog/playwright-report/
           retention-days: 7
+      # SPA routing fallback: GitHub Pages は未知のパスで 404.html を返す。
+      # index.html をコピーしておくことで React Router がルーティングを復元できる。
+      # 注: HTTP ステータスは 404 のまま。SEO 上の既知制約は README 参照。
       - name: Copy index.html to 404.html for SPA routing
         run: cp docs/catalog/dist/index.html docs/catalog/dist/404.html
       - name: Upload artifact
