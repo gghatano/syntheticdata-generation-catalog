@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAlgorithms } from "../hooks/useAlgorithms";
 import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
@@ -72,6 +72,17 @@ export function DetailPage() {
   const { id } = useParams<{ id: string }>();
   const { algorithms, loading, error } = useAlgorithms();
 
+  const algorithm = algorithms.find((a) => a.id === id);
+
+  useEffect(() => {
+    if (algorithm) {
+      document.title = `${algorithm.name} | 合成データ生成手法カタログ`;
+    }
+    return () => {
+      document.title = "合成データ生成手法カタログ";
+    };
+  }, [algorithm]);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -87,8 +98,6 @@ export function DetailPage() {
       </div>
     );
   }
-
-  const algorithm = algorithms.find((a) => a.id === id);
 
   if (!algorithm) {
     return (
