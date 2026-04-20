@@ -93,20 +93,19 @@ export function CaseDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { cases, loading, error } = useExperimentCases();
 
-  if (loading) return <div className="flex justify-center py-20 text-gray-500">読み込み中...</div>;
-  if (error) return <div className="flex justify-center py-20 text-red-500">エラー: {error}</div>;
+  const c = cases.find((x) => x.id === id);
 
-  const c = cases.find((c) => c.id === id);
-  if (!c) return <div className="flex justify-center py-20 text-gray-500">事例が見つかりません</div>;
-
-  const icon = DATA_CATEGORY_ICONS[c.data_category];
-  const categoryLabel = DATA_CATEGORY_LABELS[c.data_category];
-
-  const sortedResults = [...c.results].sort((a, b) => {
-    const aq = a.metrics.quality_score ?? -1;
-    const bq = b.metrics.quality_score ?? -1;
-    return bq - aq;
-  });
+  const sortedResults = useMemo(
+    () =>
+      c
+        ? [...c.results].sort((a, b) => {
+            const aq = a.metrics.quality_score ?? -1;
+            const bq = b.metrics.quality_score ?? -1;
+            return bq - aq;
+          })
+        : [],
+    [c]
+  );
 
   const exportData: TableData = useMemo(() => {
     const headers = ["手法", "ライブラリ", "パラメータ", "Quality", "TSTR F1", "DCR", "時間(秒)", "Privacy"];
@@ -122,6 +121,13 @@ export function CaseDetailPage() {
     ]);
     return { headers, rows };
   }, [sortedResults]);
+
+  if (loading) return <div className="flex justify-center py-20 text-gray-500">読み込み中...</div>;
+  if (error) return <div className="flex justify-center py-20 text-red-500">エラー: {error}</div>;
+  if (!c) return <div className="flex justify-center py-20 text-gray-500">事例が見つかりません</div>;
+
+  const icon = DATA_CATEGORY_ICONS[c.data_category];
+  const categoryLabel = DATA_CATEGORY_LABELS[c.data_category];
 
   return (
     <div className="max-w-4xl mx-auto">

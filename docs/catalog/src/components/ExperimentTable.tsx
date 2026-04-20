@@ -105,10 +105,6 @@ function MetricCell({ value, colorFn, digits = 3 }: MetricCellProps) {
 }
 
 export function ExperimentTable({ experiments, filenameBase = "experiment" }: ExperimentTableProps) {
-  if (experiments.length === 0) {
-    return <p className="text-gray-500 text-sm">実験データがありません。</p>;
-  }
-
   const hasQuality = experiments.some((e) => e.metrics.quality_score != null);
   const hasTstrAcc = experiments.some((e) => e.metrics.tstr_accuracy != null);
   const hasTstrF1 = experiments.some((e) => e.metrics.tstr_f1 != null);
@@ -138,6 +134,10 @@ export function ExperimentTable({ experiments, filenameBase = "experiment" }: Ex
 
     return { headers, rows };
   }, [experiments, hasQuality, hasTstrAcc, hasTstrF1, hasDcr, hasTime]);
+
+  if (experiments.length === 0) {
+    return <p className="text-gray-500 text-sm">実験データがありません。</p>;
+  }
 
   return (
     <div>
