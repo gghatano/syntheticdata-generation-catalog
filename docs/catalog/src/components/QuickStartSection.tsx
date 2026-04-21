@@ -48,6 +48,8 @@ function getSdvFitGenerate(algorithmId: string): string {
   if (algorithmId === "hma") {
     return `# --- データの準備 ---
 # Option A: SDV 組み込みデモデータ（複数表、すぐ動く）
+# fake_hotels: ホテル(1) ⇄ 宿泊客(N) の 1:N リレーションを持つ架空予約データ
+# （2 テーブル / 計 668 行 × 15 列, SDV が独自合成）
 from sdv.datasets.demo import download_demo
 tables, metadata = download_demo(
     modality='multi_table',
@@ -71,7 +73,9 @@ synthetic_data = synthesizer.sample()`;
   }
   if (algorithmId === "par") {
     return `# --- データの準備 ---
-# Option A: SDV 組み込み時系列デモデータ（NASDAQ100 2019）
+# Option A: SDV 組み込み時系列デモデータ
+# nasdaq100_2019: NASDAQ100 構成銘柄の 2019 年日次株価（OHLCV + Sector）
+# （25,784 行 × 8 列、銘柄ごとのシーケンス）
 from sdv.datasets.demo import download_demo
 real_data, metadata = download_demo(
     modality='sequential',
@@ -92,6 +96,8 @@ synthetic_data = synthesizer.sample(num_sequences=100)`;
   }
   return `# --- データの準備 ---
 # Option A: SDV 組み込みデモデータ（すぐ動く）
+# fake_hotel_guests: ホテル宿泊客の架空プロフィールデータ
+# （氏名・メール・チェックイン日・料金・ポイント会員フラグ等、SDV が独自合成）
 from sdv.datasets.demo import download_demo
 real_data, metadata = download_demo(
     modality='single_table',
