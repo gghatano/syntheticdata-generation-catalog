@@ -46,27 +46,72 @@ function getSdvParams(algorithmId: string): string {
 
 function getSdvFitGenerate(algorithmId: string): string {
   if (algorithmId === "hma") {
-    return `# 複数テーブルのメタデータを設定
-metadata = Metadata.detect_from_dataframes(tables)
+    return `# --- データの準備 ---
+# Option A: SDV 組み込みデモデータ（複数表、すぐ動く）
+# fake_hotels: ホテル(1) ⇄ 宿泊客(N) の 1:N リレーションを持つ架空予約データ
+# （2 テーブル / 計 668 行 × 15 列, SDV が独自合成）
+from sdv.datasets.demo import download_demo
+tables, metadata = download_demo(
+    modality='multi_table',
+    dataset_name='fake_hotels'
+)
 
-# 学習と生成
+# Option B: カタログで評価に使った複数表データを使う
+# import pandas as pd
+# from sdv.metadata import Metadata
+# tables = {
+#     'parent': pd.read_csv('parent.csv'),
+#     'child': pd.read_csv('child.csv'),
+# }
+# metadata = Metadata.detect_from_dataframes(tables)
+
+# --- 学習と生成 ---
+from sdv.multi_table import HMASynthesizer
 synthesizer = HMASynthesizer(metadata)
 synthesizer.fit(tables)
 synthetic_data = synthesizer.sample()`;
   }
   if (algorithmId === "par") {
-    return `# 時系列メタデータの設定
-metadata = Metadata.detect_from_dataframe(real_data)
+    return `# --- データの準備 ---
+# Option A: SDV 組み込み時系列デモデータ
+# nasdaq100_2019: NASDAQ100 構成銘柄の 2019 年日次株価（OHLCV + Sector）
+# （25,784 行 × 8 列、銘柄ごとのシーケンス）
+from sdv.datasets.demo import download_demo
+real_data, metadata = download_demo(
+    modality='sequential',
+    dataset_name='nasdaq100_2019'
+)
 
-# 学習と生成
+# Option B: カタログで評価に使った時系列データ（株価・IoT など）
+# import pandas as pd
+# from sdv.metadata import Metadata
+# real_data = pd.read_csv('your_timeseries.csv')
+# metadata = Metadata.detect_from_dataframe(real_data)
+
+# --- 学習と生成 ---
+from sdv.sequential import PARSynthesizer
 synthesizer = PARSynthesizer(metadata)
 synthesizer.fit(real_data)
 synthetic_data = synthesizer.sample(num_sequences=100)`;
   }
-  return `# メタデータの自動検出
-metadata = Metadata.detect_from_dataframe(real_data)
+  return `# --- データの準備 ---
+# Option A: SDV 組み込みデモデータ（すぐ動く）
+# fake_hotel_guests: ホテル宿泊客の架空プロフィールデータ
+# （氏名・メール・チェックイン日・料金・ポイント会員フラグ等、SDV が独自合成）
+from sdv.datasets.demo import download_demo
+real_data, metadata = download_demo(
+    modality='single_table',
+    dataset_name='fake_hotel_guests'
+)
 
-# 学習と生成
+# Option B: カタログで評価に使った実データを使う（Adult census、保険 など）
+# import pandas as pd
+# from sdv.metadata import Metadata
+# real_data = pd.read_csv('your_data.csv')
+# metadata = Metadata.detect_from_dataframe(real_data)
+
+# --- 学習と生成 ---
+from ${getSdvImportPath(algorithmId)} import ${getSdvClassName(algorithmId)}
 synthesizer = ${getSdvClassName(algorithmId)}(${getSdvParams(algorithmId)})
 synthesizer.fit(real_data)
 synthetic_data = synthesizer.sample(num_rows=1000)`;
@@ -95,13 +140,9 @@ function getCodeMap(algorithmId: string): AlgorithmCodeMap {
   // SDV
   const sdvClass = getSdvClassName(algorithmId);
   if (sdvClass) {
-    const importPath = getSdvImportPath(algorithmId);
     map["SDV"] = {
       install: "pip install sdv",
-      code: `from ${importPath} import ${sdvClass}
-from sdv.metadata import Metadata
-
-${getSdvFitGenerate(algorithmId)}`,
+      code: getSdvFitGenerate(algorithmId),
     };
   }
 
@@ -109,8 +150,19 @@ ${getSdvFitGenerate(algorithmId)}`,
   const synthCityPlugin = getSynthCityPluginName(algorithmId);
   if (synthCityPlugin) {
     map["SynthCity"] = {
-      install: "pip install synthcity",
-      code: `from synthcity.plugins import Plugins
+      install: "pip install synthcity scikit-learn",
+      code: `# --- データの準備 ---
+# Option A: sklearn のデモデータ（すぐ動く）
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer(as_frame=True)
+real_data = data.frame  # 特徴量 + target
+
+# Option B: カタログで評価に使った実データを使う
+# import pandas as pd
+# real_data = pd.read_csv('your_data.csv')
+
+# --- 学習と生成 ---
+from synthcity.plugins import Plugins
 from synthcity.plugins.core.dataloader import GenericDataLoader
 
 loader = GenericDataLoader(real_data)
@@ -123,12 +175,35 @@ synthetic_data = plugin.generate(count=1000).dataframe()`,
   // ydata
   if (algorithmId === "ctgan") {
     map["ydata-synthetic"] = {
-      install: "pip install ydata-synthetic",
-      code: `from ydata_synthetic.synthesizers.regular import RegularSynthesizer
+      install: "pip install ydata-synthetic scikit-learn",
+      code: `# --- データの準備 ---
+# Option A: sklearn のデモデータ（すぐ動く）
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer(as_frame=True)
+real_data = data.frame
+num_cols = list(data.feature_names)
+cat_cols = ['target']
+
+# Option B: カタログで評価に使った実データを使う
+# import pandas as pd
+# real_data = pd.read_csv('your_data.csv')
+# num_cols = [...]  # 数値列を列挙
+# cat_cols = [...]  # カテゴリ列を列挙
+
+# --- 学習と生成 ---
+from ydata_synthetic.synthesizers.regular import RegularSynthesizer
 from ydata_synthetic.synthesizers import ModelParameters, TrainParameters
 
-synth = RegularSynthesizer(modelname='ctgan', model_parameters=ModelParameters(batch_size=500))
-synth.fit(data=real_data, train_arguments=TrainParameters(epochs=100), num_cols=num_cols, cat_cols=cat_cols)
+synth = RegularSynthesizer(
+    modelname='ctgan',
+    model_parameters=ModelParameters(batch_size=500)
+)
+synth.fit(
+    data=real_data,
+    train_arguments=TrainParameters(epochs=100),
+    num_cols=num_cols,
+    cat_cols=cat_cols
+)
 synthetic_data = synth.sample(1000)`,
     };
   }
