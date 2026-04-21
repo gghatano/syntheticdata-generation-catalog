@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useExperimentCases } from "../hooks/useExperimentCases";
 import { DATA_CATEGORY_LABELS, DATA_CATEGORY_ICONS } from "../types/experiment-case";
@@ -94,6 +94,15 @@ export function CaseDetailPage() {
   const { cases, loading, error } = useExperimentCases();
 
   const c = cases.find((x) => x.id === id);
+
+  useEffect(() => {
+    if (c) {
+      document.title = `${c.title} | 合成データ生成手法カタログ`;
+    }
+    return () => {
+      document.title = "合成データ生成手法カタログ";
+    };
+  }, [c]);
 
   const sortedResults = useMemo(
     () =>
