@@ -138,8 +138,8 @@
       "use_case": "データ拡張・匿名化"
     },
     "dataset": {
-      "name": "Insurance",
-      "source_url": "https://www.kaggle.com/datasets/mirichoi0218/insurance",
+      "name": "Insurance (SDV 組み込みデモ, 拡張版)",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 20000,
       "columns": 27,
       "features": [
@@ -327,7 +327,7 @@
     },
     "dataset": {
       "name": "NASDAQ 100 (2019)",
-      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
+      "source_url": "https://docs.sdv.dev/sdv/sequential-data/data-preparation/loading-data",
       "rows": 25784,
       "columns": 8,
       "features": [
@@ -371,7 +371,7 @@
     },
     "dataset": {
       "name": "Daily Weather 2020（センサーデータ代替）",
-      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
+      "source_url": "https://docs.sdv.dev/sdv/sequential-data/data-preparation/loading-data",
       "rows": 13664,
       "columns": 11,
       "features": [
