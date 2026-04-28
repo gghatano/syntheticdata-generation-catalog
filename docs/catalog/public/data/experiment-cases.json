@@ -186,6 +186,59 @@
     "recommendation": "7テーブル・6つのリレーション（1:N + 多対多）を含む複雑スキーマでもSDV HMAは16秒で合成完了。全テーブルの行数・外部キー整合性が自動維持される。テーブル間の統計的関係性の再現度は今後評価予定。"
   },
   {
+    "id": "olist-ec-transactions",
+    "title": "ECトランザクションデータの合成（Olist 7テーブル・FK整合性 + 下流タスク評価）",
+    "data_category": "multi_table",
+    "scenario": {
+      "description": "Brazilian E-Commerce (Olist) の 7 テーブル（顧客・注文・明細・支払・レビュー・商品・販売者）を対象に、外部キー整合性を保ったまま合成データを生成する。ECサイトの注文導線を模した親子関係（顧客→注文→明細/支払/レビュー、商品→明細、販売者→明細）の再現度を、スキーマ整合性・件数分布・単変量分布・下流タスク (TSTR) の観点で評価する。実務トランザクションに近い複雑スキーマでの SDV HMA の限界を可視化することが目的。",
+      "use_case": "リレーショナル合成のベンチマーク・実務適用評価"
+    },
+    "dataset": {
+      "name": "Brazilian E-Commerce (Olist) - sampled",
+      "rows": 30994,
+      "columns": 38,
+      "features": [
+        "customers(5000)",
+        "orders(5000)",
+        "order_items(5712)",
+        "order_payments(5237)",
+        "order_reviews(4979)",
+        "products(3844)",
+        "sellers(1222)",
+        "FK 6本",
+        "親子3階層"
+      ]
+    },
+    "results": [
+      {
+        "algorithm_id": "hma",
+        "algorithm_name": "HMA",
+        "library": "SDV",
+        "params": { "sample_size": 5000 },
+        "metrics": {
+          "quality_score": 0.6774,
+          "tstr_accuracy": 0.0773,
+          "tstr_f1": 0.074,
+          "dcr_mean": 0.0875,
+          "time_sec": 1200.73
+        },
+        "privacy_risk": "high"
+      },
+      {
+        "algorithm_id": "realtabformer",
+        "algorithm_name": "REaLTabFormer",
+        "library": "realtabformer",
+        "params": { "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
+        "metrics": {
+          "dcr_mean": 0.0338,
+          "time_sec": 1054.4
+        },
+        "privacy_risk": "high"
+      }
+    ],
+    "recommendation": "SDV HMA は 7 テーブル全部を扱えるのが強み。FK 整合性・件数分布は完璧（孤立 FK 0、親子件数の平均誤差 0）だが、price/payment_value 等の数値列は分布が崩れ (KS ≈ 0.30)、結合した下流タスク (レビュー評価予測) では TSTR Accuracy 0.08 と実用には届かない。学習 238s + 生成 963s。一方、REaLTabFormer は 1 親-1 子に絞れば数値分布の再現が極めて優秀（price KS 0.028、order_status TV 0.008）。ただし child テーブルに FK 列を出力しないため孤立性検証が不可、複数子テーブルには別途学習が必要、CPU では学習 17 分とコストが高い。「FK 整合性が必要 → SDV HMA」「単一親子の数値分布再現が必要 → REaLTabFormer」と棲み分けるのが現実解。IRG は本検証では公開リポジトリが placeholder 実装かつ CUDA 必須のため評価不可。"
+  },
+  {
     "id": "stock-price-timeseries",
     "title": "株価時系列データの合成（銘柄別パターンの再現）",
     "data_category": "single_table_timeseries",

@@ -1,0 +1,22 @@
+{
+  "irg": {
+    "status": "skipped",
+    "reason": "Cannot run IRG meaningfully in this environment.",
+    "details": [
+      "1. Hardware: GPU not available (torch.cuda.is_available() == False). IRG requirements pin torch==2.2.1+cu121 and cupy-cuda12x==13.4.1 (CUDA-only build).",
+      "2. Repo status: The official repo (https://github.com/li-jiayu-ljy/irg) explicitly states 'the full code is not disclosed' due to commercial usage. Functions annotated with @placeholder do not implement what the paper describes, and 'some core parameters are not exposed'.",
+      "3. Comparison validity: Even if forced to run on CPU with a non-CUDA torch, the placeholder implementation would not produce results comparable to the IRG paper, making any benchmark misleading.",
+      "4. Dependency conflicts: numpy==1.22.4 and pandas==1.3.5 in IRG's requirements.txt conflict with sdv 1.36 / realtabformer 0.2.4 used elsewhere in this project (Python 3.10+, pandas 2.x)."
+    ],
+    "external_clone_path": "external/irg",
+    "next_actions_if_revisited": [
+      "Provision GPU host with CUDA 12.1+ drivers.",
+      "Create dedicated isolated env (libs/irg/) with the pinned legacy stack.",
+      "Reach out to authors for the non-placeholder implementation (commercial license).",
+      "Treat outputs explicitly as 'IRG-skeleton', not 'IRG-paper'."
+    ],
+    "dataset": "olist",
+    "model": "IRG (paper)",
+    "timestamp_utc": "2026-04-28T22:40:00Z"
+  }
+}
