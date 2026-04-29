@@ -161,6 +161,8 @@ main          ← 安定版。develop からのマージのみ
 - `/run-all` — 全タスクを依存順に自動実行
 - `/check-progress` — 進捗確認
 - `/create-scripts` — md からスクリプトファイルを生成
+- `/add-algorithm <id>` — 新規ライブラリ環境のスキャフォールド + algorithms.json への登録
+- `/add-experiment-case <case_id>` — 評価済み実験を experiment-cases.json へ登録、algorithms.json の experiments も同期
 
 ## よく使うコマンド
 
