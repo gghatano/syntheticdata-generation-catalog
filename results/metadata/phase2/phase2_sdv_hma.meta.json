@@ -1,0 +1,41 @@
+{
+  "$schema": "experiment-meta-v1",
+  "experiment_id": "phase2_sdv_hma",
+  "phase": "phase2",
+  "library": "sdv",
+  "model": "hma",
+  "dataset": {
+    "name": "d2_hotel_reservations",
+    "path": "data/processed/d2_*.csv"
+  },
+  "params": {
+    "random_seed": 42
+  },
+  "output": {
+    "tables": {
+      "hotels": {
+        "rows": 10
+      },
+      "guests": {
+        "rows": 658
+      }
+    }
+  },
+  "env": {
+    "python_version": "3.11.14",
+    "library_version": "1.35.1",
+    "platform": "migrated",
+    "machine": "migrated"
+  },
+  "timing": {
+    "started_at": "2026-04-02T23:46:10.585949",
+    "finished_at": null,
+    "elapsed_sec": 5.22
+  },
+  "status": "ok",
+  "error": null,
+  "tags": [
+    "migrated"
+  ],
+  "notes": "Migrated from results/phase2/sdv_run_log.json"
+}

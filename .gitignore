@@ -27,6 +27,10 @@ libs/realtabformer/checkpoints/
 # IRG 外部 clone
 external/
 
+# 実験メタデータは git 管理（再現性トレーサビリティ）
+!results/metadata/
+!results/metadata/**
+
 # IDE
 .idea/
 .vscode/

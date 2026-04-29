@@ -1,0 +1,15 @@
+{
+  "sdv_gaussiancopula_fake_companies": {
+    "quality_score": 0.5871181718428963,
+    "diagnostic_score": 1.0,
+    "tstr_accuracy": 0.3333,
+    "tstr_f1": 0.3333,
+    "dcr_mean": 1.246045,
+    "dcr_median": 1.260939,
+    "dcr_5th_percentile": 1.071697,
+    "dcr_min": 1.038638,
+    "exact_match_rate": 0.0,
+    "exact_match_count": 0,
+    "privacy_risk": "low"
+  }
+}

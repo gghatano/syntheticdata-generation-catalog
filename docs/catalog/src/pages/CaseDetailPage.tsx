@@ -1,7 +1,11 @@
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useExperimentCases } from "../hooks/useExperimentCases";
 import { DATA_CATEGORY_LABELS, DATA_CATEGORY_ICONS } from "../types/experiment-case";
 import type { CaseResult } from "../types/experiment-case";
+import type { TableData } from "../utils/export";
+import { ExportButtons } from "../components/ExportButtons";
+import { MetricsBarChart } from "../components/MetricsBarChart";
 
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
@@ -89,20 +93,50 @@ export function CaseDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { cases, loading, error } = useExperimentCases();
 
+  const c = cases.find((x) => x.id === id);
+
+  useEffect(() => {
+    if (c) {
+      document.title = `${c.title} | 合成データ生成手法カタログ`;
+    }
+    return () => {
+      document.title = "合成データ生成手法カタログ";
+    };
+  }, [c]);
+
+  const sortedResults = useMemo(
+    () =>
+      c
+        ? [...c.results].sort((a, b) => {
+            const aq = a.metrics.quality_score ?? -1;
+            const bq = b.metrics.quality_score ?? -1;
+            return bq - aq;
+          })
+        : [],
+    [c]
+  );
+
+  const exportData: TableData = useMemo(() => {
+    const headers = ["手法", "ライブラリ", "パラメータ", "Quality", "TSTR F1", "DCR", "時間(秒)", "Privacy"];
+    const rows = sortedResults.map((r) => [
+      r.algorithm_name,
+      r.library,
+      formatParams(r.params),
+      r.metrics.quality_score != null ? (r.metrics.quality_score * 100).toFixed(1) + "%" : "",
+      r.metrics.tstr_f1?.toFixed(3) ?? "",
+      r.metrics.dcr_mean?.toFixed(3) ?? "",
+      r.metrics.time_sec?.toFixed(1) ?? "",
+      r.privacy_risk ? PRIVACY_BADGE[r.privacy_risk]?.label ?? "" : "",
+    ]);
+    return { headers, rows };
+  }, [sortedResults]);
+
   if (loading) return <div className="flex justify-center py-20 text-gray-500">読み込み中...</div>;
   if (error) return <div className="flex justify-center py-20 text-red-500">エラー: {error}</div>;
-
-  const c = cases.find((c) => c.id === id);
   if (!c) return <div className="flex justify-center py-20 text-gray-500">事例が見つかりません</div>;
 
   const icon = DATA_CATEGORY_ICONS[c.data_category];
   const categoryLabel = DATA_CATEGORY_LABELS[c.data_category];
-
-  const sortedResults = [...c.results].sort((a, b) => {
-    const aq = a.metrics.quality_score ?? -1;
-    const bq = b.metrics.quality_score ?? -1;
-    return bq - aq;
-  });
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -135,7 +169,21 @@ export function CaseDetailPage() {
       <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6">
         <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">使用データ</h2>
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-3">
-          <span className="text-lg font-bold text-gray-900">{c.dataset.name}</span>
+          {c.dataset.source_url ? (
+            <a
+              href={c.dataset.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-bold text-blue-700 hover:text-blue-900 hover:underline inline-flex items-center gap-1"
+            >
+              {c.dataset.name}
+              <svg className="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          ) : (
+            <span className="text-lg font-bold text-gray-900">{c.dataset.name}</span>
+          )}
           <span className="text-sm text-gray-500">
             {c.dataset.rows.toLocaleString()}行 × {c.dataset.columns}列
           </span>
@@ -149,11 +197,17 @@ export function CaseDetailPage() {
         </div>
       </div>
 
+      {/* Metrics Chart */}
+      <MetricsBarChart results={sortedResults} />
+
       {/* Results */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
-          手法別の実験結果 ({sortedResults.length}手法)
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+            手法別の実験結果 ({sortedResults.length}手法)
+          </h2>
+          <ExportButtons data={exportData} filenameBase={c.id} />
+        </div>
         <div className="overflow-x-auto border border-gray-200 rounded-xl">
           <table className="w-full text-sm">
             <thead>

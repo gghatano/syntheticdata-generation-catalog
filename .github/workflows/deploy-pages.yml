@@ -29,9 +29,30 @@ jobs:
       - name: Install dependencies
         working-directory: docs/catalog
         run: npm ci
+      - name: Lint
+        working-directory: docs/catalog
+        run: npm run lint
+      - name: Test (unit)
+        working-directory: docs/catalog
+        run: npm test -- --run
       - name: Build
         working-directory: docs/catalog
         run: npm run build
+      - name: E2E tests
+        working-directory: docs/catalog
+        run: npx playwright install --with-deps chromium && npm run test:e2e
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: docs/catalog/playwright-report/
+          retention-days: 7
+      # SPA routing fallback: GitHub Pages は未知のパスで 404.html を返す。
+      # index.html をコピーしておくことで React Router がルーティングを復元できる。
+      # 注: HTTP ステータスは 404 のまま。SEO 上の既知制約は README 参照。
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp docs/catalog/dist/index.html docs/catalog/dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

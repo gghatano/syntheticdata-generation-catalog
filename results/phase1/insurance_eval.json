@@ -1,0 +1,28 @@
+{
+  "sdv_gaussiancopula_insurance": {
+    "quality_score": 0.9049237586401383,
+    "diagnostic_score": 1.0,
+    "tstr_accuracy": 0.6737,
+    "tstr_f1": 0.6285,
+    "dcr_mean": 1.154593,
+    "dcr_median": 1.166667,
+    "dcr_5th_percentile": 0.650854,
+    "dcr_min": 0.0,
+    "exact_match_rate": 0.00275,
+    "exact_match_count": 55,
+    "privacy_risk": "low"
+  },
+  "sdv_ctgan_50ep_insurance": {
+    "quality_score": 0.8793676246975815,
+    "diagnostic_score": 1.0,
+    "tstr_accuracy": 0.7145,
+    "tstr_f1": 0.6956,
+    "dcr_mean": 0.914359,
+    "dcr_median": 0.905232,
+    "dcr_5th_percentile": 0.333333,
+    "dcr_min": 0.0,
+    "exact_match_rate": 0.04785,
+    "exact_match_count": 957,
+    "privacy_risk": "high"
+  }
+}

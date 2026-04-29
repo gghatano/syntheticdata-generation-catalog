@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAlgorithms } from "../hooks/useAlgorithms";
+import { useExperimentCases } from "../hooks/useExperimentCases";
 import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
 import { MetricsBadge } from "../components/MetricsBadge";
 import { ExperimentTable } from "../components/ExperimentTable";
 import { QuickStartSection } from "../components/QuickStartSection";
 import type { PrivacyRiskLevel } from "../types/algorithm";
+import { DATA_CATEGORY_ICONS, DATA_CATEGORY_LABELS } from "../types/experiment-case";
 
 const PRIVACY_MECHANISM_LABELS: Record<string, string> = {
   none: "なし（プライバシー保護機構なし）",
@@ -71,6 +73,21 @@ const CATEGORY_COLORS: Record<string, string> = {
 export function DetailPage() {
   const { id } = useParams<{ id: string }>();
   const { algorithms, loading, error } = useAlgorithms();
+  const { cases } = useExperimentCases();
+
+  const algorithm = algorithms.find((a) => a.id === id);
+  const relatedCases = algorithm
+    ? cases.filter((c) => c.results.some((r) => r.algorithm_id === algorithm.id))
+    : [];
+
+  useEffect(() => {
+    if (algorithm) {
+      document.title = `${algorithm.name} | 合成データ生成手法カタログ`;
+    }
+    return () => {
+      document.title = "合成データ生成手法カタログ";
+    };
+  }, [algorithm]);
 
   if (loading) {
     return (
@@ -87,8 +104,6 @@ export function DetailPage() {
       </div>
     );
   }
-
-  const algorithm = algorithms.find((a) => a.id === id);
 
   if (!algorithm) {
     return (
@@ -315,8 +330,39 @@ export function DetailPage() {
       {/* Experiments Table */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="font-semibold text-gray-800 text-lg mb-4">実験結果</h2>
-        <ExperimentTable experiments={algorithm.experiments} />
+        <ExperimentTable experiments={algorithm.experiments} filenameBase={algorithm.id} />
       </div>
+
+      {/* ===== D2. 関連事例セクション ===== */}
+      {relatedCases.length > 0 && (
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="font-semibold text-gray-800 text-lg mb-4">
+            この手法を使った事例 ({relatedCases.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {relatedCases.map((c) => (
+              <Link
+                key={c.id}
+                to={`/case/${c.id}`}
+                className="block bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg p-4 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-lg" aria-hidden="true">
+                    {DATA_CATEGORY_ICONS[c.data_category]}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {DATA_CATEGORY_LABELS[c.data_category]}
+                  </span>
+                </div>
+                <div className="font-semibold text-gray-800 text-sm mb-1">{c.title}</div>
+                <div className="text-xs text-gray-600">
+                  {c.dataset.name} ({c.dataset.rows.toLocaleString()}行 × {c.dataset.columns}列)
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ===== E. クイックスタートセクション ===== */}
       <QuickStartSection libraries={algorithm.libraries} algorithmId={algorithm.id} />

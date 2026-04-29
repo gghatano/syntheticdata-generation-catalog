@@ -9,17 +9,35 @@
     },
     "dataset": {
       "name": "Adult Census",
+      "source_url": "https://archive.ics.uci.edu/dataset/2/adult",
       "rows": 32561,
       "columns": 15,
-      "features": ["年齢", "職業", "学歴", "婚姻状況", "人種", "性別", "労働時間", "収入区分"]
+      "features": [
+        "年齢",
+        "職業",
+        "学歴",
+        "婚姻状況",
+        "人種",
+        "性別",
+        "労働時間",
+        "収入区分"
+      ]
     },
     "results": [
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "SDV",
-        "params": { "epochs": 100 },
-        "metrics": { "quality_score": 0.86, "tstr_accuracy": 0.819, "tstr_f1": 0.8203, "dcr_mean": 0.3438, "time_sec": 325.24 },
+        "params": {
+          "epochs": 100
+        },
+        "metrics": {
+          "quality_score": 0.86,
+          "tstr_accuracy": 0.819,
+          "tstr_f1": 0.8203,
+          "dcr_mean": 0.3438,
+          "time_sec": 325.24
+        },
         "privacy_risk": "medium"
       },
       {
@@ -27,15 +45,29 @@
         "algorithm_name": "BayesianNetwork",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.8263, "tstr_accuracy": 0.8643, "tstr_f1": 0.8591, "dcr_mean": 0.2193, "time_sec": 220.37 },
+        "metrics": {
+          "quality_score": 0.8263,
+          "tstr_accuracy": 0.8643,
+          "tstr_f1": 0.8591,
+          "dcr_mean": 0.2193,
+          "time_sec": 220.37
+        },
         "privacy_risk": "high"
       },
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "ydata",
-        "params": { "epochs": 100 },
-        "metrics": { "quality_score": 0.8312, "tstr_accuracy": 0.8303, "tstr_f1": 0.8241, "dcr_mean": 0.2589, "time_sec": 1464.28 },
+        "params": {
+          "epochs": 100
+        },
+        "metrics": {
+          "quality_score": 0.8312,
+          "tstr_accuracy": 0.8303,
+          "tstr_f1": 0.8241,
+          "dcr_mean": 0.2589,
+          "time_sec": 1464.28
+        },
         "privacy_risk": "medium"
       },
       {
@@ -43,7 +75,13 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": 0.8168, "tstr_accuracy": 0.7563, "tstr_f1": 0.6555, "dcr_mean": 0.533, "time_sec": 5.94 },
+        "metrics": {
+          "quality_score": 0.8168,
+          "tstr_accuracy": 0.7563,
+          "tstr_f1": 0.6555,
+          "dcr_mean": 0.533,
+          "time_sec": 5.94
+        },
         "privacy_risk": "low"
       },
       {
@@ -51,7 +89,13 @@
         "algorithm_name": "TVAE",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.7709, "tstr_accuracy": 0.8259, "tstr_f1": 0.8172, "dcr_mean": 0.302, "time_sec": 208.5 },
+        "metrics": {
+          "quality_score": 0.7709,
+          "tstr_accuracy": 0.8259,
+          "tstr_f1": 0.8172,
+          "dcr_mean": 0.302,
+          "time_sec": 208.5
+        },
         "privacy_risk": "medium"
       },
       {
@@ -59,7 +103,13 @@
         "algorithm_name": "AdsGAN",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.7492, "tstr_accuracy": 0.819, "tstr_f1": 0.7993, "dcr_mean": 0.2905, "time_sec": 121.82 },
+        "metrics": {
+          "quality_score": 0.7492,
+          "tstr_accuracy": 0.819,
+          "tstr_f1": 0.7993,
+          "dcr_mean": 0.2905,
+          "time_sec": 121.82
+        },
         "privacy_risk": "medium"
       },
       {
@@ -67,7 +117,13 @@
         "algorithm_name": "NFlow",
         "library": "SynthCity",
         "params": {},
-        "metrics": { "quality_score": 0.684, "tstr_accuracy": 0.7533, "tstr_f1": 0.6514, "dcr_mean": 0.3881, "time_sec": 165.52 },
+        "metrics": {
+          "quality_score": 0.684,
+          "tstr_accuracy": 0.7533,
+          "tstr_f1": 0.6514,
+          "dcr_mean": 0.3881,
+          "time_sec": 165.52
+        },
         "privacy_risk": "medium"
       }
     ],
@@ -82,10 +138,21 @@
       "use_case": "データ拡張・匿名化"
     },
     "dataset": {
-      "name": "Insurance",
+      "name": "Insurance (SDV 組み込みデモ, 拡張版)",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 20000,
       "columns": 27,
-      "features": ["年齢", "性別", "BMI", "扶養家族数", "喫煙有無", "地域", "保険料", "職業", "運動頻度"]
+      "features": [
+        "年齢",
+        "性別",
+        "BMI",
+        "扶養家族数",
+        "喫煙有無",
+        "地域",
+        "保険料",
+        "職業",
+        "運動頻度"
+      ]
     },
     "results": [
       {
@@ -93,19 +160,33 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
-        "privacy_risk": null
+        "metrics": {
+          "quality_score": 0.9049,
+          "tstr_accuracy": 0.6737,
+          "tstr_f1": 0.6285,
+          "dcr_mean": 1.154593,
+          "time_sec": 5.2
+        },
+        "privacy_risk": "low"
       },
       {
         "algorithm_id": "ctgan",
         "algorithm_name": "CTGAN",
         "library": "SDV",
-        "params": { "epochs": 50 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 63.2 },
-        "privacy_risk": null
+        "params": {
+          "epochs": 50
+        },
+        "metrics": {
+          "quality_score": 0.8794,
+          "tstr_accuracy": 0.7145,
+          "tstr_f1": 0.6956,
+          "dcr_mean": 0.914359,
+          "time_sec": 63.2
+        },
+        "privacy_risk": "high"
       }
     ],
-    "recommendation": "GaussianCopula は5秒で完了し安定。CTGAN 50ep は約1分。20,000行×27列のデータでも高速に合成可能。品質評価（SDMetrics/TSTR）は今後追加予定。"
+    "recommendation": "GaussianCopulaが品質スコア0.90でCTGAN(0.88)を上回る。 TSTR F1はGC=0.6285, CTGAN=0.6956。 プライバシーリスクはGC=low, CTGAN=high。 保険料（charges）が連続値のため、回帰タスクでの評価も検討の余地あり。"
   },
   {
     "id": "company-directory",
@@ -117,9 +198,23 @@
     },
     "dataset": {
       "name": "Fake Companies",
+      "source_url": "https://docs.sdv.dev/sdv/single-table-data/data-preparation/loading-data",
       "rows": 12,
       "columns": 12,
-      "features": ["会社名", "部署", "社員ID", "年齢", "入社時年齢", "勤続年数", "給与", "年間ボーナス", "経験年数", "正社員", "パート", "契約社員"]
+      "features": [
+        "会社名",
+        "部署",
+        "社員ID",
+        "年齢",
+        "入社時年齢",
+        "勤続年数",
+        "給与",
+        "年間ボーナス",
+        "経験年数",
+        "正社員",
+        "パート",
+        "契約社員"
+      ]
     },
     "results": [
       {
@@ -127,11 +222,17 @@
         "algorithm_name": "GaussianCopula",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 0.28 },
-        "privacy_risk": null
+        "metrics": {
+          "quality_score": 0.5871,
+          "tstr_accuracy": 0.3333,
+          "tstr_f1": 0.3333,
+          "dcr_mean": 1.246045,
+          "time_sec": 0.28
+        },
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "極小規模データ（12行）でもGaussianCopulaは0.3秒で安定動作。ただし元データが少なすぎると統計的特性の再現精度は限定的。Faker等のルールベース生成との併用も検討。"
+    "recommendation": "GaussianCopulaの品質スコアは0.59。 12行の極小データのため、評価指標の統計的信頼性は限定的。 プライバシーリスクはlow。 テスト環境用のダミーデータとしては十分な品質。少量データへの合成データ適用の参考事例。"
   },
   {
     "id": "hotel-reservation-multitable",
@@ -143,9 +244,19 @@
     },
     "dataset": {
       "name": "Fake Hotels",
+      "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 668,
       "columns": 15,
-      "features": ["hotel_id", "hotel_name", "city", "guest_email", "checkin_date", "checkout_date", "room_rate", "room_type"]
+      "features": [
+        "hotel_id",
+        "hotel_name",
+        "city",
+        "guest_email",
+        "checkin_date",
+        "checkout_date",
+        "room_rate",
+        "room_type"
+      ]
     },
     "results": [
       {
@@ -153,11 +264,17 @@
         "algorithm_name": "HMA",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 5.2 },
-        "privacy_risk": null
+        "metrics": {
+          "quality_score": 0.6477,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": 0.449982,
+          "time_sec": 5.2
+        },
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "複数表データの合成にはSDVのHMASynthesizerが現状唯一の選択肢。外部キー整合性を自動維持。2テーブル・668行なら5秒で完了。"
+    "recommendation": "HMA の品質スコアは0.65。 FK整合性は完全維持。 プライバシーリスクはlow。 SDV の HMA は複数表の外部キー関係を自動学習し、整合性を維持した合成データを生成可能。"
   },
   {
     "id": "imdb-movie-database",
@@ -169,9 +286,18 @@
     },
     "dataset": {
       "name": "IMDB Small",
+      "source_url": "https://docs.sdv.dev/sdv/multi-table-data/data-preparation/loading-data/demo-data",
       "rows": 4395,
       "columns": 26,
-      "features": ["movies(36)", "actors(1907)", "directors(34)", "roles(1989)", "movies_genres(103)", "movies_directors(41)", "directors_genres(285)"]
+      "features": [
+        "movies(36)",
+        "actors(1907)",
+        "directors(34)",
+        "roles(1989)",
+        "movies_genres(103)",
+        "movies_directors(41)",
+        "directors_genres(285)"
+      ]
     },
     "results": [
       {
@@ -179,11 +305,17 @@
         "algorithm_name": "HMA",
         "library": "SDV",
         "params": {},
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 16.13 },
-        "privacy_risk": null
+        "metrics": {
+          "quality_score": 0.5187,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": 0.384591,
+          "time_sec": 16.13
+        },
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "7テーブル・6つのリレーション（1:N + 多対多）を含む複雑スキーマでもSDV HMAは16秒で合成完了。全テーブルの行数・外部キー整合性が自動維持される。テーブル間の統計的関係性の再現度は今後評価予定。"
+    "recommendation": "HMA の品質スコアは0.52（7テーブル・6リレーション）。 FK整合性は全6関係で維持。 プライバシーリスクはlow。 多対多リレーション（俳優↔映画、映画↔ジャンル）を含む複雑スキーマでも HMA は整合性を維持可能。"
   },
   {
     "id": "olist-ec-transactions",
@@ -248,21 +380,39 @@
     },
     "dataset": {
       "name": "NASDAQ 100 (2019)",
+      "source_url": "https://docs.sdv.dev/sdv/sequential-data/data-preparation/loading-data",
       "rows": 25784,
       "columns": 8,
-      "features": ["Symbol", "Date", "Open", "High", "Low", "Close", "Volume", "Sector"]
+      "features": [
+        "Symbol",
+        "Date",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+        "Sector"
+      ]
     },
     "results": [
       {
         "algorithm_id": "par",
         "algorithm_name": "PAR",
         "library": "SDV",
-        "params": { "epochs": 128 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 114.7 },
-        "privacy_risk": null
+        "params": {
+          "epochs": 128
+        },
+        "metrics": {
+          "quality_score": 0.4985,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": 0.570906,
+          "time_sec": 114.7
+        },
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "時系列データの合成にはSDVのPARSynthesizerが対応。銘柄ごとの自己回帰パターンを学習して再現する。約2分で完了。"
+    "recommendation": "PAR 128ep の品質スコアは0.50。 自己相関の平均乖離は0.384。 プライバシーリスクはlow。 PAR は銘柄ごとの時系列パターンを学習し、トレンド・ボラティリティを概ね再現するが、列間相関の精度に改善余地がある。"
   },
   {
     "id": "iot-sensor-monitoring",
@@ -274,20 +424,40 @@
     },
     "dataset": {
       "name": "Daily Weather 2020（センサーデータ代替）",
+      "source_url": "https://docs.sdv.dev/sdv/sequential-data/data-preparation/loading-data",
       "rows": 13664,
       "columns": 11,
-      "features": ["観測地点(122拠点)", "国", "緯度", "経度", "日付", "最高気温", "最低気温", "湿度", "気圧", "降水確率"]
+      "features": [
+        "観測地点(122拠点)",
+        "国",
+        "緯度",
+        "経度",
+        "日付",
+        "最高気温",
+        "最低気温",
+        "湿度",
+        "気圧",
+        "降水確率"
+      ]
     },
     "results": [
       {
         "algorithm_id": "par",
         "algorithm_name": "PAR",
         "library": "SDV",
-        "params": { "epochs": 64 },
-        "metrics": { "quality_score": null, "tstr_accuracy": null, "tstr_f1": null, "dcr_mean": null, "time_sec": 60.2 },
-        "privacy_risk": null
+        "params": {
+          "epochs": 64
+        },
+        "metrics": {
+          "quality_score": 0.6444,
+          "tstr_accuracy": null,
+          "tstr_f1": null,
+          "dcr_mean": 0.559937,
+          "time_sec": 60.2
+        },
+        "privacy_risk": "low"
       }
     ],
-    "recommendation": "122拠点分の時系列パターンをPARSynthesizerが約1分で合成。各拠点の気温・湿度・気圧の季節変動パターンが再現される。センサーIDごとの系列長・値域は元データに準拠。"
+    "recommendation": "PAR 64ep の品質スコアは0.64。 自己相関の平均乖離は0.756。 プライバシーリスクはlow。 122拠点の気温・湿度・気圧の季節変動パターンの再現を評価。PAR は拠点ごとのパターンを学習するが、季節変動の精度に改善余地がある。"
   }
 ]
