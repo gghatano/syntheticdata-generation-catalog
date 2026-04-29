@@ -1,0 +1,351 @@
+{
+  "_metadata": {
+    "evaluated_at": "2026-04-29T06:26:35.136211",
+    "real_tables": {
+      "customers": 5000,
+      "orders": 5000,
+      "order_items": 5712,
+      "order_payments": 5237,
+      "order_reviews": 4979,
+      "products": 3844,
+      "sellers": 1222
+    }
+  },
+  "sdv_hma": {
+    "tables_present": [
+      "customers",
+      "order_items",
+      "order_payments",
+      "order_reviews",
+      "orders",
+      "products",
+      "sellers"
+    ],
+    "tables_missing": [],
+    "quality_score": {
+      "quality_score": 0.6773794157046931,
+      "tables_evaluated": [
+        "customers",
+        "orders",
+        "order_items",
+        "order_payments",
+        "order_reviews",
+        "products",
+        "sellers"
+      ]
+    },
+    "fk_integrity": {
+      "customers->orders": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 5000,
+        "child_total": 5000,
+        "integrity": true
+      },
+      "orders->order_items": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 5000,
+        "child_total": 5712,
+        "integrity": true
+      },
+      "orders->order_payments": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 5000,
+        "child_total": 5237,
+        "integrity": true
+      },
+      "orders->order_reviews": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 5000,
+        "child_total": 4979,
+        "integrity": true
+      },
+      "products->order_items": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 3844,
+        "child_total": 5712,
+        "integrity": true
+      },
+      "sellers->order_items": {
+        "orphans": 0,
+        "orphan_rate": 0.0,
+        "parent_unique": 1222,
+        "child_total": 5712,
+        "integrity": true
+      }
+    },
+    "pk_uniqueness": {
+      "customers": {
+        "pk": "customer_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      },
+      "orders": {
+        "pk": "order_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      },
+      "order_reviews": {
+        "pk": "review_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      },
+      "products": {
+        "pk": "product_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      },
+      "sellers": {
+        "pk": "seller_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      }
+    },
+    "count_distribution": {
+      "customers->orders": {
+        "real_mean": 1.0,
+        "real_std": 0.0,
+        "real_max": 1,
+        "synth_mean": 1.0,
+        "synth_std": 0.0,
+        "synth_max": 1,
+        "mean_diff": 0.0
+      },
+      "orders->order_items": {
+        "real_mean": 1.1424,
+        "real_std": 0.640784176515131,
+        "real_max": 21,
+        "synth_mean": 1.1424,
+        "synth_std": 0.4026843316224097,
+        "synth_max": 3,
+        "mean_diff": 0.0
+      },
+      "orders->order_payments": {
+        "real_mean": 1.0474,
+        "real_std": 0.36548591763732596,
+        "real_max": 9,
+        "synth_mean": 1.0474,
+        "synth_std": 0.21251417000871003,
+        "synth_max": 2,
+        "mean_diff": 0.0
+      },
+      "orders->order_reviews": {
+        "real_mean": 0.9958,
+        "real_std": 0.11395155545844156,
+        "real_max": 2,
+        "synth_mean": 0.9958,
+        "synth_std": 0.06467763631525092,
+        "synth_max": 1,
+        "mean_diff": 0.0
+      },
+      "products->order_items": {
+        "real_mean": 1.485952133194589,
+        "real_std": 1.5823513874607749,
+        "real_max": 29,
+        "synth_mean": 1.485952133194589,
+        "synth_std": 0.7196439645041726,
+        "synth_max": 6,
+        "mean_diff": 0.0
+      },
+      "sellers->order_items": {
+        "real_mean": 4.67430441898527,
+        "real_std": 9.510818580579242,
+        "real_max": 124,
+        "synth_mean": 4.67430441898527,
+        "synth_std": 4.853831803503749,
+        "synth_max": 30,
+        "mean_diff": 0.0
+      }
+    },
+    "marginal_order_items_numeric": {
+      "price": {
+        "ks_stat": 0.35154061624649857,
+        "real_mean": 119.46503851540616,
+        "synth_mean": 205.7560731792717,
+        "real_std": 176.27670707733023,
+        "synth_std": 169.12851756880147
+      },
+      "freight_value": {
+        "ks_stat": 0.3117997198879552,
+        "real_mean": 20.2219012605042,
+        "synth_mean": 26.535491946778713,
+        "real_std": 16.703442504968148,
+        "synth_std": 17.42775786241446
+      },
+      "order_item_id": {
+        "ks_stat": 0.2421218487394958,
+        "real_mean": 1.250875350140056,
+        "synth_mean": 1.4028361344537814,
+        "real_std": 1.0264831186797787,
+        "synth_std": 0.5510331670151399
+      }
+    },
+    "marginal_payments_numeric": {
+      "payment_value": {
+        "ks_stat": 0.41474126408248996,
+        "real_mean": 154.23467443192666,
+        "synth_mean": 187.94205079243844,
+        "real_std": 222.1345632313968,
+        "synth_std": 123.56012910631716
+      },
+      "payment_installments": {
+        "ks_stat": 0.4735535611991598,
+        "real_mean": 2.835974794729807,
+        "synth_mean": 5.777162497613137,
+        "real_std": 2.6532516895335045,
+        "synth_std": 2.4889729549085775
+      },
+      "payment_sequential": {
+        "ks_stat": 0.18483864808096237,
+        "real_mean": 1.0884093946916173,
+        "synth_mean": 1.231048310101203,
+        "real_std": 0.5338192904050871,
+        "synth_std": 0.4215434970849342
+      }
+    },
+    "marginal_payments_categorical": {
+      "payment_type": {
+        "tv_distance": 0.10311246897078477,
+        "real_n_categories": 4,
+        "synth_n_categories": 4
+      }
+    },
+    "marginal_orders_categorical": {
+      "order_status": {
+        "tv_distance": 0.003200000000000001,
+        "real_n_categories": 6,
+        "synth_n_categories": 6
+      }
+    },
+    "marginal_reviews_numeric": {
+      "review_score": {
+        "ks_stat": 0.47298654348262703,
+        "real_mean": 4.078529825266117,
+        "synth_mean": 3.0461940148624223,
+        "real_std": 1.3492475797281833,
+        "synth_std": 0.9920713582539045
+      }
+    },
+    "tstr": {
+      "task": "review_score_classification",
+      "tstr_accuracy": 0.07729664103601781,
+      "tstr_f1_macro": 0.07400033607568401,
+      "features": [
+        "payment_value_sum",
+        "payment_installments_max",
+        "n_items",
+        "price_sum",
+        "freight_sum"
+      ],
+      "real_test_n": 4942,
+      "synth_train_n": 4937
+    },
+    "dcr_order_items": {
+      "dcr_mean": 0.08752908726140811,
+      "dcr_min": 0.00026839322092264695,
+      "dcr_p5": 0.0068839730641719315,
+      "features": [
+        "price",
+        "freight_value"
+      ],
+      "n_real_used": 2000,
+      "n_synth_used": 2000
+    },
+    "summary": {
+      "quality_score": 0.6773794157046931,
+      "fk_all_integrity": true,
+      "fk_orphan_total": 0,
+      "fk_relations_evaluated": 6,
+      "count_mean_diff_avg": 0.0,
+      "ks_order_items_avg": 0.3018207282913165,
+      "tstr_accuracy": 0.07729664103601781,
+      "tstr_f1_macro": 0.07400033607568401,
+      "dcr_mean": 0.08752908726140811
+    }
+  },
+  "realtabformer": {
+    "tables_present": [
+      "order_items",
+      "orders"
+    ],
+    "tables_missing": [
+      "customers",
+      "order_payments",
+      "order_reviews",
+      "products",
+      "sellers"
+    ],
+    "quality_score": {
+      "error": "'order_purchase_timestamp'",
+      "tables_evaluated": [
+        "orders",
+        "order_items"
+      ]
+    },
+    "fk_integrity": {
+      "orders->order_items": {
+        "status": "fk_column_missing"
+      }
+    },
+    "pk_uniqueness": {
+      "orders": {
+        "pk": "order_id",
+        "duplicates": 0,
+        "unique_rate": 1.0
+      }
+    },
+    "count_distribution": {},
+    "marginal_order_items_numeric": {
+      "price": {
+        "ks_stat": 0.02803667656439019,
+        "real_mean": 119.46503851540616,
+        "synth_mean": 115.64922632794459,
+        "real_std": 176.27670707733023,
+        "synth_std": 160.42499826889247
+      },
+      "freight_value": {
+        "ks_stat": 0.058739026788544514,
+        "real_mean": 20.2219012605042,
+        "synth_mean": 18.8339376443418,
+        "real_std": 16.703442504968148,
+        "synth_std": 14.283481063726775
+      },
+      "order_item_id": {
+        "ks_stat": 0.0496665178773588,
+        "real_mean": 1.250875350140056,
+        "synth_mean": 1.1050808314087759,
+        "real_std": 1.0264831186797787,
+        "synth_std": 0.40436583382226565
+      }
+    },
+    "marginal_orders_categorical": {
+      "order_status": {
+        "tv_distance": 0.0083,
+        "real_n_categories": 6,
+        "synth_n_categories": 6
+      }
+    },
+    "dcr_order_items": {
+      "dcr_mean": 0.0338295548087644,
+      "dcr_min": 0.0,
+      "dcr_p5": 0.0,
+      "features": [
+        "price",
+        "freight_value"
+      ],
+      "n_real_used": 2000,
+      "n_synth_used": 866
+    },
+    "summary": {
+      "fk_all_integrity": null,
+      "fk_orphan_total": 0,
+      "fk_relations_evaluated": 0,
+      "ks_order_items_avg": 0.045480740410097836,
+      "dcr_mean": 0.0338295548087644
+    }
+  }
+}

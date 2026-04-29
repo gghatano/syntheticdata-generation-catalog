@@ -1,0 +1,39 @@
+{
+  "_env": {
+    "python_version": "3.11.15",
+    "realtabformer_version": "0.2.4",
+    "torch_version": "2.11.0+cu130",
+    "cuda_available": false,
+    "timestamp": "2026-04-29T06:07:35.219045"
+  },
+  "config": {
+    "sample_orders": 800,
+    "parent_epochs": 30,
+    "child_epochs": 30,
+    "parent_features": [
+      "order_id",
+      "order_status"
+    ],
+    "child_features": [
+      "order_id",
+      "order_item_id",
+      "price",
+      "freight_value"
+    ],
+    "random_seed": 42
+  },
+  "realtabformer": {
+    "status": "ok",
+    "fit_parent_time_sec": 204.29,
+    "fit_child_time_sec": 831.78,
+    "sample_time_sec": 18.32,
+    "time_sec": 1054.4,
+    "tables": {
+      "orders": 800,
+      "order_items": 866
+    },
+    "dataset": "olist",
+    "model": "REaLTabFormer",
+    "note": "Sub-sampled and reduced epochs due to CPU-only environment. Only orders\u2192order_items relation modeled."
+  }
+}

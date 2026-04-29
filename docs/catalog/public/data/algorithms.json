@@ -427,10 +427,80 @@
         "metrics": {
           "time_sec": 5.22
         }
+      },
+      {
+        "id": "sdv_hma_olist",
+        "library": "SDV",
+        "library_version": "1.36.1",
+        "params": { "sample_size": 5000 },
+        "dataset": "olist",
+        "data_type": "multi_table",
+        "phase": "phase2",
+        "metrics": {
+          "quality_score": 0.6774,
+          "fk_integrity": 1.0,
+          "tstr_accuracy": 0.0773,
+          "tstr_f1": 0.074,
+          "dcr_mean": 0.0875,
+          "fit_time_sec": 237.94,
+          "sample_time_sec": 962.8,
+          "time_sec": 1200.73
+        }
       }
     ],
     "summary_metrics": {
       "fastest_time_sec": 5.22
+    }
+  },
+  {
+    "id": "realtabformer",
+    "name": "REaLTabFormer",
+    "libraries": ["realtabformer"],
+    "category": "transformer",
+    "supported_data": ["single_table", "multi_table"],
+    "tags": ["Transformer", "GPT-2", "親子テーブル", "深層学習"],
+    "use_cases": ["親子テーブルの合成データ生成", "高品質な単一表合成", "リレーショナルデータの再現"],
+    "input_requirements": ["1親-1子のリレーション定義", "GPU推奨", "Python 3.8+"],
+    "privacy_mechanism": "none",
+    "privacy_risk_level": "medium",
+    "description": "Realistic Relational and Tabular Data using Transformers の略。親テーブルは GPT-2、子テーブルは Seq2Seq で学習する Transformer ベースの合成手法。1 親 1 子の親子関係をネイティブにサポートし、語彙化された行を生成する。",
+    "strengths": [
+      "親子関係を明示的にモデリング",
+      "Transformer で複雑な依存を学習可能",
+      "単一表でも GPT-2 ベースで高品質"
+    ],
+    "weaknesses": [
+      "1 親-1 子のみサポート（複数の子テーブルは別々に学習が必要）",
+      "CPU 学習は非常に遅い (GPU 必須に近い)",
+      "transformers / accelerate のバージョン互換性がシビア",
+      "0.2.4 で n_critic>0 時に save 系のバグあり (n_critic=0 で回避可)"
+    ],
+    "reference": "https://github.com/worldbank/REaLTabFormer",
+    "experiments": [
+      {
+        "id": "realtabformer_olist",
+        "library": "realtabformer",
+        "library_version": "0.2.4",
+        "params": { "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
+        "dataset": "olist",
+        "data_type": "multi_table",
+        "phase": "phase2",
+        "metrics": {
+          "ks_price": 0.028,
+          "ks_freight_value": 0.059,
+          "tv_order_status": 0.0083,
+          "dcr_mean": 0.0338,
+          "fit_parent_time_sec": 204.29,
+          "fit_child_time_sec": 831.78,
+          "sample_time_sec": 18.32,
+          "time_sec": 1054.4
+        },
+        "note": "1 親 (orders) -1 子 (order_items) のみ。child の FK 列を出力しないため孤立性検証は不可。"
+      }
+    ],
+    "summary_metrics": {
+      "best_ks_price": 0.028,
+      "fastest_time_sec": 1054.4
     }
   },
   {
