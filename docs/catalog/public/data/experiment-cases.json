@@ -127,7 +127,33 @@
         "privacy_risk": "medium"
       }
     ],
-    "recommendation": "高速に試すならGaussianCopula（6秒）。品質重視ならSDV CTGAN 100ep（Quality 86%）。下流タスク性能重視ならBayesianNetwork（TSTR F1 86%、ただしプライバシーリスク高）。"
+    "recommendation": "高速に試すならGaussianCopula（6秒）。品質重視ならSDV CTGAN 100ep（Quality 86%）。下流タスク性能重視ならBayesianNetwork（TSTR F1 86%、ただしプライバシーリスク高）。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "Adult Census データセットを取得し全ライブラリ共通の processed CSV に整形"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_phase1.py",
+        "description": "SDV の GaussianCopula / CTGAN で単一表合成"
+      },
+      {
+        "role": "synthesize",
+        "library": "synthcity",
+        "path": "libs/synthcity/run_phase1.py",
+        "description": "SynthCity の BayesianNetwork / TVAE / AdsGAN / NFlow で単一表合成"
+      },
+      {
+        "role": "synthesize",
+        "library": "ydata",
+        "path": "libs/ydata/run_phase1.py",
+        "description": "ydata-synthetic の CTGAN で単一表合成"
+      }
+    ]
   },
   {
     "id": "insurance-risk-modeling",
@@ -186,7 +212,27 @@
         "privacy_risk": "high"
       }
     ],
-    "recommendation": "GaussianCopulaが品質スコア0.90でCTGAN(0.88)を上回る。 TSTR F1はGC=0.6285, CTGAN=0.6956。 プライバシーリスクはGC=low, CTGAN=high。 保険料（charges）が連続値のため、回帰タスクでの評価も検討の余地あり。"
+    "recommendation": "GaussianCopulaが品質スコア0.90でCTGAN(0.88)を上回る。 TSTR F1はGC=0.6285, CTGAN=0.6956。 プライバシーリスクはGC=low, CTGAN=high。 保険料（charges）が連続値のため、回帰タスクでの評価も検討の余地あり。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "SDV demo (insurance) を取得・整形"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_additional_experiments.py",
+        "description": "GaussianCopula / CTGAN で Insurance データを合成"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_insurance.py",
+        "description": "SDMetrics + TSTR + DCR による品質・プライバシー評価"
+      }
+    ]
   },
   {
     "id": "company-directory",
@@ -232,7 +278,27 @@
         "privacy_risk": "low"
       }
     ],
-    "recommendation": "GaussianCopulaの品質スコアは0.59。 12行の極小データのため、評価指標の統計的信頼性は限定的。 プライバシーリスクはlow。 テスト環境用のダミーデータとしては十分な品質。少量データへの合成データ適用の参考事例。"
+    "recommendation": "GaussianCopulaの品質スコアは0.59。 12行の極小データのため、評価指標の統計的信頼性は限定的。 プライバシーリスクはlow。 テスト環境用のダミーデータとしては十分な品質。少量データへの合成データ適用の参考事例。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "SDV demo (Fake Companies) を取得・整形"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_additional_experiments.py",
+        "description": "GaussianCopula で Fake Companies データを合成"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_fake_companies.py",
+        "description": "12行の極小データに対する品質・プライバシー評価"
+      }
+    ]
   },
   {
     "id": "hotel-reservation-multitable",
@@ -274,7 +340,27 @@
         "privacy_risk": "low"
       }
     ],
-    "recommendation": "HMA の品質スコアは0.65。 FK整合性は完全維持。 プライバシーリスクはlow。 SDV の HMA は複数表の外部キー関係を自動学習し、整合性を維持した合成データを生成可能。"
+    "recommendation": "HMA の品質スコアは0.65。 FK整合性は完全維持。 プライバシーリスクはlow。 SDV の HMA は複数表の外部キー関係を自動学習し、整合性を維持した合成データを生成可能。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "SDV demo (Fake Hotels) を取得し複数表メタデータも保存"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_phase2.py",
+        "description": "SDV HMASynthesizer で hotels / guests を外部キー整合性付きで合成"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_hotel.py",
+        "description": "FK 整合性チェック + 単表 SDMetrics による評価"
+      }
+    ]
   },
   {
     "id": "imdb-movie-database",
@@ -315,7 +401,27 @@
         "privacy_risk": "low"
       }
     ],
-    "recommendation": "HMA の品質スコアは0.52（7テーブル・6リレーション）。 FK整合性は全6関係で維持。 プライバシーリスクはlow。 多対多リレーション（俳優↔映画、映画↔ジャンル）を含む複雑スキーマでも HMA は整合性を維持可能。"
+    "recommendation": "HMA の品質スコアは0.52（7テーブル・6リレーション）。 FK整合性は全6関係で維持。 プライバシーリスクはlow。 多対多リレーション（俳優↔映画、映画↔ジャンル）を含む複雑スキーマでも HMA は整合性を維持可能。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "SDV demo (IMDB Small) を取得し7テーブル分のメタデータを保存"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_additional_experiments.py",
+        "description": "SDV HMASynthesizer で IMDB 7テーブル + 多対多リレーションを合成"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_imdb.py",
+        "description": "6リレーションすべての FK 整合性 + 単表 SDMetrics による評価"
+      }
+    ]
   },
   {
     "id": "olist-ec-transactions",
@@ -346,7 +452,10 @@
         "algorithm_id": "hma",
         "algorithm_name": "HMA",
         "library": "SDV",
-        "params": { "tables_synthesized": "7/7", "sample_size": 5000 },
+        "params": {
+          "tables_synthesized": "7/7",
+          "sample_size": 5000
+        },
         "metrics": {
           "quality_score": 0.6774,
           "tstr_accuracy": 0.0773,
@@ -360,7 +469,12 @@
         "algorithm_id": "realtabformer",
         "algorithm_name": "REaLTabFormer",
         "library": "realtabformer",
-        "params": { "tables_synthesized": "2/7", "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
+        "params": {
+          "tables_synthesized": "2/7",
+          "sample_orders": 800,
+          "parent_epochs": 30,
+          "child_epochs": 30
+        },
         "metrics": {
           "dcr_mean": 0.0338,
           "time_sec": 1054.4
@@ -368,7 +482,33 @@
         "privacy_risk": "high"
       }
     ],
-    "recommendation": "結論として、現環境（CPU）で 7 テーブル全部の合成を実用時間内にこなせるのは SDV HMA のみ。ただし品質には課題が残る。SDV HMA は 7 テーブル全合成を CPU で約 20 分（学習 238s + 生成 963s）、FK 整合性 6/6 ◯・件数分布完璧、一方で price 等の数値分布が崩れ (KS ≈ 0.30)、結合下流タスク (レビュー評価予測) は TSTR Accuracy 0.08 と実用には届かず、「軽量だが品質そこそこのベースライン」の位置づけ。REaLTabFormer は orders → order_items の 1 親-1 子のみ合成 (2/7 テーブル) でも数値分布の再現が極めて優秀 (price KS 0.028、order_status TV 0.008) だが、(a) child に FK 列を出力せず孤立性検証不可、(b) 1 親-1 子しか扱えず 7 テーブル全合成には親子 6 ペア × CPU 17 分 ≈ 100 分以上の累積学習が必要、(c) 複数子テーブル間の整合性は学習されない。IRG は公式リポジトリ (li-jiayu-ljy/irg) が「commercial usage のため full code not disclosed、@placeholder 実装」と明記＋ torch CUDA 12.1 / cupy hard pin で CPU 環境では再現不可と判定し skipped 記録。棲み分け: 「FK 整合性 + 全テーブル合成 → SDV HMA (CPU 可)」「数値分布の精度 + 単一親子で十分 → REaLTabFormer (GPU 推奨)」「論文 IRG → GPU + 著者連絡など別途環境整備が前提」。表の「時間」列は実測値で、HMA は 7/7 テーブル全合成、RTF は 2/7 テーブル分の合計時間 (params 列の tables_synthesized 欄に記載) であることに注意。"
+    "recommendation": "結論として、現環境（CPU）で 7 テーブル全部の合成を実用時間内にこなせるのは SDV HMA のみ。ただし品質には課題が残る。SDV HMA は 7 テーブル全合成を CPU で約 20 分（学習 238s + 生成 963s）、FK 整合性 6/6 ◯・件数分布完璧、一方で price 等の数値分布が崩れ (KS ≈ 0.30)、結合下流タスク (レビュー評価予測) は TSTR Accuracy 0.08 と実用には届かず、「軽量だが品質そこそこのベースライン」の位置づけ。REaLTabFormer は orders → order_items の 1 親-1 子のみ合成 (2/7 テーブル) でも数値分布の再現が極めて優秀 (price KS 0.028、order_status TV 0.008) だが、(a) child に FK 列を出力せず孤立性検証不可、(b) 1 親-1 子しか扱えず 7 テーブル全合成には親子 6 ペア × CPU 17 分 ≈ 100 分以上の累積学習が必要、(c) 複数子テーブル間の整合性は学習されない。IRG は公式リポジトリ (li-jiayu-ljy/irg) が「commercial usage のため full code not disclosed、@placeholder 実装」と明記＋ torch CUDA 12.1 / cupy hard pin で CPU 環境では再現不可と判定し skipped 記録。棲み分け: 「FK 整合性 + 全テーブル合成 → SDV HMA (CPU 可)」「数値分布の精度 + 単一親子で十分 → REaLTabFormer (GPU 推奨)」「論文 IRG → GPU + 著者連絡など別途環境整備が前提」。表の「時間」列は実測値で、HMA は 7/7 テーブル全合成、RTF は 2/7 テーブル分の合計時間 (params 列の tables_synthesized 欄に記載) であることに注意。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_olist.py",
+        "description": "Brazilian E-Commerce (Olist) 7テーブルを uniformly sample (5000 customers ベース) し processed に保存"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_olist_hma.py",
+        "description": "SDV HMASynthesizer で Olist 7/7 テーブルを合成（FK 6本維持）"
+      },
+      {
+        "role": "synthesize",
+        "library": "realtabformer",
+        "path": "libs/realtabformer/run_olist.py",
+        "description": "REaLTabFormer で orders → order_items の親子1ペアを合成（数値分布精度比較用）"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_olist.py",
+        "description": "FK 整合性 + 件数分布 + 単変量分布 + 結合 TSTR (review_score 予測) による評価"
+      }
+    ]
   },
   {
     "id": "stock-price-timeseries",
@@ -412,7 +552,27 @@
         "privacy_risk": "low"
       }
     ],
-    "recommendation": "PAR 128ep の品質スコアは0.50。 自己相関の平均乖離は0.384。 プライバシーリスクはlow。 PAR は銘柄ごとの時系列パターンを学習し、トレンド・ボラティリティを概ね再現するが、列間相関の精度に改善余地がある。"
+    "recommendation": "PAR 128ep の品質スコアは0.50。 自己相関の平均乖離は0.384。 プライバシーリスクはlow。 PAR は銘柄ごとの時系列パターンを学習し、トレンド・ボラティリティを概ね再現するが、列間相関の精度に改善余地がある。",
+    "scripts": [
+      {
+        "role": "prepare",
+        "library": "sdv",
+        "path": "libs/sdv/prepare_data.py",
+        "description": "SDV demo (NASDAQ 100 2019) を取得し時系列メタデータを保存"
+      },
+      {
+        "role": "synthesize",
+        "library": "sdv",
+        "path": "libs/sdv/run_phase3.py",
+        "description": "SDV PARSynthesizer (128ep) で銘柄別の日次株価時系列を合成"
+      },
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_stock.py",
+        "description": "SDMetrics + 自己相関乖離 + DCR による評価"
+      }
+    ]
   },
   {
     "id": "iot-sensor-monitoring",
@@ -458,6 +618,14 @@
         "privacy_risk": "low"
       }
     ],
-    "recommendation": "PAR 64ep の品質スコアは0.64。 自己相関の平均乖離は0.756。 プライバシーリスクはlow。 122拠点の気温・湿度・気圧の季節変動パターンの再現を評価。PAR は拠点ごとのパターンを学習するが、季節変動の精度に改善余地がある。"
+    "recommendation": "PAR 64ep の品質スコアは0.64。 自己相関の平均乖離は0.756。 プライバシーリスクはlow。 122拠点の気温・湿度・気圧の季節変動パターンの再現を評価。PAR は拠点ごとのパターンを学習するが、季節変動の精度に改善余地がある。",
+    "scripts": [
+      {
+        "role": "evaluate",
+        "library": "evaluation",
+        "path": "libs/evaluation/eval_iot_weather.py",
+        "description": "Daily Weather 2020 の取得・PAR 64ep による合成・SDMetrics + 自己相関 + DCR 評価を1スクリプトで実行"
+      }
+    ]
   }
 ]

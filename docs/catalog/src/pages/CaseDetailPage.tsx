@@ -6,6 +6,7 @@ import type { CaseResult } from "../types/experiment-case";
 import type { TableData } from "../utils/export";
 import { ExportButtons } from "../components/ExportButtons";
 import { MetricsBarChart } from "../components/MetricsBarChart";
+import { CaseScriptsSection } from "../components/CaseScriptsSection";
 
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
@@ -232,6 +233,9 @@ export function CaseDetailPage() {
           * Quality Score は SDMetrics による統計的類似性評価（0〜1）。TSTR F1 は合成データで学習→実データでテスト時の F1 スコア（ベースライン: 0.851）。DCR は最近傍距離の平均（高いほどプライバシー保護が強い）。
         </p>
       </div>
+
+      {/* Scripts */}
+      <CaseScriptsSection scripts={c.scripts} />
 
       {/* Recommendation */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
