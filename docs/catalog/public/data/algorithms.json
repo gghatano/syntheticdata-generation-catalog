@@ -432,7 +432,7 @@
         "id": "sdv_hma_olist",
         "library": "SDV",
         "library_version": "1.36.1",
-        "params": { "sample_size": 5000 },
+        "params": { "tables_synthesized": "7/7", "sample_size": 5000 },
         "dataset": "olist",
         "data_type": "multi_table",
         "phase": "phase2",
@@ -445,7 +445,8 @@
           "fit_time_sec": 237.94,
           "sample_time_sec": 962.8,
           "time_sec": 1200.73
-        }
+        },
+        "note": "7 テーブル全合成（フルスキーマ）。CPU で計 20 分。"
       }
     ],
     "summary_metrics": {
@@ -481,7 +482,7 @@
         "id": "realtabformer_olist",
         "library": "realtabformer",
         "library_version": "0.2.4",
-        "params": { "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
+        "params": { "tables_synthesized": "2/7", "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
         "dataset": "olist",
         "data_type": "multi_table",
         "phase": "phase2",
@@ -495,7 +496,7 @@
           "sample_time_sec": 18.32,
           "time_sec": 1054.4
         },
-        "note": "1 親 (orders) -1 子 (order_items) のみ。child の FK 列を出力しないため孤立性検証は不可。"
+        "note": "1 親 (orders) -1 子 (order_items) のみ (2/7 テーブル)。child に FK 列を出力しないため孤立性検証は不可。フルスキーマ合成には親子 6 ペア × CPU 17 分 ≈ 100 分以上 (推定) を要し、現環境では実用外。"
       }
     ],
     "summary_metrics": {

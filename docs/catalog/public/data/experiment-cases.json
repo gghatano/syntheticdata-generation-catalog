@@ -346,7 +346,7 @@
         "algorithm_id": "hma",
         "algorithm_name": "HMA",
         "library": "SDV",
-        "params": { "sample_size": 5000 },
+        "params": { "tables_synthesized": "7/7", "sample_size": 5000 },
         "metrics": {
           "quality_score": 0.6774,
           "tstr_accuracy": 0.0773,
@@ -360,7 +360,7 @@
         "algorithm_id": "realtabformer",
         "algorithm_name": "REaLTabFormer",
         "library": "realtabformer",
-        "params": { "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
+        "params": { "tables_synthesized": "2/7", "sample_orders": 800, "parent_epochs": 30, "child_epochs": 30 },
         "metrics": {
           "dcr_mean": 0.0338,
           "time_sec": 1054.4
@@ -368,7 +368,7 @@
         "privacy_risk": "high"
       }
     ],
-    "recommendation": "SDV HMA は 7 テーブル全部を扱えるのが強み。FK 整合性・件数分布は完璧（孤立 FK 0、親子件数の平均誤差 0）だが、price/payment_value 等の数値列は分布が崩れ (KS ≈ 0.30)、結合した下流タスク (レビュー評価予測) では TSTR Accuracy 0.08 と実用には届かない。学習 238s + 生成 963s。一方、REaLTabFormer は 1 親-1 子に絞れば数値分布の再現が極めて優秀（price KS 0.028、order_status TV 0.008）。ただし child テーブルに FK 列を出力しないため孤立性検証が不可、複数子テーブルには別途学習が必要、CPU では学習 17 分とコストが高い。「FK 整合性が必要 → SDV HMA」「単一親子の数値分布再現が必要 → REaLTabFormer」と棲み分けるのが現実解。IRG は本検証では公開リポジトリが placeholder 実装かつ CUDA 必須のため評価不可。"
+    "recommendation": "結論として、現環境（CPU）で 7 テーブル全部の合成を実用時間内にこなせるのは SDV HMA のみ。ただし品質には課題が残る。SDV HMA は 7 テーブル全合成を CPU で約 20 分（学習 238s + 生成 963s）、FK 整合性 6/6 ◯・件数分布完璧、一方で price 等の数値分布が崩れ (KS ≈ 0.30)、結合下流タスク (レビュー評価予測) は TSTR Accuracy 0.08 と実用には届かず、「軽量だが品質そこそこのベースライン」の位置づけ。REaLTabFormer は orders → order_items の 1 親-1 子のみ合成 (2/7 テーブル) でも数値分布の再現が極めて優秀 (price KS 0.028、order_status TV 0.008) だが、(a) child に FK 列を出力せず孤立性検証不可、(b) 1 親-1 子しか扱えず 7 テーブル全合成には親子 6 ペア × CPU 17 分 ≈ 100 分以上の累積学習が必要、(c) 複数子テーブル間の整合性は学習されない。IRG は公式リポジトリ (li-jiayu-ljy/irg) が「commercial usage のため full code not disclosed、@placeholder 実装」と明記＋ torch CUDA 12.1 / cupy hard pin で CPU 環境では再現不可と判定し skipped 記録。棲み分け: 「FK 整合性 + 全テーブル合成 → SDV HMA (CPU 可)」「数値分布の精度 + 単一親子で十分 → REaLTabFormer (GPU 推奨)」「論文 IRG → GPU + 著者連絡など別途環境整備が前提」。表の「時間」列は実測値で、HMA は 7/7 テーブル全合成、RTF は 2/7 テーブル分の合計時間 (params 列の tables_synthesized 欄に記載) であることに注意。"
   },
   {
     "id": "stock-price-timeseries",
