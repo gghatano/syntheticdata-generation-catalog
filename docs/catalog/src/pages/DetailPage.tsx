@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAlgorithms } from "../hooks/useAlgorithms";
 import { useExperimentCases } from "../hooks/useExperimentCases";
@@ -6,6 +6,12 @@ import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
 import { MetricsBadge } from "../components/MetricsBadge";
 import { ExperimentTable } from "../components/ExperimentTable";
 import { QuickStartSection } from "../components/QuickStartSection";
+
+const LibraryComparisonChart = lazy(() =>
+  import("../components/LibraryComparisonChart").then((m) => ({
+    default: m.LibraryComparisonChart,
+  }))
+);
 import type { PrivacyRiskLevel } from "../types/algorithm";
 import { DATA_CATEGORY_ICONS, DATA_CATEGORY_LABELS } from "../types/experiment-case";
 
@@ -326,6 +332,14 @@ export function DetailPage() {
           </div>
         </div>
       )}
+
+      {/* Library Comparison Chart (only when 2+ libraries implement this algorithm) */}
+      <Suspense fallback={null}>
+        <LibraryComparisonChart
+          experiments={algorithm.experiments}
+          algorithmName={algorithm.name}
+        />
+      </Suspense>
 
       {/* Experiments Table */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
