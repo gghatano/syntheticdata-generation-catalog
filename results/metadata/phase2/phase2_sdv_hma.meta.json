@@ -6,7 +6,10 @@
   "model": "hma",
   "dataset": {
     "name": "d2_hotel_reservations",
-    "path": "data/processed/d2_*.csv"
+    "path": "data/processed/d2_*.csv",
+    "rows": 668,
+    "columns": 15,
+    "sha256": null
   },
   "params": {
     "random_seed": 42
@@ -14,28 +17,32 @@
   "output": {
     "tables": {
       "hotels": {
-        "rows": 10
+        "csv_path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../results/phase2/sdv_hma_hotels.csv",
+        "sha256": "b6405c13564a9379a0614717a48795a38622abd27d2b8397488fd6c27c0ac35a",
+        "rows": 10,
+        "columns": 5
       },
       "guests": {
-        "rows": 658
+        "csv_path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../results/phase2/sdv_hma_guests.csv",
+        "sha256": "911ba4a1450105e5be5866f8878dfa1ee2d12b1259a7f3aad6daeda79d0b9c20",
+        "rows": 658,
+        "columns": 10
       }
     }
   },
   "env": {
-    "python_version": "3.11.14",
-    "library_version": "1.35.1",
-    "platform": "migrated",
-    "machine": "migrated"
+    "python_version": "3.11.15",
+    "library_version": "1.36.1",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2+-x86_64-with-glibc2.39",
+    "machine": "x86_64"
   },
   "timing": {
-    "started_at": "2026-04-02T23:46:10.585949",
-    "finished_at": null,
-    "elapsed_sec": 5.22
+    "started_at": "2026-04-30T14:29:43.841289+00:00",
+    "finished_at": "2026-04-30T14:29:48.571091+00:00",
+    "elapsed_sec": 4.73
   },
   "status": "ok",
   "error": null,
-  "tags": [
-    "migrated"
-  ],
-  "notes": "Migrated from results/phase2/sdv_run_log.json"
+  "tags": [],
+  "notes": ""
 }

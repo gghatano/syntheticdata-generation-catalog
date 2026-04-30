@@ -1,0 +1,140 @@
+{
+  "case_id": "company-directory",
+  "selected_synth": {
+    "algorithm": "GaussianCopula",
+    "library": "SDV",
+    "csv": "results/phase1/sdv_gaussiancopula_fake_companies.csv"
+  },
+  "real_source": {
+    "csv": "data/raw/d_fake_companies.csv",
+    "rows": 12
+  },
+  "synth_source": {
+    "rows": 12
+  },
+  "items": [
+    {
+      "type": "numeric",
+      "column": "age",
+      "label": "年齢",
+      "unit": "歳",
+      "real_mean": 37.9167,
+      "synth_mean": 35.25,
+      "real_std": 7.6332,
+      "synth_std": 5.9563,
+      "bins": [
+        {
+          "x": 30.0,
+          "x_end": 34.75,
+          "real": 6,
+          "synth": 7
+        },
+        {
+          "x": 34.75,
+          "x_end": 39.5,
+          "real": 1,
+          "synth": 1
+        },
+        {
+          "x": 39.5,
+          "x_end": 44.25,
+          "real": 2,
+          "synth": 3
+        },
+        {
+          "x": 44.25,
+          "x_end": 49.0,
+          "real": 3,
+          "synth": 1
+        }
+      ]
+    },
+    {
+      "type": "numeric",
+      "column": "salary",
+      "label": "給与",
+      "unit": "USD",
+      "real_mean": 86698.2683,
+      "synth_mean": 79851.9175,
+      "real_std": 32042.2296,
+      "synth_std": 36575.3386,
+      "bins": [
+        {
+          "x": 40000.0,
+          "x_end": 68250.0,
+          "real": 2,
+          "synth": 6
+        },
+        {
+          "x": 68250.0,
+          "x_end": 96500.0,
+          "real": 6,
+          "synth": 2
+        },
+        {
+          "x": 96500.0,
+          "x_end": 124750.0,
+          "real": 3,
+          "synth": 2
+        },
+        {
+          "x": 124750.0,
+          "x_end": 153000.0,
+          "real": 1,
+          "synth": 2
+        }
+      ]
+    },
+    {
+      "type": "categorical",
+      "column": "department",
+      "label": "部署",
+      "categories": [
+        {
+          "name": "Search Engine",
+          "real_pct": 0.1667,
+          "synth_pct": 0.3333,
+          "real_count": 2,
+          "synth_count": 4
+        },
+        {
+          "name": "Sales",
+          "real_pct": 0.1667,
+          "synth_pct": 0.25,
+          "real_count": 2,
+          "synth_count": 3
+        },
+        {
+          "name": "Support",
+          "real_pct": 0.1667,
+          "synth_pct": 0.1667,
+          "real_count": 2,
+          "synth_count": 2
+        },
+        {
+          "name": "AI",
+          "real_pct": 0.1667,
+          "synth_pct": 0.1667,
+          "real_count": 2,
+          "synth_count": 2
+        },
+        {
+          "name": "Design",
+          "real_pct": 0.1667,
+          "synth_pct": 0.0833,
+          "real_count": 2,
+          "synth_count": 1
+        },
+        {
+          "name": "BigData",
+          "real_pct": 0.1667,
+          "synth_pct": 0.0,
+          "real_count": 2,
+          "synth_count": 0
+        }
+      ],
+      "total_categories": 6
+    }
+  ],
+  "note": "12 行の極小データ。分布比較というより「ダミー値が常識的な範囲に収まっているか」の確認に近い。"
+}

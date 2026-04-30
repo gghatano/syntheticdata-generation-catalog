@@ -6,22 +6,21 @@
     },
     "01-data-preparation": {
       "status": "completed",
-      "updated_at": "2026-04-02T23:09:05.715530"
+      "updated_at": "2026-04-30T23:29:22.916020"
     },
     "02-phase1": {
       "status": "in_progress",
-      "updated_at": "2026-04-03T05:44:45.160281",
+      "updated_at": "2026-04-30T23:29:41.103817",
       "current_step": "sdv"
     },
     "03-phase2": {
       "status": "completed",
-      "updated_at": "2026-04-02T23:46:15.809032",
-      "notes": "SDV HMA only. MOSTLY AI skipped (no API key)"
+      "updated_at": "2026-04-30T23:29:48.573089"
     },
     "04-phase3": {
-      "status": "completed",
-      "updated_at": "2026-04-02T23:48:00",
-      "notes": "SDV PAR only. SynthCity/ydata timeseries not yet run"
+      "status": "in_progress",
+      "updated_at": "2026-04-30T23:36:53.940492",
+      "current_step": "sdv"
     },
     "05-evaluation": {
       "status": "completed",
@@ -42,7 +41,7 @@
     },
     "issue-65-sdv-hma": {
       "status": "completed",
-      "updated_at": "2026-04-29T06:07:15.405643"
+      "updated_at": "2026-05-01T00:05:27.166106"
     },
     "issue-65-realtabformer": {
       "status": "completed",

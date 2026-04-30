@@ -1,0 +1,172 @@
+{
+  "case_id": "imdb-movie-database",
+  "selected_synth": {
+    "algorithm": "HMA",
+    "library": "SDV",
+    "csv": "results/phase2/sdv_hma_imdb_actors.csv"
+  },
+  "real_source": {
+    "csv": "data/raw/d_imdb_actors.csv",
+    "rows": 1907
+  },
+  "synth_source": {
+    "rows": 1907
+  },
+  "items": [
+    {
+      "type": "categorical",
+      "column": "gender",
+      "label": "性別",
+      "categories": [
+        {
+          "name": "M",
+          "real_pct": 0.7677,
+          "synth_pct": 0.7656,
+          "real_count": 1464,
+          "synth_count": 1460
+        },
+        {
+          "name": "F",
+          "real_pct": 0.2323,
+          "synth_pct": 0.2344,
+          "real_count": 443,
+          "synth_count": 447
+        }
+      ],
+      "total_categories": 2
+    },
+    {
+      "type": "numeric",
+      "column": "film_count",
+      "label": "出演本数",
+      "unit": "本",
+      "real_mean": 1.043,
+      "synth_mean": 2.0,
+      "real_std": 0.2772,
+      "synth_std": 0.0,
+      "bins": [
+        {
+          "x": 1.0,
+          "x_end": 1.4,
+          "real": 1838,
+          "synth": 0
+        },
+        {
+          "x": 1.4,
+          "x_end": 1.8,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 1.8,
+          "x_end": 2.2,
+          "real": 62,
+          "synth": 1907
+        },
+        {
+          "x": 2.2,
+          "x_end": 2.6,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 2.6,
+          "x_end": 3.0,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 3.0,
+          "x_end": 3.4,
+          "real": 6,
+          "synth": 0
+        },
+        {
+          "x": 3.4,
+          "x_end": 3.8,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 3.8,
+          "x_end": 4.2,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 4.2,
+          "x_end": 4.6,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 4.6,
+          "x_end": 5.0,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 5.0,
+          "x_end": 5.4,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 5.4,
+          "x_end": 5.8,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 5.8,
+          "x_end": 6.2,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 6.2,
+          "x_end": 6.6,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 6.6,
+          "x_end": 7.0,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 7.0,
+          "x_end": 7.4,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 7.4,
+          "x_end": 7.8,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 7.8,
+          "x_end": 8.2,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 8.2,
+          "x_end": 8.6,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 8.6,
+          "x_end": 9.0,
+          "real": 1,
+          "synth": 0
+        }
+      ]
+    }
+  ],
+  "note": "7 テーブルのうち最多件数の actors テーブルから抽出。多対多リレーションの整合性は HMA が自動で維持する。"
+}
