@@ -247,13 +247,11 @@ def process_imdb() -> dict | None:
     if real is None or synth is None:
         return None
     items: list[dict] = []
-    # actors テーブルの典型: gender, role-related counts など
-    for col, label in [('gender', '性別'), ('birth_year', '生年')]:
-        if col in real.columns and col in synth.columns:
-            if real[col].dtype.kind in 'biufc':
-                items.append(build_numeric_item(real, synth, col, label))
-            else:
-                items.append(build_categorical_item(real, synth, col, label))
+    # actors テーブル: id, first_name, last_name, gender, film_count
+    if 'gender' in real.columns and 'gender' in synth.columns:
+        items.append(build_categorical_item(real, synth, 'gender', '性別'))
+    if 'film_count' in real.columns and 'film_count' in synth.columns:
+        items.append(build_numeric_item(real, synth, 'film_count', '出演本数', unit='本'))
     return {
         'case_id': 'imdb-movie-database',
         'selected_synth': {'algorithm': 'HMA', 'library': 'SDV', 'csv': 'results/phase2/sdv_hma_imdb_actors.csv'},
