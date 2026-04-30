@@ -14,6 +14,25 @@ const TimeSeriesComparisonChart = lazy(() =>
   }))
 );
 
+const DistributionComparisonChart = lazy(() =>
+  import("../components/DistributionComparisonChart").then((m) => ({
+    default: m.DistributionComparisonChart,
+  }))
+);
+
+const TIMESERIES_CASES = new Set([
+  "iot-sensor-monitoring",
+  "stock-price-timeseries",
+]);
+const DISTRIBUTION_CASES = new Set([
+  "adult-census-anonymization",
+  "insurance-risk-modeling",
+  "company-directory",
+  "hotel-reservation-multitable",
+  "imdb-movie-database",
+  "olist-ec-transactions",
+]);
+
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
   medium: { label: "中リスク", bg: "bg-yellow-50", text: "text-yellow-700", border: "border-yellow-200" },
@@ -207,10 +226,17 @@ export function CaseDetailPage() {
       {/* Metrics Chart */}
       <MetricsBarChart results={sortedResults} />
 
-      {/* Time series comparison (only for cases with extracted timeseries JSON) */}
-      {c.id === "iot-sensor-monitoring" && (
+      {/* Time series comparison (時系列事例) */}
+      {TIMESERIES_CASES.has(c.id) && (
         <Suspense fallback={null}>
           <TimeSeriesComparisonChart caseId={c.id} />
+        </Suspense>
+      )}
+
+      {/* Distribution comparison (単一表 / 複数表) */}
+      {DISTRIBUTION_CASES.has(c.id) && (
+        <Suspense fallback={null}>
+          <DistributionComparisonChart caseId={c.id} />
         </Suspense>
       )}
 

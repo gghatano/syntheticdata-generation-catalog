@@ -1,0 +1,311 @@
+{
+  "case_id": "hotel-reservation-multitable",
+  "selected_synth": {
+    "algorithm": "HMA",
+    "library": "SDV",
+    "csv": "results/phase2/sdv_hma_guests.csv"
+  },
+  "real_source": {
+    "csv": "data/processed/d2_guests.csv",
+    "rows": 658
+  },
+  "synth_source": {
+    "rows": 658
+  },
+  "items": [
+    {
+      "type": "numeric",
+      "column": "room_rate",
+      "label": "宿泊料金 (1泊)",
+      "unit": "USD",
+      "real_mean": 165.6776,
+      "synth_mean": 153.1633,
+      "real_std": 70.8362,
+      "synth_std": 61.3963,
+      "bins": [
+        {
+          "x": 48.33,
+          "x_end": 69.994,
+          "real": 15,
+          "synth": 61
+        },
+        {
+          "x": 69.994,
+          "x_end": 91.658,
+          "real": 48,
+          "synth": 55
+        },
+        {
+          "x": 91.658,
+          "x_end": 113.322,
+          "real": 80,
+          "synth": 60
+        },
+        {
+          "x": 113.322,
+          "x_end": 134.986,
+          "real": 106,
+          "synth": 78
+        },
+        {
+          "x": 134.986,
+          "x_end": 156.65,
+          "real": 117,
+          "synth": 97
+        },
+        {
+          "x": 156.65,
+          "x_end": 178.314,
+          "real": 86,
+          "synth": 86
+        },
+        {
+          "x": 178.314,
+          "x_end": 199.978,
+          "real": 62,
+          "synth": 85
+        },
+        {
+          "x": 199.978,
+          "x_end": 221.642,
+          "real": 25,
+          "synth": 57
+        },
+        {
+          "x": 221.642,
+          "x_end": 243.306,
+          "real": 26,
+          "synth": 35
+        },
+        {
+          "x": 243.306,
+          "x_end": 264.97,
+          "real": 18,
+          "synth": 16
+        },
+        {
+          "x": 264.97,
+          "x_end": 286.634,
+          "real": 29,
+          "synth": 6
+        },
+        {
+          "x": 286.634,
+          "x_end": 308.298,
+          "real": 15,
+          "synth": 12
+        },
+        {
+          "x": 308.298,
+          "x_end": 329.962,
+          "real": 6,
+          "synth": 6
+        },
+        {
+          "x": 329.962,
+          "x_end": 351.626,
+          "real": 7,
+          "synth": 3
+        },
+        {
+          "x": 351.626,
+          "x_end": 373.29,
+          "real": 5,
+          "synth": 1
+        },
+        {
+          "x": 373.29,
+          "x_end": 394.954,
+          "real": 5,
+          "synth": 0
+        },
+        {
+          "x": 394.954,
+          "x_end": 416.618,
+          "real": 6,
+          "synth": 0
+        },
+        {
+          "x": 416.618,
+          "x_end": 438.282,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 438.282,
+          "x_end": 459.946,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 459.946,
+          "x_end": 481.61,
+          "real": 2,
+          "synth": 0
+        }
+      ]
+    },
+    {
+      "type": "numeric",
+      "column": "amenities_fee",
+      "label": "付帯料金",
+      "unit": "USD",
+      "real_mean": 17.3605,
+      "synth_mean": 17.9147,
+      "real_std": 11.366,
+      "synth_std": 10.2437,
+      "bins": [
+        {
+          "x": 0.0,
+          "x_end": 2.332,
+          "real": 95,
+          "synth": 46
+        },
+        {
+          "x": 2.332,
+          "x_end": 4.664,
+          "real": 13,
+          "synth": 18
+        },
+        {
+          "x": 4.664,
+          "x_end": 6.996,
+          "real": 17,
+          "synth": 27
+        },
+        {
+          "x": 6.996,
+          "x_end": 9.328,
+          "real": 35,
+          "synth": 29
+        },
+        {
+          "x": 9.328,
+          "x_end": 11.66,
+          "real": 32,
+          "synth": 33
+        },
+        {
+          "x": 11.66,
+          "x_end": 13.992,
+          "real": 45,
+          "synth": 58
+        },
+        {
+          "x": 13.992,
+          "x_end": 16.324,
+          "real": 46,
+          "synth": 70
+        },
+        {
+          "x": 16.324,
+          "x_end": 18.656,
+          "real": 44,
+          "synth": 56
+        },
+        {
+          "x": 18.656,
+          "x_end": 20.988,
+          "real": 45,
+          "synth": 61
+        },
+        {
+          "x": 20.988,
+          "x_end": 23.32,
+          "real": 40,
+          "synth": 38
+        },
+        {
+          "x": 23.32,
+          "x_end": 25.652,
+          "real": 49,
+          "synth": 36
+        },
+        {
+          "x": 25.652,
+          "x_end": 27.984,
+          "real": 36,
+          "synth": 27
+        },
+        {
+          "x": 27.984,
+          "x_end": 30.316,
+          "real": 27,
+          "synth": 24
+        },
+        {
+          "x": 30.316,
+          "x_end": 32.648,
+          "real": 25,
+          "synth": 21
+        },
+        {
+          "x": 32.648,
+          "x_end": 34.98,
+          "real": 18,
+          "synth": 17
+        },
+        {
+          "x": 34.98,
+          "x_end": 37.312,
+          "real": 18,
+          "synth": 12
+        },
+        {
+          "x": 37.312,
+          "x_end": 39.644,
+          "real": 12,
+          "synth": 7
+        },
+        {
+          "x": 39.644,
+          "x_end": 41.976,
+          "real": 2,
+          "synth": 9
+        },
+        {
+          "x": 41.976,
+          "x_end": 44.308,
+          "real": 3,
+          "synth": 5
+        },
+        {
+          "x": 44.308,
+          "x_end": 46.64,
+          "real": 6,
+          "synth": 5
+        }
+      ]
+    },
+    {
+      "type": "categorical",
+      "column": "room_type",
+      "label": "部屋タイプ",
+      "categories": [
+        {
+          "name": "BASIC",
+          "real_pct": 0.766,
+          "synth_pct": 0.8343,
+          "real_count": 504,
+          "synth_count": 549
+        },
+        {
+          "name": "DELUXE",
+          "real_pct": 0.1535,
+          "synth_pct": 0.0775,
+          "real_count": 101,
+          "synth_count": 51
+        },
+        {
+          "name": "SUITE",
+          "real_pct": 0.0805,
+          "synth_pct": 0.0881,
+          "real_count": 53,
+          "synth_count": 58
+        }
+      ],
+      "total_categories": 3
+    }
+  ],
+  "note": "複数表 (hotels / guests) のうち件数の多い guests テーブルから抽出。HMA は親 (hotels) の属性と整合した子 (guests) を生成する。"
+}
