@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { lazy, Suspense, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useExperimentCases } from "../hooks/useExperimentCases";
 import { DATA_CATEGORY_LABELS, DATA_CATEGORY_ICONS } from "../types/experiment-case";
@@ -6,6 +6,13 @@ import type { CaseResult } from "../types/experiment-case";
 import type { TableData } from "../utils/export";
 import { ExportButtons } from "../components/ExportButtons";
 import { MetricsBarChart } from "../components/MetricsBarChart";
+import { CaseScriptsSection } from "../components/CaseScriptsSection";
+
+const TimeSeriesComparisonChart = lazy(() =>
+  import("../components/TimeSeriesComparisonChart").then((m) => ({
+    default: m.TimeSeriesComparisonChart,
+  }))
+);
 
 const PRIVACY_BADGE: Record<string, { label: string; bg: string; text: string; border: string }> = {
   low: { label: "低リスク", bg: "bg-green-50", text: "text-green-700", border: "border-green-200" },
@@ -200,6 +207,13 @@ export function CaseDetailPage() {
       {/* Metrics Chart */}
       <MetricsBarChart results={sortedResults} />
 
+      {/* Time series comparison (only for cases with extracted timeseries JSON) */}
+      {c.id === "iot-sensor-monitoring" && (
+        <Suspense fallback={null}>
+          <TimeSeriesComparisonChart caseId={c.id} />
+        </Suspense>
+      )}
+
       {/* Results */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
@@ -232,6 +246,9 @@ export function CaseDetailPage() {
           * Quality Score は SDMetrics による統計的類似性評価（0〜1）。TSTR F1 は合成データで学習→実データでテスト時の F1 スコア（ベースライン: 0.851）。DCR は最近傍距離の平均（高いほどプライバシー保護が強い）。
         </p>
       </div>
+
+      {/* Scripts */}
+      <CaseScriptsSection scripts={c.scripts} />
 
       {/* Recommendation */}
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
