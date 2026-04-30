@@ -25,9 +25,9 @@
     "library": "sdv",
     "model": "gaussiancopula",
     "dataset": "d1_adult",
-    "elapsed_sec": 5.94,
+    "elapsed_sec": 5.45,
     "output_rows": 32561,
-    "timestamp": "2026-04-03T05:44:45.160216"
+    "timestamp": "2026-04-30T14:29:41.104052+00:00"
   },
   "phase1_sdv_gaussiancopula_fake_companies": {
     "status": "ok",
@@ -45,9 +45,9 @@
     "library": "sdv",
     "model": "gaussiancopula",
     "dataset": "d_insurance",
-    "elapsed_sec": 5.2,
+    "elapsed_sec": 20.76,
     "output_rows": 20000,
-    "timestamp": "2026-04-03T13:07:00.631855"
+    "timestamp": "2026-04-30T14:47:18.914658+00:00"
   },
   "phase1_synthcity_adsgan": {
     "status": "ok",
@@ -115,9 +115,9 @@
     "library": "sdv",
     "model": "hma",
     "dataset": "d2_hotel_reservations",
-    "elapsed_sec": 5.22,
+    "elapsed_sec": 4.73,
     "output_rows": null,
-    "timestamp": "2026-04-02T23:46:10.585949"
+    "timestamp": "2026-04-30T14:29:43.841289+00:00"
   },
   "phase2_sdv_hma_imdb": {
     "status": "ok",
@@ -135,9 +135,9 @@
     "library": "sdv",
     "model": "par",
     "dataset": "d3_nasdaq",
-    "elapsed_sec": 114.7,
-    "output_rows": 2327,
-    "timestamp": "2026-04-02T23:46:22.039391"
+    "elapsed_sec": 1935.4,
+    "output_rows": 2221,
+    "timestamp": "2026-04-30T14:29:45.297063+00:00"
   },
   "phase3_sdv_par_weather": {
     "status": "ok",

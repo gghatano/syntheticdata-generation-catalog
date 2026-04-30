@@ -1,0 +1,346 @@
+{
+  "case_id": "olist-ec-transactions",
+  "selected_synth": {
+    "algorithm": "HMA (7/7 tables)",
+    "library": "SDV",
+    "csv": "results/phase2_olist/sdv_hma_order_items.csv"
+  },
+  "real_source": {
+    "csv": "data/processed/olist/order_items.csv",
+    "rows": 5712
+  },
+  "synth_source": {
+    "rows": 5712
+  },
+  "items": [
+    {
+      "type": "numeric",
+      "column": "price",
+      "label": "商品単価",
+      "unit": "BRL",
+      "real_mean": 119.465,
+      "synth_mean": 359.6934,
+      "real_std": 176.2767,
+      "synth_std": 205.9714,
+      "bins": [
+        {
+          "x": 1.2,
+          "x_end": 156.09,
+          "real": 4607,
+          "synth": 1493
+        },
+        {
+          "x": 156.09,
+          "x_end": 310.98,
+          "real": 756,
+          "synth": 868
+        },
+        {
+          "x": 310.98,
+          "x_end": 465.87,
+          "real": 176,
+          "synth": 374
+        },
+        {
+          "x": 465.87,
+          "x_end": 620.76,
+          "real": 66,
+          "synth": 2961
+        },
+        {
+          "x": 620.76,
+          "x_end": 775.65,
+          "real": 34,
+          "synth": 13
+        },
+        {
+          "x": 775.65,
+          "x_end": 930.54,
+          "real": 23,
+          "synth": 3
+        },
+        {
+          "x": 930.54,
+          "x_end": 1085.43,
+          "real": 12,
+          "synth": 0
+        },
+        {
+          "x": 1085.43,
+          "x_end": 1240.32,
+          "real": 7,
+          "synth": 0
+        },
+        {
+          "x": 1240.32,
+          "x_end": 1395.21,
+          "real": 6,
+          "synth": 0
+        },
+        {
+          "x": 1395.21,
+          "x_end": 1550.1,
+          "real": 3,
+          "synth": 0
+        },
+        {
+          "x": 1550.1,
+          "x_end": 1704.99,
+          "real": 7,
+          "synth": 0
+        },
+        {
+          "x": 1704.99,
+          "x_end": 1859.88,
+          "real": 7,
+          "synth": 0
+        },
+        {
+          "x": 1859.88,
+          "x_end": 2014.77,
+          "real": 4,
+          "synth": 0
+        },
+        {
+          "x": 2014.77,
+          "x_end": 2169.66,
+          "real": 2,
+          "synth": 0
+        },
+        {
+          "x": 2169.66,
+          "x_end": 2324.55,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 2324.55,
+          "x_end": 2479.44,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 2479.44,
+          "x_end": 2634.33,
+          "real": 1,
+          "synth": 0
+        },
+        {
+          "x": 2634.33,
+          "x_end": 2789.22,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 2789.22,
+          "x_end": 2944.11,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 2944.11,
+          "x_end": 3099.0,
+          "real": 1,
+          "synth": 0
+        }
+      ]
+    },
+    {
+      "type": "numeric",
+      "column": "freight_value",
+      "label": "送料",
+      "unit": "BRL",
+      "real_mean": 20.2219,
+      "synth_mean": 23.6039,
+      "real_std": 16.7034,
+      "synth_std": 11.5626,
+      "bins": [
+        {
+          "x": 0.0,
+          "x_end": 16.073,
+          "real": 2745,
+          "synth": 1289
+        },
+        {
+          "x": 16.073,
+          "x_end": 32.146,
+          "real": 2313,
+          "synth": 3753
+        },
+        {
+          "x": 32.146,
+          "x_end": 48.219,
+          "real": 394,
+          "synth": 463
+        },
+        {
+          "x": 48.219,
+          "x_end": 64.292,
+          "real": 132,
+          "synth": 160
+        },
+        {
+          "x": 64.292,
+          "x_end": 80.365,
+          "real": 48,
+          "synth": 40
+        },
+        {
+          "x": 80.365,
+          "x_end": 96.438,
+          "real": 36,
+          "synth": 6
+        },
+        {
+          "x": 96.438,
+          "x_end": 112.511,
+          "real": 17,
+          "synth": 1
+        },
+        {
+          "x": 112.511,
+          "x_end": 128.584,
+          "real": 7,
+          "synth": 0
+        },
+        {
+          "x": 128.584,
+          "x_end": 144.657,
+          "real": 6,
+          "synth": 0
+        },
+        {
+          "x": 144.657,
+          "x_end": 160.73,
+          "real": 4,
+          "synth": 0
+        },
+        {
+          "x": 160.73,
+          "x_end": 176.803,
+          "real": 3,
+          "synth": 0
+        },
+        {
+          "x": 176.803,
+          "x_end": 192.876,
+          "real": 1,
+          "synth": 0
+        },
+        {
+          "x": 192.876,
+          "x_end": 208.949,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 208.949,
+          "x_end": 225.022,
+          "real": 1,
+          "synth": 0
+        },
+        {
+          "x": 225.022,
+          "x_end": 241.095,
+          "real": 2,
+          "synth": 0
+        },
+        {
+          "x": 241.095,
+          "x_end": 257.168,
+          "real": 2,
+          "synth": 0
+        },
+        {
+          "x": 257.168,
+          "x_end": 273.241,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 273.241,
+          "x_end": 289.314,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 289.314,
+          "x_end": 305.387,
+          "real": 0,
+          "synth": 0
+        },
+        {
+          "x": 305.387,
+          "x_end": 321.46,
+          "real": 1,
+          "synth": 0
+        }
+      ]
+    },
+    {
+      "type": "categorical",
+      "column": "product_category_name",
+      "label": "商品カテゴリ",
+      "categories": [
+        {
+          "name": "cama_mesa_banho",
+          "real_pct": 0.096,
+          "synth_pct": 0.0999,
+          "real_count": 369,
+          "synth_count": 384
+        },
+        {
+          "name": "esporte_lazer",
+          "real_pct": 0.0809,
+          "synth_pct": 0.0856,
+          "real_count": 311,
+          "synth_count": 329
+        },
+        {
+          "name": "beleza_saude",
+          "real_pct": 0.0744,
+          "synth_pct": 0.0762,
+          "real_count": 286,
+          "synth_count": 293
+        },
+        {
+          "name": "moveis_decoracao",
+          "real_pct": 0.0736,
+          "synth_pct": 0.0689,
+          "real_count": 283,
+          "synth_count": 265
+        },
+        {
+          "name": "informatica_acessorios",
+          "real_pct": 0.0643,
+          "synth_pct": 0.0661,
+          "real_count": 247,
+          "synth_count": 254
+        },
+        {
+          "name": "utilidades_domesticas",
+          "real_pct": 0.0585,
+          "synth_pct": 0.0588,
+          "real_count": 225,
+          "synth_count": 226
+        },
+        {
+          "name": "relogios_presentes",
+          "real_pct": 0.0507,
+          "synth_pct": 0.0484,
+          "real_count": 195,
+          "synth_count": 186
+        },
+        {
+          "name": "telefonia",
+          "real_pct": 0.0458,
+          "synth_pct": 0.0481,
+          "real_count": 176,
+          "synth_count": 185
+        }
+      ],
+      "total_categories": 67
+    }
+  ],
+  "note": "7 テーブルすべてを HMA で合成。order_items (price/freight) と products (category) を比較。価格分布は右に長い裾を持つ。"
+}

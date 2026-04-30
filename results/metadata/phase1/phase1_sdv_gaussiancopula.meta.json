@@ -6,32 +6,34 @@
   "model": "gaussiancopula",
   "dataset": {
     "name": "d1_adult",
-    "path": "data/processed/d1_adult.csv",
-    "sha256": null
+    "path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../data/processed/d1_adult.csv",
+    "rows": 32561,
+    "columns": 15,
+    "sha256": "dc6deb1c8944dd135f3fef025d688eeb67321be4292a9da300e0394368d23ee6"
   },
   "params": {
-    "random_seed": 42
+    "random_seed": 42,
+    "num_rows": 32561
   },
   "output": {
-    "csv_path": "results/phase1/sdv_gaussiancopula.csv",
-    "sha256": null,
-    "rows": 32561
+    "csv_path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../results/phase1/sdv_gaussiancopula.csv",
+    "sha256": "3a30c7ae7cd61bb0491a8f7e6fb9305ef75d57446650d9912b1a1b5f3933f731",
+    "rows": 32561,
+    "columns": 15
   },
   "env": {
-    "python_version": "3.11.14",
-    "library_version": "1.35.1",
-    "platform": "migrated",
-    "machine": "migrated"
+    "python_version": "3.11.15",
+    "library_version": "1.36.1",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2+-x86_64-with-glibc2.39",
+    "machine": "x86_64"
   },
   "timing": {
-    "started_at": "2026-04-03T05:44:45.160216",
-    "finished_at": null,
-    "elapsed_sec": 5.94
+    "started_at": "2026-04-30T14:29:41.104052+00:00",
+    "finished_at": "2026-04-30T14:29:46.555246+00:00",
+    "elapsed_sec": 5.45
   },
   "status": "ok",
   "error": null,
-  "tags": [
-    "migrated"
-  ],
-  "notes": "Migrated from results/phase1/sdv_run_log.json"
+  "tags": [],
+  "notes": ""
 }

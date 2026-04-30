@@ -6,33 +6,36 @@
   "model": "par",
   "dataset": {
     "name": "d3_nasdaq",
-    "path": "data/processed/d3_nasdaq.csv",
-    "sha256": null
+    "path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../data/processed/d3_nasdaq.csv",
+    "rows": 25784,
+    "columns": 8,
+    "sha256": "d13e1c815ad461eb025bcd991f5878a4250ddecf011ea9e8807ed08156a601b3"
   },
   "params": {
-    "random_seed": 42
+    "random_seed": 42,
+    "epochs": 128,
+    "num_sequences": 10
   },
   "output": {
-    "csv_path": "results/phase3/sdv_par.csv",
-    "sha256": null,
-    "rows": 2327,
+    "csv_path": "/home/hatanotakuma/works/syntheticdata-generation-catalog/libs/sdv/../../results/phase3/sdv_par.csv",
+    "sha256": "72060fd8a227a1779bbbde047eff0d19953e28f749e3c2f5e05b946b2f6d257c",
+    "rows": 2221,
+    "columns": 8,
     "sequences": 10
   },
   "env": {
-    "python_version": "3.11.14",
-    "library_version": "1.35.1",
-    "platform": "migrated",
-    "machine": "migrated"
+    "python_version": "3.11.15",
+    "library_version": "1.36.1",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2+-x86_64-with-glibc2.39",
+    "machine": "x86_64"
   },
   "timing": {
-    "started_at": "2026-04-02T23:46:22.039391",
-    "finished_at": null,
-    "elapsed_sec": 114.7
+    "started_at": "2026-04-30T14:29:45.297063+00:00",
+    "finished_at": "2026-04-30T15:02:00.693620+00:00",
+    "elapsed_sec": 1935.4
   },
   "status": "ok",
   "error": null,
-  "tags": [
-    "migrated"
-  ],
-  "notes": "Migrated from results/phase3/sdv_run_log.json"
+  "tags": [],
+  "notes": ""
 }
