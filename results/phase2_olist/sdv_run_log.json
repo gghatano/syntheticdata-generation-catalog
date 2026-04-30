@@ -1,0 +1,24 @@
+{
+  "sdv_hma": {
+    "status": "ok",
+    "fit_time_sec": 237.94,
+    "sample_time_sec": 962.8,
+    "time_sec": 1200.73,
+    "tables": {
+      "sellers": 1222,
+      "order_items": 5712,
+      "products": 3844,
+      "customers": 5000,
+      "orders": 5000,
+      "order_payments": 5237,
+      "order_reviews": 4979
+    },
+    "dataset": "olist",
+    "model": "HMASynthesizer"
+  },
+  "_env": {
+    "python_version": "3.11.15",
+    "sdv_version": "1.36.1",
+    "timestamp": "2026-04-29T05:47:14.601347"
+  }
+}

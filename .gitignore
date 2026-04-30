@@ -14,7 +14,18 @@ data/synthetic/
 # 実験結果（大きいため git 管理しない。必要に応じて個別に add）
 results/phase1/*.csv
 results/phase2/*.csv
+results/phase2_olist/*.csv
 results/phase3/*.csv
+
+# REaLTabFormer のチェックポイント類（モデル重み）
+libs/realtabformer/models/
+libs/realtabformer/rtf_checkpoints/
+libs/realtabformer/rtf_full_save/
+libs/realtabformer/rtf_samples/
+libs/realtabformer/checkpoints/
+
+# IRG 外部 clone
+external/
 
 # 実験メタデータは git 管理（再現性トレーサビリティ）
 !results/metadata/
