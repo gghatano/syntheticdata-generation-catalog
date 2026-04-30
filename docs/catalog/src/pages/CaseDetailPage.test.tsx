@@ -54,6 +54,19 @@ const mockCase: ExperimentCase = {
     },
   ],
   recommendation: "CTGAN が最もバランスが良い。",
+  scripts: [
+    {
+      role: "prepare",
+      library: "sdv",
+      path: "libs/sdv/prepare_data.py",
+      description: "Adult Census データセットを取得し processed CSV に整形",
+    },
+    {
+      role: "synthesize",
+      library: "sdv",
+      path: "libs/sdv/run_phase1.py",
+    },
+  ],
 };
 
 // MemoryRouter で指定 id のルートにレンダーするヘルパー
@@ -113,6 +126,37 @@ describe("CaseDetailPage", () => {
     // 結果テーブルに手法名が表示されること（MetricsBarChart などで複数表示されることがあるため getAllByText を使用）
     expect(screen.getAllByText("CTGAN").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("GaussianCopula").length).toBeGreaterThanOrEqual(1);
+
+    // スクリプトセクションが描画されること
+    expect(screen.getByText("使用したスクリプト")).toBeInTheDocument();
+    expect(screen.getByText("データ準備")).toBeInTheDocument();
+    expect(screen.getByText("合成")).toBeInTheDocument();
+    expect(screen.getByText("libs/sdv/prepare_data.py")).toBeInTheDocument();
+
+    // GitHub blob/raw URL が組み立てられていること
+    const blobLink = screen.getAllByRole("link", { name: /prepare_data.py を GitHub で表示/i })[0];
+    expect(blobLink).toHaveAttribute(
+      "href",
+      "https://github.com/gghatano/syntheticdata-generation-catalog/blob/main/libs/sdv/prepare_data.py"
+    );
+    const rawLink = screen.getAllByRole("link", { name: /prepare_data.py をダウンロード/i })[0];
+    expect(rawLink).toHaveAttribute(
+      "href",
+      "https://github.com/gghatano/syntheticdata-generation-catalog/raw/main/libs/sdv/prepare_data.py"
+    );
+  });
+
+  it("(c2) scripts が未指定なら使用したスクリプトセクションは描画されない", () => {
+    const caseWithoutScripts: ExperimentCase = { ...mockCase, scripts: undefined };
+    mockUseExperimentCases.mockReturnValue({
+      cases: [caseWithoutScripts],
+      loading: false,
+      error: null,
+    });
+
+    renderWithRouter("adult-census-anonymization");
+
+    expect(screen.queryByText("使用したスクリプト")).not.toBeInTheDocument();
   });
 
   it("(d) loading → resolved 遷移を通してクラッシュしない", () => {

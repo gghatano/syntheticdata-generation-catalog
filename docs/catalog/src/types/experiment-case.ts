@@ -18,6 +18,21 @@ export const DATA_CATEGORY_ICONS: Record<DataCategory, string> = {
   multi_table: "\uD83D\uDD17",
 };
 
+export type ScriptRole = "prepare" | "synthesize" | "evaluate";
+
+export type CaseScript = {
+  role: ScriptRole;
+  library: string;
+  path: string;
+  description?: string;
+};
+
+export const SCRIPT_ROLE_LABELS: Record<ScriptRole, string> = {
+  prepare: "データ準備",
+  synthesize: "合成",
+  evaluate: "評価",
+};
+
 export type ExperimentCase = {
   id: string;
   title: string;
@@ -35,6 +50,7 @@ export type ExperimentCase = {
   };
   results: CaseResult[];
   recommendation: string;
+  scripts?: CaseScript[];
 };
 
 export type CaseResult = {
