@@ -1,0 +1,162 @@
+{
+  "case_id": "insurance-risk-modeling",
+  "selected_synth": {
+    "algorithm": "GaussianCopula",
+    "library": "SDV",
+    "csv": "results/phase1/sdv_gaussiancopula_insurance.csv"
+  },
+  "real_source": {
+    "csv": "data/raw/d_insurance.csv",
+    "rows": 20000
+  },
+  "synth_source": {
+    "rows": 20000
+  },
+  "items": [
+    {
+      "type": "categorical",
+      "column": "Age",
+      "label": "年齢区分",
+      "categories": [
+        {
+          "name": "Adult",
+          "real_pct": 0.5986,
+          "synth_pct": 0.5987,
+          "real_count": 11972,
+          "synth_count": 11974
+        },
+        {
+          "name": "Senior",
+          "real_pct": 0.2001,
+          "synth_pct": 0.2054,
+          "real_count": 4003,
+          "synth_count": 4107
+        },
+        {
+          "name": "Adolescent",
+          "real_pct": 0.2013,
+          "synth_pct": 0.196,
+          "real_count": 4025,
+          "synth_count": 3919
+        }
+      ],
+      "total_categories": 3
+    },
+    {
+      "type": "categorical",
+      "column": "SocioEcon",
+      "label": "社会経済層",
+      "categories": [
+        {
+          "name": "Prole",
+          "real_pct": 0.4202,
+          "synth_pct": 0.4189,
+          "real_count": 8404,
+          "synth_count": 8378
+        },
+        {
+          "name": "Middle",
+          "real_pct": 0.3619,
+          "synth_pct": 0.3605,
+          "real_count": 7237,
+          "synth_count": 7211
+        },
+        {
+          "name": "UpperMiddle",
+          "real_pct": 0.2068,
+          "synth_pct": 0.209,
+          "real_count": 4136,
+          "synth_count": 4180
+        },
+        {
+          "name": "Wealthy",
+          "real_pct": 0.0112,
+          "synth_pct": 0.0115,
+          "real_count": 223,
+          "synth_count": 231
+        }
+      ],
+      "total_categories": 4
+    },
+    {
+      "type": "categorical",
+      "column": "MakeModel",
+      "label": "車種",
+      "categories": [
+        {
+          "name": "Economy",
+          "real_pct": 0.3827,
+          "synth_pct": 0.3841,
+          "real_count": 7655,
+          "synth_count": 7681
+        },
+        {
+          "name": "FamilySedan",
+          "real_pct": 0.3739,
+          "synth_pct": 0.3744,
+          "real_count": 7477,
+          "synth_count": 7487
+        },
+        {
+          "name": "SportsCar",
+          "real_pct": 0.1457,
+          "synth_pct": 0.1439,
+          "real_count": 2914,
+          "synth_count": 2879
+        },
+        {
+          "name": "Luxury",
+          "real_pct": 0.0955,
+          "synth_pct": 0.0948,
+          "real_count": 1911,
+          "synth_count": 1896
+        },
+        {
+          "name": "SuperLuxury",
+          "real_pct": 0.0022,
+          "synth_pct": 0.0029,
+          "real_count": 43,
+          "synth_count": 57
+        }
+      ],
+      "total_categories": 5
+    },
+    {
+      "type": "categorical",
+      "column": "ThisCarCost",
+      "label": "この車の保険費用",
+      "categories": [
+        {
+          "name": "Thousand",
+          "real_pct": 0.8247,
+          "synth_pct": 0.8246,
+          "real_count": 16494,
+          "synth_count": 16493
+        },
+        {
+          "name": "TenThou",
+          "real_pct": 0.1252,
+          "synth_pct": 0.124,
+          "real_count": 2504,
+          "synth_count": 2480
+        },
+        {
+          "name": "HundredThou",
+          "real_pct": 0.0496,
+          "synth_pct": 0.0507,
+          "real_count": 993,
+          "synth_count": 1014
+        },
+        {
+          "name": "Million",
+          "real_pct": 0.0004,
+          "synth_pct": 0.0006,
+          "real_count": 9,
+          "synth_count": 13
+        }
+      ],
+      "total_categories": 4
+    }
+  ],
+  "note": "SDV demo の insurance は自動車保険のベイズネット表データ（全列カテゴリ）。年齢区分・社会経済層・車種・保険費用の比率を比較。"
+}

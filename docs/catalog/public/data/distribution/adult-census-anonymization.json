@@ -1,0 +1,346 @@
+{
+  "case_id": "adult-census-anonymization",
+  "selected_synth": {
+    "algorithm": "GaussianCopula",
+    "library": "SDV",
+    "csv": "results/phase1/sdv_gaussiancopula.csv"
+  },
+  "real_source": {
+    "csv": "data/processed/d1_adult.csv",
+    "rows": 32561
+  },
+  "synth_source": {
+    "rows": 32561
+  },
+  "items": [
+    {
+      "type": "numeric",
+      "column": "age",
+      "label": "年齢",
+      "unit": "歳",
+      "real_mean": 38.5816,
+      "synth_mean": 38.6216,
+      "real_std": 13.6404,
+      "synth_std": 14.05,
+      "bins": [
+        {
+          "x": 17.0,
+          "x_end": 20.65,
+          "real": 2410,
+          "synth": 2114
+        },
+        {
+          "x": 20.65,
+          "x_end": 24.3,
+          "real": 3160,
+          "synth": 3375
+        },
+        {
+          "x": 24.3,
+          "x_end": 27.95,
+          "real": 2461,
+          "synth": 2799
+        },
+        {
+          "x": 27.95,
+          "x_end": 31.6,
+          "real": 3429,
+          "synth": 3699
+        },
+        {
+          "x": 31.6,
+          "x_end": 35.25,
+          "real": 3465,
+          "synth": 3560
+        },
+        {
+          "x": 35.25,
+          "x_end": 38.9,
+          "real": 2583,
+          "synth": 2453
+        },
+        {
+          "x": 38.9,
+          "x_end": 42.55,
+          "real": 3198,
+          "synth": 3067
+        },
+        {
+          "x": 42.55,
+          "x_end": 46.2,
+          "real": 2965,
+          "synth": 2640
+        },
+        {
+          "x": 46.2,
+          "x_end": 49.85,
+          "real": 1828,
+          "synth": 1672
+        },
+        {
+          "x": 49.85,
+          "x_end": 53.5,
+          "real": 2139,
+          "synth": 2004
+        },
+        {
+          "x": 53.5,
+          "x_end": 57.15,
+          "real": 1558,
+          "synth": 1486
+        },
+        {
+          "x": 57.15,
+          "x_end": 60.8,
+          "real": 1033,
+          "synth": 937
+        },
+        {
+          "x": 60.8,
+          "x_end": 64.45,
+          "real": 996,
+          "synth": 1003
+        },
+        {
+          "x": 64.45,
+          "x_end": 68.1,
+          "real": 599,
+          "synth": 685
+        },
+        {
+          "x": 68.1,
+          "x_end": 71.75,
+          "real": 269,
+          "synth": 372
+        },
+        {
+          "x": 71.75,
+          "x_end": 75.4,
+          "real": 227,
+          "synth": 356
+        },
+        {
+          "x": 75.4,
+          "x_end": 79.05,
+          "real": 120,
+          "synth": 191
+        },
+        {
+          "x": 79.05,
+          "x_end": 82.7,
+          "real": 54,
+          "synth": 76
+        },
+        {
+          "x": 82.7,
+          "x_end": 86.35,
+          "real": 20,
+          "synth": 59
+        },
+        {
+          "x": 86.35,
+          "x_end": 90.0,
+          "real": 47,
+          "synth": 13
+        }
+      ]
+    },
+    {
+      "type": "numeric",
+      "column": "hours-per-week",
+      "label": "週労働時間",
+      "unit": "時間",
+      "real_mean": 40.4375,
+      "synth_mean": 40.4473,
+      "real_std": 12.3474,
+      "synth_std": 12.3384,
+      "bins": [
+        {
+          "x": 1.0,
+          "x_end": 5.9,
+          "real": 205,
+          "synth": 48
+        },
+        {
+          "x": 5.9,
+          "x_end": 10.8,
+          "real": 531,
+          "synth": 156
+        },
+        {
+          "x": 10.8,
+          "x_end": 15.7,
+          "real": 645,
+          "synth": 434
+        },
+        {
+          "x": 15.7,
+          "x_end": 20.6,
+          "real": 1547,
+          "synth": 924
+        },
+        {
+          "x": 20.6,
+          "x_end": 25.5,
+          "real": 1015,
+          "synth": 2030
+        },
+        {
+          "x": 25.5,
+          "x_end": 30.4,
+          "real": 1302,
+          "synth": 3322
+        },
+        {
+          "x": 30.4,
+          "x_end": 35.3,
+          "real": 1635,
+          "synth": 4438
+        },
+        {
+          "x": 35.3,
+          "x_end": 40.2,
+          "real": 16100,
+          "synth": 5281
+        },
+        {
+          "x": 40.2,
+          "x_end": 45.1,
+          "real": 2442,
+          "synth": 5037
+        },
+        {
+          "x": 45.1,
+          "x_end": 50.0,
+          "real": 677,
+          "synth": 3458
+        },
+        {
+          "x": 50.0,
+          "x_end": 54.9,
+          "real": 3036,
+          "synth": 3255
+        },
+        {
+          "x": 54.9,
+          "x_end": 59.8,
+          "real": 841,
+          "synth": 2106
+        },
+        {
+          "x": 59.8,
+          "x_end": 64.7,
+          "real": 1519,
+          "synth": 1130
+        },
+        {
+          "x": 64.7,
+          "x_end": 69.6,
+          "real": 277,
+          "synth": 564
+        },
+        {
+          "x": 69.6,
+          "x_end": 74.5,
+          "real": 365,
+          "synth": 231
+        },
+        {
+          "x": 74.5,
+          "x_end": 79.4,
+          "real": 83,
+          "synth": 95
+        },
+        {
+          "x": 79.4,
+          "x_end": 84.3,
+          "real": 182,
+          "synth": 39
+        },
+        {
+          "x": 84.3,
+          "x_end": 89.2,
+          "real": 20,
+          "synth": 10
+        },
+        {
+          "x": 89.2,
+          "x_end": 94.1,
+          "real": 34,
+          "synth": 2
+        },
+        {
+          "x": 94.1,
+          "x_end": 99.0,
+          "real": 105,
+          "synth": 1
+        }
+      ]
+    },
+    {
+      "type": "categorical",
+      "column": "workclass",
+      "label": "雇用形態",
+      "categories": [
+        {
+          "name": "Private",
+          "real_pct": 0.697,
+          "synth_pct": 0.6992,
+          "real_count": 22696,
+          "synth_count": 22768
+        },
+        {
+          "name": "Self-emp-not-inc",
+          "real_pct": 0.078,
+          "synth_pct": 0.077,
+          "real_count": 2541,
+          "synth_count": 2507
+        },
+        {
+          "name": "Local-gov",
+          "real_pct": 0.0643,
+          "synth_pct": 0.061,
+          "real_count": 2093,
+          "synth_count": 1987
+        },
+        {
+          "name": "?",
+          "real_pct": 0.0564,
+          "synth_pct": 0.0565,
+          "real_count": 1836,
+          "synth_count": 1841
+        },
+        {
+          "name": "State-gov",
+          "real_pct": 0.0399,
+          "synth_pct": 0.0408,
+          "real_count": 1298,
+          "synth_count": 1327
+        },
+        {
+          "name": "Self-emp-inc",
+          "real_pct": 0.0343,
+          "synth_pct": 0.0346,
+          "real_count": 1116,
+          "synth_count": 1128
+        },
+        {
+          "name": "Federal-gov",
+          "real_pct": 0.0295,
+          "synth_pct": 0.0303,
+          "real_count": 960,
+          "synth_count": 985
+        },
+        {
+          "name": "Without-pay",
+          "real_pct": 0.0004,
+          "synth_pct": 0.0003,
+          "real_count": 14,
+          "synth_count": 9
+        }
+      ],
+      "total_categories": 9
+    }
+  ],
+  "note": "Adult Census の年齢分布と雇用形態の比率を比較。CTGAN は分布の山形を捉えやすい一方、レアカテゴリの比率が崩れることがある。"
+}
