@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { Algorithm } from "../types/algorithm";
 import { CATEGORY_LABELS, DATA_TYPE_LABELS } from "../constants/categories";
 import { MetricsBadge } from "./MetricsBadge";
+import { CompareToggleButton } from "./CompareToggleButton";
 
 type AlgorithmCardProps = {
   algorithm: Algorithm;
@@ -81,8 +82,8 @@ export function AlgorithmCard({ algorithm }: AlgorithmCardProps) {
         </div>
       )}
 
-      {/* Library badges */}
-      <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100">
+      {/* Library badges + compare toggle */}
+      <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-gray-100">
         {libraries.map((lib) => (
           <span
             key={lib}
@@ -91,6 +92,9 @@ export function AlgorithmCard({ algorithm }: AlgorithmCardProps) {
             {lib}
           </span>
         ))}
+        <span className="ml-auto">
+          <CompareToggleButton algorithmId={id} algorithmName={name} />
+        </span>
       </div>
     </Link>
   );
